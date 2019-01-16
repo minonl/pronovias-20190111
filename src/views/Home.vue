@@ -74,9 +74,10 @@ export default {
       padding: 1em;
       font-size: .75rem;
       @media screen and (min-width: 370px){
-        font-size: 1rem;
+        font-size: .85rem;
       }
       p {
+        padding: .75em;
         height: 1em;
       }
       &-1 {
