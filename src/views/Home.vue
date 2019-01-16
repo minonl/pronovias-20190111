@@ -50,7 +50,7 @@ export default {
           '现已成为覆盖105个国家的国际品牌'],
         line2: ['让Pronovias带你',
           '进入如梦如幻的婚纱世界吧！'],
-        button1: '即刻在线选纱'//,
+        button1: '即刻在线选纱'
         // button2: '上传试纱照片'
       }
     }
