@@ -5135,6 +5135,11 @@ lru-cache@^5.1.1:
   dependencies:
     yallist "^3.0.2"
 
+luxon@^1.10.0:
+  version "1.10.0"
+  resolved "http://registry.npm.taobao.org/luxon/download/luxon-1.10.0.tgz#335b55e2fed50e09f869aee828897a3f67c7044e"
+  integrity sha1-M1tV4v7VDgn4aa7oKIl6P2fHBE4=
+
 m3u8-parser@2.1.0:
   version "2.1.0"
   resolved "http://registry.npm.taobao.org/m3u8-parser/download/m3u8-parser-2.1.0.tgz#c8170329ec1cd515d0d58bb8b762da9896cb0368"
@@ -8404,6 +8409,11 @@ vm-browserify@0.0.4:
   dependencies:
     indexof "0.0.1"
 
+vue-datetime@^1.0.0-beta.10:
+  version "1.0.0-beta.10"
+  resolved "http://registry.npm.taobao.org/vue-datetime/download/vue-datetime-1.0.0-beta.10.tgz#788a1c2deefa3e14fbf549373ec00ebde707596a"
+  integrity sha1-eIocLe76PhT79Uk3PsAOvecHWWo=
+
 vue-eslint-parser@^2.0.3:
   version "2.0.3"
   resolved "http://registry.npm.taobao.org/vue-eslint-parser/download/vue-eslint-parser-2.0.3.tgz#c268c96c6d94cfe3d938a5f7593959b0ca3360d1"
@@ -8656,6 +8666,11 @@ webwackify@0.1.6:
   version "0.1.6"
   resolved "http://registry.npm.taobao.org/webwackify/download/webwackify-0.1.6.tgz#1d42a12ac61823d7e345abde084eaaa62a4a95eb"
   integrity sha1-HUKhKsYYI9fjRaveCE6qpipKles=
+
+weekstart@^1.0.0:
+  version "1.0.0"
+  resolved "http://registry.npm.taobao.org/weekstart/download/weekstart-1.0.0.tgz#e0aee358d45ad99802254769d7b2a34c9380f539"
+  integrity sha1-4K7jWNRa2ZgCJUdp17KjTJOA9Tk=
 
 which-module@^1.0.0:
   version "1.0.0"

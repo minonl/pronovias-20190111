@@ -3,6 +3,7 @@
     <div id="nav">
       <i>links</i> :
       <router-link to="/">Home</router-link> |
+      <router-link to="/appointment">Appointment</router-link> |
       <router-link to="/product/1">Product</router-link> |
       <router-link to="/product">Product List</router-link> |
       <router-link to="/upload">Upload Photo</router-link> |
@@ -33,6 +34,7 @@ button {
   color: white;
   background-color: #ae9a64;
   outline: none;
+  cursor: pointer;
   @media screen and (min-width: 370px){
     font-size: 1rem;
   }
