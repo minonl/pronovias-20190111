@@ -13,7 +13,7 @@
 </template>
 
 <style lang="scss">
-body {
+body, #app {
   margin: 0;
   padding: 0;
   font-family: "PingFang SC","Helvetica Neue","Hiragino Sans GB","Segoe UI","Microsoft YaHei","微软雅黑",sans-serif;
@@ -23,7 +23,7 @@ body {
   bottom: 0;
   left: 0;
   background: rgba(222,222,0,.5);
-  padding: 1px;
+  padding: 3px;
   z-index: 999;
 }
 button {

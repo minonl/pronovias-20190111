@@ -32,13 +32,13 @@ export default new Router({
     },
     {
       path: '/upload',
-      name: 'uploadphoto',
-      component: () => import(/* webpackChunkName: "uploadphoto" */ './views/PhotoUpload.vue')
+      name: 'photoupload',
+      component: () => import(/* webpackChunkName: "photoupload" */ './views/PhotoUpload.vue')
     },
     {
       path: '/result/:id',
       name: 'result',
-      component: () => import(/* webpackChunkName: "uploadphoto" */ './views/Result.vue')
+      component: () => import(/* webpackChunkName: "result" */ './views/Result.vue')
     }
   ]
 })
