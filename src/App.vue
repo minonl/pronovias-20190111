@@ -6,7 +6,7 @@
       <router-link to="/product/1">Product</router-link> |
       <router-link to="/product">Product List</router-link> |
       <router-link to="/upload">Upload Photo</router-link> |
-      <router-link to="/result">Result</router-link>
+      <router-link to="/result/1">Result</router-link>
     </div>
     <router-view/>
   </div>
