@@ -1,6 +1,6 @@
 <template>
   <div class="product">
-    <h1>title</h1>
+    <h1>{{title}}</h1>
   </div>
 </template>
 
