@@ -22,8 +22,8 @@ export default {
       product: {
         imgs: [
           require('@/assets/placeholder/cassie.png'),
-          require('@/assets/photo/bg.jpg'),
-          require('@/assets/home/bg.jpg')
+          require('@/assets/images/photo/bg.jpg'),
+          require('@/assets/images/home/bg.jpg')
         ],
         title: 'CASSIE',
         desc: ['光彩夺目而又性感撩人，妩媚诱惑而又精致高贵',

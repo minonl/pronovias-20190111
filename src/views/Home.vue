@@ -33,7 +33,7 @@ export default {
       playerOptions: {
         // controls: true,
         // nativeControlsForTouch: true,
-        poster: require('@/assets/home/video.jpg'),
+        poster: require('@/assets/images/home/video.jpg'),
         preload: true,
         sources: [{
           type: 'video/mp4',
@@ -62,7 +62,7 @@ export default {
 
 <style lang="scss" scoped>
 .home {
-  background: center / cover no-repeat url('~@/assets/home/bg.jpg');
+  background: center / cover no-repeat url('~@/assets/images/home/bg.jpg');
   background-position-y: 15vw;
   height: 100vh;
   color: white;

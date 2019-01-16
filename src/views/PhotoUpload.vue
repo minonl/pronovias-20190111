@@ -48,7 +48,7 @@ export default {
 @import url('~@/assets/fonts/playfair/stylesheet.css');
 
 .photo-upload {
-  background: center / cover no-repeat url('~@/assets/photo/bg.jpg');
+  background: center / cover no-repeat url('~@/assets/images/photo/bg.jpg');
   height: 100vh;
   color: white;
   padding-top: .5em;
@@ -81,14 +81,14 @@ export default {
     .inner {
       width: 80vw;
       height: 80vw;
-      background: center / 150% no-repeat url('~@/assets/photo/bg.jpg');
+      background: center / 150% no-repeat url('~@/assets/images/photo/bg.jpg');
       filter: opacity(.5);
       background-blend-mode: exclusion;
       .logo {
         margin: 0 auto;
         width: 5rem;
         height: 2rem;
-        background: center / contain no-repeat url('~@/assets/photo/logo.png');
+        background: center / contain no-repeat url('~@/assets/images/photo/logo.png');
       }
       .upload {
         position: absolute;
@@ -97,7 +97,7 @@ export default {
         transform: translate(-50%, -50%);
         width: 6rem;
         height: 6rem;
-        background: center / contain no-repeat url('~@/assets/photo/camera.png');
+        background: center / contain no-repeat url('~@/assets/images/photo/camera.png');
       }
     }
     .mark {
