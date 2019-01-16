@@ -31,8 +31,8 @@ export default {
   data () {
     return {
       categories: [
-        { 
-          img: require('@/assets/home/bg.jpg'), 
+        {
+          img: require('@/assets/home/bg.jpg'),
           title: '高级定制系列',
           desc: ['由巴塞罗那设计工作室中心手工制作',
             '提供优雅、创新的设计和面料以及丰富的细节'],

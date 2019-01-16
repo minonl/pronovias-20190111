@@ -19,11 +19,11 @@
 export default {
   data () {
     return {
-      product: { 
+      product: {
         imgs: [
-          require('@/assets/placeholder/cassie.png'), 
-          require('@/assets/photo/bg.jpg'), 
-          require('@/assets/home/bg.jpg'), 
+          require('@/assets/placeholder/cassie.png'),
+          require('@/assets/photo/bg.jpg'),
+          require('@/assets/home/bg.jpg')
         ],
         title: 'CASSIE',
         desc: ['光彩夺目而又性感撩人，妩媚诱惑而又精致高贵',
@@ -64,4 +64,3 @@ export default {
   background-repeat: no-repeat;
 }
 </style>
-
