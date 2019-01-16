@@ -71,8 +71,8 @@ export default {
     margin: 1rem auto;
     padding: 5vw;
     .inner {
-      width: 80vw;
-      height: 80vw;
+      width: 70vw;
+      height: 70vw;
       background: center / 150% no-repeat url('~@/assets/images/photo/bg.jpg');
       filter: opacity(.5);
       background-blend-mode: exclusion;
