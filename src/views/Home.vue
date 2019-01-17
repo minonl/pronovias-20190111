@@ -13,7 +13,9 @@
           {{line}}
         </p>
       </div>
-      <button class="start">{{text.button1}}</button>
+      <router-link to="/appointment">
+        <button class="start">{{text.button1}}</button>
+      </router-link>
     </div>
   </div>
 </template>
