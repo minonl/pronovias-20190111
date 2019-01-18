@@ -9,6 +9,7 @@ import 'vue-datetime/dist/vue-datetime.css'
 
 import { Settings } from 'luxon'
 
+import '@/stylesheets/global.scss'
 import App from './App.vue'
 import router from './router'
 

@@ -11,12 +11,17 @@
     <p v-for="(line, key) in product.desc" :key="key">
       {{line}}
     </p>
-    <button>预约试穿</button>
+    <Button>预约试穿</Button>
   </div>
 </template>
 
 <script>
+import Button from '@/components/Button'
+
 export default {
+  components: {
+    Button
+  },
   data () {
     return {
       product: {

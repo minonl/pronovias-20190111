@@ -14,7 +14,7 @@
         </p>
       </div>
       <router-link to="/appointment">
-        <button class="start">{{text.button1}}</button>
+        <Button class="start">{{text.button1}}</Button>
       </router-link>
     </div>
   </div>
@@ -25,10 +25,13 @@ import 'video.js/dist/video-js.css'
 import '@/stylesheets/vjs-custom-skin.scss'
 import { videoPlayer } from 'vue-video-player'
 
+import Button from '@/components/Button'
+
 export default {
   name: 'home',
   components: {
-    videoPlayer
+    videoPlayer,
+    Button
   },
   data () {
     return {

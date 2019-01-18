@@ -15,12 +15,17 @@
         <div class="qrcode"/>
       </div>
     </div>
-    <button class="generate">{{text.button1}}</button>
+    <Button class="generate">{{text.button1}}</Button>
   </div>
 </template>
 
 <script>
+import Button from '@/components/Button'
+
 export default {
+  components: {
+    Button
+  },
   data () {
     return {
       text: {
