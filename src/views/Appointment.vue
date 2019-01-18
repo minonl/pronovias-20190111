@@ -36,7 +36,7 @@
       I accept the Data Protection policy for
       <p class="line2">the make an appointment form</p>
     </yd-checkbox>
-    <button>确认提交</button>
+    <button>提交预约</button>
   </form>
 </template>
 
