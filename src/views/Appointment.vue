@@ -15,7 +15,12 @@
     </yd-cell-group>
     <div class='box'>
       <div class="label"><span class="no">2</span>选择预约日期</div>
-      <datetime input-class="input" class="datetime" type="datetime" v-model="date"/>
+      <datetime
+        input-class="input"
+        class="datetime"
+        type="datetime"
+        :phrases="{ok: '确认', cancel: '取消'}"
+        v-model="date"/>
     </div>
     <yd-cell-group>
       <div class="label"><span class="no">3</span>挑选你的婚纱</div>
@@ -138,6 +143,20 @@ export default {
 .datetime {
   padding: .5rem .24rem .5rem 0;
 }
+.vdatetime{
+    &-popup__header,
+    &-calendar__month__day--selected > span > span,
+    &-calendar__month__day--selected:hover > span > span {
+      background: #a89359;
+    }
+
+    &-year-picker__item--selected,
+    &-time-picker__item--selected,
+    &-popup__actions__button {
+      color: #a89359;
+    }
+  }
+
 input, .input {
   background: white !important;
   padding: 1em;
