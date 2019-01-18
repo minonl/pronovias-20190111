@@ -25,7 +25,7 @@
     <yd-cell-group>
       <div class="label"><span class="no">3</span>挑选你的婚纱</div>
       <yd-cell-item>
-        <button class="reselect" slot="left" >重新挑选</button>
+        <button class="reselect" @click="pickDress" slot="left" >重新挑选</button>
         <ul class="cart" slot="right" >
           <li class="product" v-for="(item, index) in cart" :key="index" :style="{'background-image': 'url('+item.img+')'}">
           </li>
@@ -41,7 +41,7 @@
       I accept the Data Protection policy for
       <p class="line2">the make an appointment form</p>
     </yd-checkbox>
-    <button>提交预约</button>
+    <button type="submit">提交预约</button>
   </form>
 </template>
 
@@ -57,6 +57,9 @@ export default {
     }
   },
   methods: {
+    pickDress () {
+
+    },
     submit () {
 
     }
