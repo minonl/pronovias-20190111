@@ -7,11 +7,15 @@ import 'vue-ydui/dist/ydui.rem.css'
 import Datetime from 'vue-datetime'
 import 'vue-datetime/dist/vue-datetime.css'
 
+import { Settings } from 'luxon'
+
 import App from './App.vue'
 import router from './router'
 
 Vue.use(YDUI)
 Vue.use(Datetime)
+
+Settings.defaultLocale = 'zh-cn'
 
 Vue.config.productionTip = false
 
