@@ -11,7 +11,7 @@
     <p v-for="(line, key) in product.desc" :key="key">
       {{line}}
     </p>
-    <Button>预约试穿</Button>
+    <Button @click.native="addToList">预约试穿</Button>
   </div>
 </template>
 
@@ -34,8 +34,16 @@ export default {
         desc: ['光彩夺目而又性感撩人，妩媚诱惑而又精致高贵',
           '公主风长裙，低腰设计，上身为裹身设计',
           '边缘不对称剪裁更添几分俏皮'],
-        cateId: 1
+        catId: 1,
+        id: 1
       }
+    }
+  },
+  methods: {
+    addToList () {
+      console.log('111')
+      // TODO
+      this.$router.push({ path: '/appointment' })
     }
   }
 }
@@ -67,5 +75,22 @@ export default {
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
+}
+</style>
+
+<style lang="scss">
+
+$dot-size: 6px;
+.yd-slider-pagination {
+  &-item {
+    width: $dot-size;
+    height: $dot-size;
+    margin: 0 $dot-size/2;
+    background-color: white !important;
+    &-active {
+      background-color: #a89359 !important;
+      width: $dot-size !important;
+    }
+  }
 }
 </style>
