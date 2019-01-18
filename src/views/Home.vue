@@ -13,7 +13,7 @@
           {{line}}
         </p>
       </div>
-      <router-link to="/appointment">
+      <router-link to="/product">
         <Button class="start">{{text.button1}}</Button>
       </router-link>
     </div>

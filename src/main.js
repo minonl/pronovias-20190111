@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import Vuex from 'vuex'
 
 import YDUI from 'vue-ydui' /* 相当于import YDUI from 'vue-ydui/ydui.rem.js' */
 import 'vue-ydui/dist/ydui.rem.css'
@@ -13,6 +14,7 @@ import '@/stylesheets/global.scss'
 import App from './App.vue'
 import router from './router'
 
+Vue.use(Vuex)
 Vue.use(YDUI)
 Vue.use(Datetime)
 
