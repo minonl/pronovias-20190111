@@ -38,8 +38,8 @@
       </yd-cell-item>
     </yd-cell-group>
     <yd-checkbox v-model="agree" color="#a89359">
-      I accept the Data Protection policy for
-      <p class="line2">the make an appointment form</p>
+      我同意 PRONOVIAS 的预约规则
+      <!-- <p class="line2">the make an appointment form</p> -->
     </yd-checkbox>
     <Button type="submit">提交预约</Button>
   </form>
@@ -186,19 +186,21 @@ input, .input {
   }
 }
 .yd-checkbox {
-  margin-bottom: 2rem;
+  display: block;
+  margin-bottom: 1rem;
   &-icon {
     border-color: #909090;
   }
   &-text {
-    transform: translate(.5em, -.5em);
-    text-align: left;
-    position: relative;
-    display: inline-block;
-    .line2 {
-      position: absolute;
-      left: 0;
-    }
+    padding-left: .5rem;
+  //   transform: translate(.5em, -.5em);
+  //   text-align: left;
+  //   position: relative;
+  //   display: inline-block;
+  //   .line2 {
+  //     position: absolute;
+  //     left: 0;
+  //   }
   }
 }
 </style>
