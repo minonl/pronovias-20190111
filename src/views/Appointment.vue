@@ -152,18 +152,18 @@ export default {
   padding: .5rem .24rem .5rem 0;
 }
 .vdatetime{
-    &-popup__header,
-    &-calendar__month__day--selected > span > span,
-    &-calendar__month__day--selected:hover > span > span {
-      background: #a89359;
-    }
-
-    &-year-picker__item--selected,
-    &-time-picker__item--selected,
-    &-popup__actions__button {
-      color: #a89359;
-    }
+  &-popup__header,
+  &-calendar__month__day--selected > span > span,
+  &-calendar__month__day--selected:hover > span > span {
+    background: #a89359;
   }
+
+  &-year-picker__item--selected,
+  &-time-picker__item--selected,
+  &-popup__actions__button {
+    color: #a89359;
+  }
+}
 
 input, .input {
   background: white !important;
