@@ -1,5 +1,5 @@
 <template>
-  <div class="appointment">
+  <form class="appointment" @submit.prevent="submit">
     <div class="title">预约申请</div>
     <yd-cell-group>
       <div class="label"><span class="no">1</span>联系方式</div>
@@ -13,12 +13,10 @@
         <input slot="right" type="email" placeholder="邮箱">
       </yd-cell-item>
     </yd-cell-group>
-    <yd-cell-group>
+    <div class='box'>
       <div class="label"><span class="no">2</span>选择预约日期</div>
-      <yd-cell-item>
-        <datetime slot="right" type="datetime" v-model="date"/>
-      </yd-cell-item>
-    </yd-cell-group>
+      <datetime input-class="input" class="datetime" type="datetime" v-model="date"/>
+    </div>
     <yd-cell-group>
       <div class="label"><span class="no">3</span>挑选你的婚纱</div>
       <yd-cell-item>
@@ -34,7 +32,12 @@
         </ul>
       </yd-cell-item>
     </yd-cell-group>
-  </div>
+    <yd-checkbox v-model="agree" color="#a89359">
+      I accept the Data Protection policy for
+      <p class="line2">the make an appointment form</p>
+    </yd-checkbox>
+    <button>确认提交</button>
+  </form>
 </template>
 
 <script>
@@ -42,9 +45,15 @@ export default {
   data () {
     return {
       date: null,
+      agree: false,
       cart: [
         { id: 1, img: require('@/assets/placeholder/cassie.png') }
       ]
+    }
+  },
+  methods: {
+    submit () {
+
     }
   }
 }
@@ -58,6 +67,13 @@ export default {
   .title {
     padding: .25rem;
     font-size: 1rem;
+  }
+  .box {
+    border-radius: 3px;
+    border: solid 1px #909090;
+    background-color: #f0efeb;
+    padding: .5rem 3em;
+    margin-bottom: 1rem;
   }
   .label {
     text-align: left;
@@ -115,17 +131,21 @@ export default {
     }
   }
 }
+</style>
 
-input {
+<style lang="scss">
+
+.datetime {
+  padding: .5rem .24rem .5rem 0;
+}
+input, .input {
   background: white !important;
   padding: 1em;
   height: 3em !important;
   border: solid 1px #909090 !important;
   font-size: .9rem !important;
+  width: 100%;
 }
-</style>
-
-<style lang="scss">
 .yd-cell-box {
   margin-bottom: 1rem;
   .yd-cell {
@@ -135,6 +155,22 @@ input {
     padding: .5rem 3em;
     .yd-cell-item {
       padding: .5rem 0;
+    }
+  }
+}
+.yd-checkbox {
+  margin-bottom: 2rem;
+  &-icon {
+    border-color: #909090;
+  }
+  &-text {
+    transform: translate(.5em, -.5em);
+    text-align: left;
+    position: relative;
+    display: inline-block;
+    .line2 {
+      position: absolute;
+      left: 0;
     }
   }
 }
