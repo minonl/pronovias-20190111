@@ -7,7 +7,7 @@
           <p>
             {{item.description}}
           </p>
-          <button>查看系列</button>
+          <button @click="updateCurrentCategory(item.id)">查看系列</button>
         </div>
       </yd-slider-item>
     </yd-slider>
@@ -26,38 +26,29 @@ import { mapState, mapActions } from 'vuex'
 export default {
   data () {
     return {
-      // categories: [
-      //   {
-      //     img: require('@/assets/images/home/bg.jpg'),
-      //     title: '高级定制系列',
-      //     desc: ['由巴塞罗那设计工作室中心手工制作',
-      //       '提供优雅、创新的设计和面料以及丰富的细节'],
-      //     cateId: 1
-      //   }
-      // ],
-      // list: [
-      //   { img: '//img1.shikee.com/try/2016/06/21/10172020923917672923.jpg', title: 'CELIA', id: 1 },
-      //   { img: '//img1.shikee.com/try/2016/06/23/15395220917905380014.jpg', title: 'CELIA', id: 1 },
-      //   { img: '//img1.shikee.com/try/2016/06/23/14381920926024616259.jpg', title: 'CELIA', id: 1 },
-      //   { img: '//img1.shikee.com/try/2016/06/25/14244120933639105658.jpg', title: 'CELIA', id: 1 },
-      //   { img: '//img1.shikee.com/try/2016/06/26/12365720933909085511.jpg', title: 'CELIA', id: 1 },
-      //   { img: '//img1.shikee.com/try/2016/06/19/09430120929215230041.jpg', title: 'CELIA', id: 1 }
-      // ]
+      currentCategoryId: -1
     }
   },
   computed: mapState({
-    products: state => state.products.data,
+    // products: state => state.products.data,
+    products (state) {
+      return state.products.data.filter(item => item.id === this.currentCategoryId)
+    },
     categories: state => state.categories.data
   }),
   created () {
     this.listCategory()
+    this.updateCurrentCategory(this.categories[0].id)
     this.listProduct()
   },
   methods: {
     ...mapActions([
       'listCategory',
       'listProduct'
-    ])
+    ]),
+    updateCurrentCategory (id) {
+      this.currentCategoryId = id// this.categories[id].id
+    }
   }
 }
 </script>

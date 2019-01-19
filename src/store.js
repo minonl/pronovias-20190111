@@ -41,7 +41,7 @@ const option = Object.assign(fetechedData, {
   strict: process.env.NODE_ENV !== 'production',
   getters: {
     productByCategory: (state) => (id) => {
-      return state.products.find(item => item.category_id.toString() === id)
+      return state.products.data.find(item => item.category_id.toString() === id)
     },
     productById: (state) => (id) => {
       return state.products.data.find(item => item.id.toString() === id)
