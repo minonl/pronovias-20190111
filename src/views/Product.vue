@@ -80,7 +80,7 @@ export default {
 .preview {
   height: calc(100vw - 2rem);
   background-position: center;
-  background-size: cover;
+  background-size: contain;
   background-repeat: no-repeat;
 }
 </style>
