@@ -37,17 +37,19 @@ const fetechedData = new Vapi({
   })
   .getStore()
 
-export default new Vuex.Store(fetechedData, {
+const option = Object.assign(fetechedData, {
   strict: process.env.NODE_ENV !== 'production',
   getters: {
     productByCategory: (state) => (id) => {
-      return state.products.find(item => item.category_id === id)
+      return state.products.find(item => item.category_id.toString() === id)
     },
     productById: (state) => (id) => {
-      return state.products.find(item => item.id === id)
+      return state.products.data.find(item => item.id.toString() === id)
     }
   }
 })
+
+export default new Vuex.Store(option)
 
 /*
 export default new Vuex.Store({

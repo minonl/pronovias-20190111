@@ -2,53 +2,56 @@
   <div class="product">
     <div class="wrapper">
       <yd-slider>
-        <yd-slider-item  v-for="(item, index) in product.imgs" :key="index">
-          <div class="preview" :style="{'background-image': 'url('+item+')'}"/>
+        <yd-slider-item  v-for="(item, index) in product.photos" :key="index">
+          <div class="preview" :style="{'background-image': 'url('+'http://47.104.240.204/'+item+')'}"/>
         </yd-slider-item>
       </yd-slider>
     </div>
-    <h2>{{product.title}}</h2>
-    <p v-for="(line, key) in product.desc" :key="key">
-      {{line}}
-    </p>
+    <h2>{{product.name}}</h2>
+    <p>{{product.description}}</p>
     <Button @click.native="addToList">预约试穿</Button>
   </div>
 </template>
 
 <script>
 import Button from '@/components/Button'
-import { mapGetters } from 'vuex'
-
 export default {
   components: {
     Button
   },
   data () {
     return {
-      product: {
-        imgs: [
-          require('@/assets/placeholder/cassie.png'),
-          require('@/assets/images/photo/bg.jpg'),
-          require('@/assets/images/home/bg.jpg')
-        ],
-        title: 'CASSIE',
-        desc: ['光彩夺目而又性感撩人，妩媚诱惑而又精致高贵',
-          '公主风长裙，低腰设计，上身为裹身设计',
-          '边缘不对称剪裁更添几分俏皮'],
-        catId: 1,
-        id: 1
-      }
+      // product: {
+        // imgs: [
+        //   require('@/assets/placeholder/cassie.png'),
+        //   require('@/assets/images/photo/bg.jpg'),
+        //   require('@/assets/images/home/bg.jpg')
+        // ],
+        // title: 'CASSIE',
+        // desc: ['光彩夺目而又性感撩人，妩媚诱惑而又精致高贵',
+        //   '公主风长裙，低腰设计，上身为裹身设计',
+        //   '边缘不对称剪裁更添几分俏皮'],
+        // catId: 1,
+        // id: 1
+      // }
+    }
+  },
+  computed: {
+    product () { 
+      return this.$store.getters.productById(this.$route.params.id)
+      // const r = this.$store.getters.productById(this.$route.params.id) 
+      // if (r && r.length>0) {
+      //   console.log(r)
+      //   return r
+      // }
+      // else
+      //   return []
     }
   },
   created () {
-    this.product = this.productById(this.$params.id)
   },
   methods: {
-    ...mapGetters([
-      'productById'
-    ]),
     addToList () {
-      console.log('111')
       // TODO
       this.$router.push({ path: '/appointment' })
     }
@@ -60,12 +63,9 @@ export default {
 @import url('~@/assets/fonts/playfair/stylesheet.css');
 
 .product {
-  padding-left: 1rem;
-  padding-right: 1rem;
+  padding: 1rem;
   // padding-top: 1rem;
   text-align: center;
-  .wrapper {
-  }
   h2 {
     font-family: 'playfair_displayregular', 'Playfair Display';
     font-style: normal;
