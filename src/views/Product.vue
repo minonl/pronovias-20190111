@@ -17,6 +17,7 @@
 
 <script>
 import Button from '@/components/Button'
+import { mapGetters } from 'vuex'
 
 export default {
   components: {
@@ -39,7 +40,13 @@ export default {
       }
     }
   },
+  created () {
+    this.product = this.productById(this.$params.id)
+  },
   methods: {
+    ...mapGetters([
+      'productById'
+    ]),
     addToList () {
       console.log('111')
       // TODO
