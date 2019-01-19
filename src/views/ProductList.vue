@@ -1,8 +1,8 @@
 <template>
   <div class="product-list">
     <yd-slider>
-      <yd-slider-item>
-        <div class="category" v-for="(item, index) in categories" :key="index" :style="{'background-image': 'url('+'http://47.104.240.204/'+item.poster+')'}">
+      <yd-slider-item v-for="(item, index) in categories" :key="index">
+        <div class="category" :style="{'background-image': 'url('+'http://47.104.240.204/'+item.poster+')'}">
           <h2>{{item.name}}</h2>
           <p>
             {{item.description}}
