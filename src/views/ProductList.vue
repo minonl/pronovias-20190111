@@ -15,7 +15,7 @@
       name="fade"
       mode="in-out"
     >
-      <yd-list theme="1" 
+      <yd-list theme="1"
         v-for="category in currentCategory" :key="category.id">
         <yd-list-item v-for="item in products" :key="item.id"
           class="list-complete-item"
@@ -31,7 +31,6 @@
 
 <script>
 import { mapState, mapActions } from 'vuex'
-import Velocity from 'velocity-animate'
 
 export default {
   data () {
@@ -45,7 +44,7 @@ export default {
       return state.products.data.filter(item => item.category_id === this.currentCategoryId)
     },
     categories: state => state.categories.data,
-    currentCategory() {
+    currentCategory () {
       return this.categories.filter(category => category.id === this.currentCategoryId)
     }
   }),
@@ -61,7 +60,7 @@ export default {
     ]),
     updateCurrentCategory (id) {
       this.currentCategoryId = id// this.categories[id].id
-    },
+    }
   }
 }
 </script>
