@@ -20,7 +20,8 @@ const apiStore = new Vapi({
       name: '',
       date: '',
       email: '',
-      trailProducts: []
+      trailProducts: [],
+      agree: false
     },
     products: { data: [] },
     categories: { data: [] }
@@ -49,14 +50,27 @@ apiStore.getters = {
 }
 
 // Appointment
+// - name
+apiStore.mutations.nameUpdate = (state, value) => {
+  state.appointment.name = value
+}
+apiStore.actions.updateName = (context, value) => {
+  context.commit('nameUpdate', value)
+}
+// - email
+apiStore.mutations.emailUpdate = (state, value) => {
+  state.appointment.email = value
+}
+apiStore.actions.updateEmail = (context, value) => {
+  context.commit('emailUpdate', value)
+}
 // - datetime
-apiStore.mutations.dateUpdate = (state, newDate) => {
-  state.appointment.date = newDate
+apiStore.mutations.dateUpdate = (state, value) => {
+  state.appointment.date = value
 }
-apiStore.actions.pickDatetime = (context, date) => {
-  context.commit('dateUpdate', date)
+apiStore.actions.pickDatetime = (context, value) => {
+  context.commit('dateUpdate', value)
 }
-
 // - trail product list
 apiStore.mutations.trailProductListAdd = (state, id) => {
   if (state.products.data.length !== 0) {
@@ -78,6 +92,13 @@ apiStore.actions.addTrailProduct = (context, id) => {
 }
 apiStore.actions.removeAllTrailProducts = (context) => {
   context.commit('trailProductListClear')
+}
+// - agree
+apiStore.mutations.agreeUpdate = (state, value) => {
+  state.appointment.agree = value
+}
+apiStore.actions.updateAgree = (context, value) => {
+  context.commit('agreeUpdate', value)
 }
 
 const store = new Vuex.Store(apiStore)

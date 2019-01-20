@@ -4,13 +4,16 @@
     <yd-cell-group>
       <div class="label"><span class="no">1</span>联系方式</div>
       <yd-cell-item>
-        <input slot="right" type="text" required placeholder="姓名*">
+        <input slot="right" type="text" required placeholder="姓名*"
+          v-model="name">
       </yd-cell-item>
       <yd-cell-item>
-        <input slot="right" type="number" required placeholder="电话*">
+        <input slot="right" type="number" required placeholder="电话*"
+          v-model="phone">
       </yd-cell-item>
       <yd-cell-item>
-        <input slot="right" type="email" placeholder="邮箱">
+        <input slot="right" type="email" placeholder="邮箱"
+          v-model="email">
       </yd-cell-item>
     </yd-cell-group>
     <div class='box'>
@@ -63,26 +66,55 @@ export default {
   },
   data () {
     return {
-      agree: false
     }
   },
   computed: {
     cart () {
       return this.$store.state.appointment.trailProducts
     },
+    name: {
+      get () {
+        return this.$store.state.appointment.name
+      },
+      set (value) {
+        this.updateName(value)
+      }
+    },
+    phone () {
+      return this.$store.state.account.phone
+    },
+    email: {
+      get () {
+        return this.$store.state.appointment.email
+      },
+      set (value) {
+        this.updateEmail(value)
+      }
+    },
     date: {
       get () {
         return this.$store.state.appointment.date
       },
-      set (newDate) {
-        this.pickDatetime(newDate)
+      set (value) {
+        this.pickDatetime(value)
+      }
+    },
+    agree: {
+      get () {
+        return this.$store.state.appointment.agree
+      },
+      set (value) {
+        this.updateAgree(value)
       }
     }
   },
   methods: {
     ...mapActions([
       'removeAllTrailProducts',
-      'pickDatetime'
+      'updateName',
+      'updateEmail',
+      'pickDatetime',
+      'updateAgree'
     ]),
     clearList () {
       this.removeAllTrailProducts()
