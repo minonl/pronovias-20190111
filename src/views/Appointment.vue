@@ -18,7 +18,13 @@
       <datetime
         input-class="input"
         class="datetime"
-        type="datetime"
+        type="date"
+        :phrases="{ok: '确认', cancel: '取消'}"
+        v-model="date"/>
+      <datetime
+        input-class="input"
+        class="datetime"
+        type="time"
         :phrases="{ok: '确认', cancel: '取消'}"
         v-model="date"/>
     </div>
