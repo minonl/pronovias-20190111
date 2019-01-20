@@ -31,11 +31,18 @@ export default {
   data () {
     return {
       isCounting: false,
-      phone: '',
       code: '1234'
     }
   },
   computed: {
+    phone: {
+      get () {
+        return this.$store.state.account.phone
+      },
+      set (value) {
+        this.updatePhone(value)
+      }
+    },
     isSending () {
       return this.$store.state.pending.captcha
     },
@@ -92,6 +99,7 @@ export default {
   },
   methods: {
     ...mapActions([
+      'updatePhone',
       'verifyPhone',
       'loginPhone'
     ]),
@@ -99,7 +107,6 @@ export default {
       this.verifyPhone({ data: { 'phone': this.phone } })
     },
     tryLogin () {
-      console.log('123')
       this.loginPhone({ data: { 'phone': this.phone, 'code': this.code } })
     }
   }

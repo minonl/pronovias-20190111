@@ -15,7 +15,7 @@ const apiStore = new Vapi({
     account: {
       phone: ''
     },
-    login: {},
+    login: { date: {} },
     appointment: {
       name: '',
       date: '',
@@ -46,6 +46,11 @@ const apiStore = new Vapi({
     action: 'loginPhone',
     property: 'login',
     path: '/login'
+  })
+  .post({
+    action: 'submitAppointment',
+    property: 'booking',
+    path: '/booking'
   })
   .getStore()
 

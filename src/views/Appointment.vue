@@ -8,7 +8,7 @@
           v-model="name">
       </yd-cell-item>
       <yd-cell-item>
-        <input slot="right" type="number" required placeholder="电话*"
+        <input slot="right" type="number" required disabled="disabled" placeholder="电话*"
           v-model="phone">
       </yd-cell-item>
       <yd-cell-item>
@@ -113,6 +113,9 @@ export default {
       set (value) {
         this.updateAgree(value)
       }
+    },
+    booking () {
+      return this.$store.state.booking
     }
   },
   methods: {
@@ -121,13 +124,54 @@ export default {
       'updateName',
       'updateEmail',
       'pickDatetime',
-      'updateAgree'
+      'updateAgree',
+      'submitAppointment'
     ]),
     clearList () {
       this.removeAllTrailProducts()
     },
     submit () {
-
+      let message = '预约成功'
+      let icon = 'success'
+      if (!this.agree) {
+        message = '请先同意预约规则'
+        icon = 'failure'
+      }
+      if (!this.cart || !this.cart.length) {
+        message = '请挑选你的婚纱'
+        icon = 'failure'
+      }
+      if (!this.date || !this.date.length) {
+        message = '请选择预约日期'
+        icon = 'failure'
+      }
+      // if (!this.email || !this.email.length) {
+      //   message = '请输入邮箱地址'
+      // }
+      if (!this.name || !this.name.length) {
+        message = '请输入姓名'
+        icon = 'failure'
+      }
+      if (icon !== 'success') {
+        this.$dialog.toast({
+          mes: message,
+          icon: icon,
+          timeout: 1500
+        })
+      } else {
+        this.submitAppointment({
+          headers: {
+            'TOKEN': this.$store.state.login.data.token
+          },
+          params: {
+            name: this.name,
+            phone: this.phone,
+            email: this.email,
+            date: this.date,
+            product_ids: this.cart
+          }
+        })
+      }
     }
   }
 }
