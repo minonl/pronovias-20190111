@@ -50,7 +50,11 @@ apiStore.mutations.trailProductListAdd = (state, id) => {
   if (state.products.data.length !== 0) {
     const result = state.products.data.find(item => item.id === id)
     if (result) {
-      state.appointment.trailProducts.push(result)
+      const list = state.appointment.trailProducts
+      for (const item of list) {
+        if (item.id === result.id) { return }
+      }
+      list.push(result)
     }
   }
 }
