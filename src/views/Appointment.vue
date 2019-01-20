@@ -82,8 +82,13 @@ export default {
         this.updateName(value)
       }
     },
-    phone () {
-      return this.$store.state.account.phone
+    phone: {
+      get () {
+        return this.$store.state.account.phone
+      },
+      set (value) {
+        this.updatePhone(value)
+      }
     },
     email: {
       get () {

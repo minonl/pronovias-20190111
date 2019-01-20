@@ -13,10 +13,9 @@ const apiStore = new Vapi({
       errors: []
     },
     account: {
-      phone: '',
-      isVerified: false,
-      isLogin: false
+      phone: ''
     },
+    login: {},
     appointment: {
       name: '',
       date: '',
@@ -38,6 +37,19 @@ const apiStore = new Vapi({
     property: 'categories',
     path: '/category'
   })
+  .post({
+    action: 'verifyPhone',
+    property: 'captcha',
+    path: '/phone-captcha'
+  })
+  .post({
+    action: 'login',
+    property: 'login',
+    path: '/login',
+    onSuccess: (state, { data }) => {
+
+    }
+  })
   .getStore()
 
 apiStore.strict = process.env.NODE_ENV !== 'production'
@@ -50,6 +62,14 @@ apiStore.getters = {
   }
 }
 
+// Account
+// - phone
+apiStore.mutations.phoneUpdate = (state, value) => {
+  state.account.phone = value
+}
+apiStore.actions.updatePhone = (context, value) => {
+  context.commit('phoneUpdate', value)
+}
 // Appointment
 // - name
 apiStore.mutations.nameUpdate = (state, value) => {
