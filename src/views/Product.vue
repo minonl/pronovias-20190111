@@ -3,7 +3,7 @@
     <div class="wrapper">
       <yd-slider>
         <yd-slider-item  v-for="(item, index) in product.photos" :key="index">
-          <div class="preview" :style="{'background-image': 'url('+'http://47.104.240.204/'+item+')'}"/>
+          <div class="preview" :style="{'background-image': 'url('+imageBaseUrl+item+')'}"/>
         </yd-slider-item>
       </yd-slider>
     </div>
@@ -16,6 +16,7 @@
 <script>
 import Button from '@/components/Button'
 import { mapActions } from 'vuex'
+import config from '@/config'
 
 export default {
   components: {
@@ -23,6 +24,7 @@ export default {
   },
   data () {
     return {
+      imageBaseUrl: config.imageBaseUrl
       // product: {
       // imgs: [
       //   require('@/assets/placeholder/cassie.png'),

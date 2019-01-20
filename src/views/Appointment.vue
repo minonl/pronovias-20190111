@@ -36,7 +36,7 @@
       <yd-cell-item>
         <Button class="reselect" @click="clearList" slot="left" >重新挑选</Button>
         <ul class="cart" slot="right" >
-          <li class="product" v-for="item in cart" :key="item.id" :style="{'background-image': 'url(http://47.104.240.204/'+item.photos[0]+')'}">
+          <li class="product" v-for="item in cart" :key="item.id" :style="{'background-image': 'url('+imageBaseUrl+item.photos[0]+')'}">
           </li>
           <li class="product-add">
             <router-link to='/product'>
@@ -59,6 +59,7 @@
 <script>
 import Button from '@/components/Button'
 import { mapActions } from 'vuex'
+import config from '@/config'
 
 export default {
   components: {
@@ -66,6 +67,7 @@ export default {
   },
   data () {
     return {
+      imageBaseUrl: config.imageBaseUrl
     }
   },
   computed: {

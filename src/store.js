@@ -1,11 +1,12 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import Vapi from 'vuex-rest-api'
+import config from '@/config'
 
 Vue.use(Vuex)
 
 const apiStore = new Vapi({
-  baseURL: 'http://47.104.240.204/api/web',
+  baseURL: config.apiBaseUrl,
   state: {
     app: {
       isLoading: false,

@@ -1,13 +1,13 @@
 <template>
   <div class="product-list">
-    <yd-slider>
+    <yd-slider :callback="updateCurrentCategoryBySlider">
         <yd-slider-item v-for="(item, index) in categories" :key="index">
-            <div class="category" :style="{'background-image': 'url('+'http://47.104.240.204/'+item.poster+')'}">
+            <div class="category" :style="{'background-image': 'url('+imageBaseUrl+item.poster+')'}">
               <h2>{{item.name}}</h2>
               <p>
                 {{item.description}}
               </p>
-              <button @click="updateCurrentCategory(item.id)">查看系列</button>
+              <button>查看系列</button>
             </div>
         </yd-slider-item>
     </yd-slider>
@@ -21,7 +21,7 @@
           class="list-complete-item"
           type="link"
           :href="'/product/'+item.id">
-          <img slot="img" :src="'http://47.104.240.204/'+item.photos[0]">
+          <img slot="img" :src="imageBaseUrl+item.photos[0]">
           <div slot="title">{{item.name}}</div>
         </yd-list-item>
       </yd-list>
@@ -31,11 +31,13 @@
 
 <script>
 import { mapState, mapActions } from 'vuex'
+import config from '@/config'
 
 export default {
   data () {
     return {
-      currentCategoryId: -1
+      currentCategoryId: -1,
+      imageBaseUrl: config.imageBaseUrl
     }
   },
   computed: mapState({
@@ -58,6 +60,9 @@ export default {
       'listCategory',
       'listProduct'
     ]),
+    updateCurrentCategoryBySlider (index) {
+      this.updateCurrentCategory(this.categories[index].id)
+    },
     updateCurrentCategory (id) {
       this.currentCategoryId = id// this.categories[id].id
     }
