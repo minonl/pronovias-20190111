@@ -25,14 +25,16 @@
     <yd-cell-group>
       <div class="label"><span class="no">3</span>挑选你的婚纱</div>
       <yd-cell-item>
-        <Button class="reselect" @click="pickDress" slot="left" >重新挑选</Button>
+        <Button class="reselect" @click="clearList" slot="left" >重新挑选</Button>
         <ul class="cart" slot="right" >
-          <li class="product" v-for="(item, index) in cart" :key="index" :style="{'background-image': 'url('+item.img+')'}">
+          <li class="product" v-for="item in cart" :key="item.id" :style="{'background-image': 'url(http://47.104.240.204/'+item.photos[0]+')'}">
           </li>
           <li class="product-add">
-            <div class="inner">
-              <div class="plus"/>
-            </div>
+            <router-link to='/product'>
+              <div class="inner">
+                <div class="plus"/>
+              </div>
+            </router-link>
           </li>
         </ul>
       </yd-cell-item>
@@ -47,6 +49,7 @@
 
 <script>
 import Button from '@/components/Button'
+import { mapActions } from 'vuex'
 
 export default {
   components: {
@@ -55,15 +58,20 @@ export default {
   data () {
     return {
       date: null,
-      agree: false,
-      cart: [
-        { id: 1, img: require('@/assets/placeholder/cassie.png') }
-      ]
+      agree: false
+    }
+  },
+  computed: {
+    cart () {
+      return this.$store.state.appointment.trailProducts
     }
   },
   methods: {
-    pickDress () {
-
+    ...mapActions([
+      'removeAllTrailProducts'
+    ]),
+    clearList () {
+      this.removeAllTrailProducts()
     },
     submit () {
 

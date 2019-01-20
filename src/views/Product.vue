@@ -15,6 +15,8 @@
 
 <script>
 import Button from '@/components/Button'
+import { mapActions } from 'vuex'
+
 export default {
   components: {
     Button
@@ -51,8 +53,11 @@ export default {
   created () {
   },
   methods: {
+    ...mapActions([
+      'addTrailProduct'
+    ]),
     addToList () {
-      // TODO
+      this.addTrailProduct(this.product.id)
       this.$router.push({ path: '/appointment' })
     }
   }
