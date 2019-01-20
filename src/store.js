@@ -18,6 +18,7 @@ const apiStore = new Vapi({
     },
     appointment: {
       name: '',
+      date: '',
       email: '',
       trailProducts: []
     },
@@ -46,6 +47,17 @@ apiStore.getters = {
     return state.products.data.find(item => item.id.toString() === id)
   }
 }
+
+// Appointment
+// - datetime
+apiStore.mutations.dateUpdate = (state, newDate) => {
+  state.appointment.date = newDate
+}
+apiStore.actions.pickDatetime = (context, date) => {
+  context.commit('dateUpdate', date)
+}
+
+// - trail product list
 apiStore.mutations.trailProductListAdd = (state, id) => {
   if (state.products.data.length !== 0) {
     const result = state.products.data.find(item => item.id === id)

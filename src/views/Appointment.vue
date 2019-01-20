@@ -63,18 +63,26 @@ export default {
   },
   data () {
     return {
-      date: null,
       agree: false
     }
   },
   computed: {
     cart () {
       return this.$store.state.appointment.trailProducts
+    },
+    date: {
+      get () {
+        return this.$store.state.appointment.date
+      },
+      set (newDate) {
+        this.pickDatetime(newDate)
+      }
     }
   },
   methods: {
     ...mapActions([
-      'removeAllTrailProducts'
+      'removeAllTrailProducts',
+      'pickDatetime'
     ]),
     clearList () {
       this.removeAllTrailProducts()
