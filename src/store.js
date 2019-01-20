@@ -43,12 +43,9 @@ const apiStore = new Vapi({
     path: '/phone-captcha'
   })
   .post({
-    action: 'login',
+    action: 'loginPhone',
     property: 'login',
-    path: '/login',
-    onSuccess: (state, { data }) => {
-
-    }
+    path: '/login'
   })
   .getStore()
 

@@ -1,25 +1,33 @@
 <template>
-  <yd-cell-group>
-    <yd-cell-item>
-      <yd-icon slot="icon" name="phone3" size=".45rem"></yd-icon>
-      <input type="text" slot="right" placeholder="请输入手机号码"
-        v-model="phone">
-      <yd-sendcode slot="right"
-                    v-model="isCounting"
-                    @click.native="sendCode"
-                    type="warning"
-      ></yd-sendcode>
-    </yd-cell-item>
-    <yd-cell-item>
-      <input type="text" slot="right" placeholder="请输入短信验证码"
-        v-model="code">
-    </yd-cell-item>
-  </yd-cell-group>
+  <div>
+    <yd-cell-group>
+      <yd-cell-item>
+        <yd-icon slot="icon" name="phone3" size=".45rem"></yd-icon>
+        <input type="text" slot="right" placeholder="请输入手机号码"
+          v-model="phone">
+        <yd-sendcode slot="right"
+                      v-model="isCounting"
+                      @click.native="sendCode"
+                      type="warning"
+        ></yd-sendcode>
+      </yd-cell-item>
+      <yd-cell-item>
+        <input type="text" slot="right" placeholder="请输入短信验证码"
+          v-model="code">
+      </yd-cell-item>
+    </yd-cell-group>
+    <Button @click.native="tryLogin">登录</Button>
+  </div>
 </template>
 
 <script>
 import { mapActions } from 'vuex'
+import Button from '@/components/Button'
+
 export default {
+  components: {
+    Button
+  },
   data () {
     return {
       isCounting: false,
@@ -33,6 +41,9 @@ export default {
     },
     captcha () {
       return this.$store.state.captcha
+    },
+    login () {
+      return this.$store.state.login
     }
   },
   watch: {
@@ -60,18 +71,36 @@ export default {
           timeout: 1500
         })
       }
+    },
+    login (newLogin) {
+      if (newLogin) {
+        let message = newLogin.message
+        let icon = 'success'
+        if (newLogin.code === 0) {
+          message = '登录成功'
+          this.$router.push('/product')
+        } else {
+          icon = 'failure'
+        }
+        this.$dialog.toast({
+          mes: message,
+          icon: icon,
+          timeout: 1500
+        })
+      }
     }
   },
   methods: {
     ...mapActions([
       'verifyPhone',
-      'login'
+      'loginPhone'
     ]),
     sendCode () {
       this.verifyPhone({ data: { 'phone': this.phone } })
-      setTimeout(() => {
-
-      }, 1000)
+    },
+    tryLogin () {
+      console.log('123')
+      this.loginPhone({ data: { 'phone': this.phone, 'code': this.code } })
     }
   }
 }
