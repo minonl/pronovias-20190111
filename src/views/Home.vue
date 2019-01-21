@@ -24,16 +24,16 @@
 </template>
 
 <script>
-import 'video.js/dist/video-js.css'
-import '@/stylesheets/vjs-custom-skin.scss'
-import { videoPlayer } from 'vue-video-player'
+// import 'video.js/dist/video-js.css'
+// import '@/stylesheets/vjs-custom-skin.scss'
+// import { videoPlayer } from 'vue-video-player'
 
 import Button from '@/components/Button'
 
 export default {
   name: 'home',
   components: {
-    videoPlayer,
+    // videoPlayer,
     Button
   },
   data () {
