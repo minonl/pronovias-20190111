@@ -70,7 +70,7 @@ export default {
 @import url('~@/assets/fonts/playfair/stylesheet.css');
 
 .product {
-  padding: 1rem;
+  padding: 0 1rem 1rem;
   // padding-top: 1rem;
   text-align: center;
   h2 {
