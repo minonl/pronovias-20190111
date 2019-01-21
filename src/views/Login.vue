@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="login">
     <yd-cell-group>
       <yd-cell-item>
         <yd-icon slot="icon" name="phone3" size=".45rem"></yd-icon>
@@ -16,7 +16,7 @@
           v-model="code">
       </yd-cell-item>
     </yd-cell-group>
-    <Button @click.native="tryLogin">登录</Button>
+    <Button class="try" @click.native="tryLogin">登录</Button>
   </div>
 </template>
 
@@ -113,6 +113,27 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
+.login {
+  position: relative;
+  text-align: center;
+  padding: .5rem;
+}
+input {
+  padding: 1em !important;
+  height: 3em !important;
+}
+.try {
+  margin-top: .5rem;
+}
 
+</style>
+
+<style lang="scss">
+.yd-cell {
+  height: auto;
+}
+.yd-btn {
+  height: 1rem;
+}
 </style>
