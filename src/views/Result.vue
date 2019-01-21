@@ -5,7 +5,7 @@
     </div>
     <div class="frame">
       <div class="inner">
-        <div class="logo"/>
+        <!-- <div class="logo"/> -->
         <!-- <div class="upload"/> -->
       </div>
       <div class="mark">
@@ -31,8 +31,7 @@ export default {
       text: {
         line1: '#Marry me',
         line3: [
-          'Fantasy Of Love',
-          'WIP'
+          'Fantasy Of Love WIP'
         ],
         button1: '点击分享'
       }
@@ -43,6 +42,7 @@ export default {
 
 <style lang="scss" scoped>
 @import url('~@/assets/fonts/playfair/stylesheet.css');
+@import '~@/stylesheets/color.scss';
 
 .result {
   background: center / cover no-repeat url('~@/assets/images/photo/bg.jpg');
@@ -55,70 +55,76 @@ export default {
     font-weight: 700;
     font-style: italic;
     font-size: 1.5rem;
+    padding: .95rem 0;
+    color: white;
   }
   .title {
-    padding-left: 2em;
-    text-align: left;
+  //   padding-left: 2em;
+  //   text-align: left;
   }
-  .phrase {
-    text-align: left;
-    p {
-      height: 1em;
-    }
-    &-1 {
-      padding-left: 2em;
-    }
-  }
+  // .phrase {
+  //   text-align: left;
+  //   p {
+  //     height: 1em;
+  //   }
+  //   &-1 {
+  //     padding-left: 2em;
+  //   }
+  // }
   .frame {
     width: 80vw;
     height: 96vw;
-    background: white;
+    // background: white;
     margin: 1rem auto;
-    padding: 5vw;
+    // padding: 5vw;
     .inner {
-      width: 70vw;
-      height: 70vw;
-      background: center / 150% no-repeat url('~@/assets/images/photo/bg.jpg');
-      filter: opacity(.5);
+      width: 80vw;
+      height: 80vw;
+      position: relative;
+      // background: center / 150% no-repeat url('~@/assets/images/photo/bg.jpg');
+      background: rgba(255,255,255,0.3);
+      // filter: opacity(.5);
       background-blend-mode: exclusion;
-      .logo {
-        margin: 0 auto;
-        width: 5rem;
-        height: 2rem;
-        background: center / contain no-repeat url('~@/assets/images/photo/logo.png');
-      }
+      // .logo {
+      //   margin: 0 auto;
+      //   width: 5rem;
+      //   height: 2rem;
+      //   background: center / contain no-repeat url('~@/assets/images/photo/logo.png');
+      // }
       .upload {
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        width: 6rem;
-        height: 6rem;
+        width: 4rem;
+        height: 4rem;
         background: center / contain no-repeat url('~@/assets/images/photo/camera.png');
       }
     }
     .mark {
-      text-align: left;
       color: #a89359;
       margin-top: .25rem;
       position: relative;
       h1 {
-        padding: 0;
-        margin: 0;
+        padding: .5em;
+        margin: .5em;
+        font-size: 1rem;
       }
       .qrcode {
         position: absolute;
         top: 50%;
         right: 0;
         transform: translateY(-50%);
-        height: 2.75rem;
-        width: 2.75rem;
+        height: 2rem;
+        width: 2rem;
         background: black;
       }
     }
   }
   .generate {
-
+    color: white;
+    border-color: transparent;
+    background-color: $gold;
   }
 }
 </style>
