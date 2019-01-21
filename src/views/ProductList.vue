@@ -1,7 +1,7 @@
 <template>
   <div class="product-list">
     <div class="category-list">
-      <yd-slider :callback="updateCurrentCategoryBySlider">
+      <yd-slider :callback="updateCurrentCategoryBySlider" ref="slider">
           <yd-slider-item v-for="(item, index) in categories" :key="index">
               <div class="category" :style="{'background-image': 'url('+imageBaseUrl+item.poster+')'}">
                 <h2>{{item.name}}</h2>
@@ -13,10 +13,10 @@
           </yd-slider-item>
       </yd-slider>
       <div class="navigation">
-        <div class="pan pan-prev">
+        <div class="pan pan-prev" @click="swipeTo(true)">
           <div class="arrow arrow-prev"/>
         </div>
-        <div class="pan pan-next">
+        <div class="pan pan-next" @click="swipeTo(false)">
           <div class="arrow arrow-next"/>
         </div>
       </div>
@@ -76,6 +76,37 @@ export default {
     },
     updateCurrentCategory (id) {
       this.currentCategoryId = id// this.categories[id].id
+    },
+    swipeTo (right) {
+      if (right) {
+        this.$refs.slider.touchStartHandler({
+          touches: [{
+            clientX: 0,
+            clientY: 0
+          }]
+        })
+        this.$refs.slider.touchMoveHandler({
+          touches: [{
+            clientX: 1000,
+            clientY: 0
+          }]
+        })
+        this.$refs.slider.touchEndHandler()
+      } else {
+        this.$refs.slider.touchStartHandler({
+          touches: [{
+            clientX: 1000,
+            clientY: 0
+          }]
+        })
+        this.$refs.slider.touchMoveHandler({
+          touches: [{
+            clientX: 0,
+            clientY: 0
+          }]
+        })
+        this.$refs.slider.touchEndHandler()
+      }
     }
   }
 }
