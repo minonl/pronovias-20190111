@@ -7,6 +7,8 @@ import 'vue-ydui/dist/ydui.rem.css'
 import Datetime from 'vue-datetime'
 import 'vue-datetime/dist/vue-datetime.css'
 
+import VueCarousel from 'vue-carousel'
+
 import { Settings } from 'luxon'
 
 import '@/stylesheets/global.scss'
@@ -17,6 +19,7 @@ import router from './router'
 
 Vue.use(YDUI)
 Vue.use(Datetime)
+Vue.use(VueCarousel)
 
 Settings.defaultLocale = 'zh-cn'
 

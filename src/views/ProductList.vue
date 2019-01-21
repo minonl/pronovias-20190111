@@ -1,16 +1,26 @@
 <template>
   <div class="product-list">
-    <yd-slider :callback="updateCurrentCategoryBySlider">
-        <yd-slider-item v-for="(item, index) in categories" :key="index">
-            <div class="category" :style="{'background-image': 'url('+imageBaseUrl+item.poster+')'}">
-              <h2>{{item.name}}</h2>
-              <p>
-                {{item.description}}
-              </p>
-              <button>查看系列</button>
-            </div>
-        </yd-slider-item>
-    </yd-slider>
+    <div class="category-list">
+      <yd-slider :callback="updateCurrentCategoryBySlider">
+          <yd-slider-item v-for="(item, index) in categories" :key="index">
+              <div class="category" :style="{'background-image': 'url('+imageBaseUrl+item.poster+')'}">
+                <h2>{{item.name}}</h2>
+                <p>
+                  {{item.description}}
+                </p>
+                <button>查看系列</button>
+              </div>
+          </yd-slider-item>
+      </yd-slider>
+      <div class="navigation">
+        <div class="pan pan-prev">
+          <div class="arrow arrow-prev"/>
+        </div>
+        <div class="pan pan-next">
+          <div class="arrow arrow-next"/>
+        </div>
+      </div>
+    </div>
     <transition-group
       name="fade"
       mode="in-out"
@@ -34,6 +44,7 @@ import { mapState, mapActions } from 'vuex'
 import config from '@/config'
 
 export default {
+  name: 'productList',
   data () {
     return {
       currentCategoryId: -1,
@@ -73,7 +84,9 @@ export default {
 <style lang="scss" scoped>
 .product-list {
   // padding: .75rem;
-  height: 100%;
+}
+.category-list {
+  overflow: hidden;
 }
 .category {
   text-align: center;
@@ -89,6 +102,44 @@ export default {
   button {
     margin-top: 2rem;
     font-size: .75rem;
+  }
+}
+.navigation{
+  position: relative;
+  z-index: 2;
+  .pan {
+    position: absolute;
+    top: -9rem;
+    width: 6rem;
+    height: 6rem;
+    background: rgba(255,255,255,0.45);
+    border-radius: 50%;
+    padding: 2rem;
+    cursor: pointer;
+    .arrow {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+      transform: translateX(-70%);
+      &-prev {
+        transform: scaleX(-1) translateX(-70%);
+        background-image: url('~@/assets/images/product/arrow.png');
+      }
+      &-next {
+        background-image: url('~@/assets/images/product/arrow.png');
+      }
+    }
+    &-prev {
+      left: 0;
+      transform: translateX(-50%);
+    }
+    &-next {
+      right: 0;
+      transform: translateX(50%);
+    }
   }
 }
 .fade-enter-active, .fade-leave-active {
@@ -115,6 +166,8 @@ export default {
 </style>
 
 <style lang="scss">
+@import '@/stylesheets/color.scss';
+
 .yd-slider {
   .yd-slider-wrapper {
   }
@@ -146,5 +199,4 @@ export default {
     }
   }
 }
-
 </style>

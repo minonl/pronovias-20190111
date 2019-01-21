@@ -18,7 +18,7 @@ export default {
     border-radius: 3px;
     padding: .5em 4em;
     color: $gold;
-    background-color: $wall;
+    background-color: transparent;
     outline: none;
     cursor: pointer;
     @media screen and (min-width: 370px){
