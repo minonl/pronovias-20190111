@@ -118,6 +118,11 @@ export default {
       return this.$store.state.booking
     }
   },
+  watch: {
+    booking (b) {
+      // if (b)
+    }
+  },
   methods: {
     ...mapActions([
       'removeAllTrailProducts',
@@ -178,24 +183,35 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import url('~@/assets/fonts/monsterrat_alternates/stylesheet.css');
+@import '~@/assets/fonts/monsterrat_alternates/stylesheet.css';
+@import '~@/stylesheets/color.scss';
+
 .appointment {
   text-align: center;
-  padding: 1rem;
+  padding: 1rem 0;
   .title {
     padding: .25rem;
     font-size: 1rem;
   }
   .box {
+    position: relative;
     border-radius: 3px;
-    border: solid 1px #909090;
-    background-color: #f0efeb;
-    padding: .5rem 3em;
+    border-bottom: solid 1px $rose;
+    padding: 4rem 3em .5rem;
+    background: $dirt;
     margin-bottom: 1rem;
   }
   .label {
     text-align: left;
     font-size: .9rem;
+    background-color: $sand;
+    border-top: solid 1px $rose;
+    border-bottom: solid 1px $rose;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    padding: 1em 2.25rem;
     .no {
       font-size: 1.25rem;
       padding-right: .5em;
@@ -252,6 +268,7 @@ export default {
 </style>
 
 <style lang="scss">
+@import '@/stylesheets/color.scss';
 
 .datetime {
   padding: .5rem .24rem .5rem 0;
@@ -274,17 +291,18 @@ input, .input {
   background: white !important;
   padding: 1em;
   height: 3em !important;
-  border: solid 1px #909090 !important;
+  border: solid 1px $rose !important;
   font-size: .9rem !important;
   width: 100%;
 }
 .yd-cell-box {
   margin-bottom: 1rem;
   .yd-cell {
+    position: relative;
     border-radius: 3px;
-    border: solid 1px #909090;
-    background-color: #f0efeb;
-    padding: .5rem 3em;
+    border-bottom: solid 1px $rose;
+    background-color: $dirt;
+    padding: 4rem 3em .5rem;
     .yd-cell-item {
       padding: .5rem 0;
     }
@@ -294,7 +312,7 @@ input, .input {
   display: block;
   margin-bottom: 1rem;
   &-icon {
-    border-color: #909090;
+    border-color: $rose;
   }
   &-text {
     padding-left: .5rem;
