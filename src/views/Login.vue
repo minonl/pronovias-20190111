@@ -85,7 +85,8 @@ export default {
         let icon = 'success'
         if (newLogin.code === 0) {
           message = '登录成功'
-          this.$router.push('/product')
+          // this.$router.push('/product')
+          this.$router.go(-1)
         } else {
           icon = 'failure'
         }

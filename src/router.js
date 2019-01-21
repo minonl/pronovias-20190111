@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import store from './store'
 import Home from './views/Home.vue'
 import Login from './views/Login.vue'
 // import Product from './views/Product.vue'
@@ -9,7 +10,14 @@ import Login from './views/Login.vue'
 
 Vue.use(Router)
 
-export default new Router({
+function checkLogin (to, from, next) {
+  if (!store.state.login || !store.state.account.phone || !store.state.login.data.token) {
+    next('/login')
+  }
+  next()
+}
+
+const router = new Router({
   // mode: 'history',
   base: process.env.BASE_URL,
   routes: [
@@ -26,7 +34,8 @@ export default new Router({
     {
       path: '/appointment',
       name: 'appointment',
-      component: () => import(/* webpackChunkName: "appointment" */ './views/Appointment.vue')
+      component: () => import(/* webpackChunkName: "appointment" */ './views/Appointment.vue'),
+      beforeEnter: checkLogin
     },
     {
       path: '/product/:id',
@@ -44,7 +53,8 @@ export default new Router({
     {
       path: '/upload',
       name: 'photoupload',
-      component: () => import(/* webpackChunkName: "photoupload" */ './views/PhotoUpload.vue')
+      component: () => import(/* webpackChunkName: "photoupload" */ './views/PhotoUpload.vue'),
+      beforeEnter: checkLogin
     },
     {
       path: '/result/:id',
@@ -53,3 +63,5 @@ export default new Router({
     }
   ]
 })
+
+export default router
