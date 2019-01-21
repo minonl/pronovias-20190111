@@ -1,8 +1,16 @@
 <template>
   <form class="appointment" @submit.prevent="submit">
+    <div class="store">
+      <div class="inner">
+        <div class="name">{{store.name}}</div>
+        <div class="address">{{store.address}}</div>
+      </div>
+    </div>
     <div class="title">预约申请</div>
-    <yd-cell-group>
-      <div class="label"><span class="no">1</span>联系方式</div>
+    <yd-cell-group :class="{'active':tgContact}">
+      <div class="label">
+        <span class="no">1</span>联系方式<span class="toggle" :class="{'active': tgContact}" @click="tgContact=!tgContact"/>
+        </div>
       <yd-cell-item>
         <input slot="right" type="text" required placeholder="姓名*"
           v-model="name">
@@ -16,8 +24,8 @@
           v-model="email">
       </yd-cell-item>
     </yd-cell-group>
-    <div class='box'>
-      <div class="label"><span class="no">2</span>选择预约日期</div>
+    <div class='box' :class="{'active':tgDate}">
+      <div class="label"><span class="no">2</span>选择预约日期<span class="toggle" :class="{'active': tgDate}" @click="tgDate=!tgDate"/></div>
       <datetime
         input-class="input"
         class="datetime"
@@ -31,8 +39,8 @@
         :phrases="{ok: '确认', cancel: '取消'}"
         v-model="date"/>
     </div>
-    <yd-cell-group>
-      <div class="label"><span class="no">3</span>挑选你的婚纱</div>
+    <yd-cell-group :class="{'active':tgTrail}">
+      <div class="label"><span class="no">3</span>挑选你的婚纱<span class="toggle" :class="{'active': tgTrail}" @click="tgTrail=!tgTrail"/></div>
       <yd-cell-item>
         <Button class="reselect" @click="clearList" slot="left" >重新挑选</Button>
         <ul class="cart" slot="right" >
@@ -67,7 +75,14 @@ export default {
   },
   data () {
     return {
-      imageBaseUrl: config.imageBaseUrl
+      imageBaseUrl: config.imageBaseUrl,
+      tgContact: false,
+      tgDate: false,
+      tgTrail: false,
+      store: {
+        name: 'PRONOVIAS 恒隆广场店',
+        address: '上海市静安区南京西路1266号'
+      }
     }
   },
   computed: {
@@ -197,9 +212,16 @@ export default {
     position: relative;
     border-radius: 3px;
     border-bottom: solid 1px $rose;
-    padding: 4rem 3em .5rem;
+    padding: 3.5rem 3em 0;
+    margin-bottom: .5rem;
     background: $dirt;
     margin-bottom: 1rem;
+    max-height: 3rem;
+    transition: max-height .3s ease-in-out;
+    &.active {
+      max-height: 30rem;
+    }
+    overflow: hidden;
   }
   .label {
     text-align: left;
@@ -216,6 +238,22 @@ export default {
       font-size: 1.25rem;
       padding-right: .5em;
       font-family: 'Montserrat Alternates', 'montserrat_alternates_mediuRg';
+    }
+    .toggle {
+      position: absolute;
+      right: 3em;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 1.5rem;
+      height: 1.5rem;
+      background-image: url('~@/assets/images/booking/accordin.png');
+      background-size: contain;
+      background-position: center;
+      filter: opacity(.3);
+      transition: all .3s ease;
+      &.active {
+        filter: opacity(1);
+      }
     }
   }
 }
@@ -297,12 +335,21 @@ input, .input {
 }
 .yd-cell-box {
   margin-bottom: 1rem;
+  &.active {
+    .yd-cell {
+      max-height: 30rem;
+    }
+  }
   .yd-cell {
     position: relative;
     border-radius: 3px;
     border-bottom: solid 1px $rose;
     background-color: $dirt;
-    padding: 4rem 3em .5rem;
+    padding: 3.5rem 3em 0;
+    margin-bottom: .5rem;
+    overflow: hidden;
+    max-height: 3rem;
+    transition: max-height .3s ease-in-out;
     .yd-cell-item {
       padding: .5rem 0;
     }
