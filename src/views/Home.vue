@@ -1,21 +1,24 @@
 <template>
   <div class="home">
-    <videoPlayer class="vjs-custom-skin"
-      :options="playerOptions"/>
+    <!-- <videoPlayer class="vjs-custom-skin"
+      :options="playerOptions"/> -->
     <div class="content">
       <div class="phrase phrase-1">
-        <p v-for="(line, index) of text.line1" :key="index">
-          {{line}}
-        </p>
+        国际奢侈婚纱品牌PRONOVIAS<br>
+        已将优雅与浪漫带到105个国家<br>
+        并在上海恒隆广场<br>
+        开启了中国首家PRONOVIAS旗舰店
       </div>
-      <div class="phrase phrase-2">
-        <p v-for="(line, index) of text.line2" :key="index">
-          {{line}}
-        </p>
+      <div class="bottom">
+        <div class="phrase phrase-2">
+          即刻在线选纱<br>
+          领取专属精美礼物<br>
+          更有机会赢取巴塞罗那梦幻之旅
+        </div>
+        <router-link to="/product">
+          <Button class="start">即刻在线选纱</Button>
+        </router-link>
       </div>
-      <router-link to="/product">
-        <Button class="start">{{text.button1}}</Button>
-      </router-link>
     </div>
   </div>
 </template>
@@ -47,16 +50,6 @@ export default {
           type: 'video/webm',
           src: 'https://vjs.zencdn.net/v/oceans.webm'
         }]
-      },
-      text: {
-        line1: ['Pronovias是世界领先的时尚婚纱品牌',
-          '始创于1922年的巴塞罗那',
-          '经过近百年的发展',
-          '现已成为覆盖105个国家的国际品牌'],
-        line2: ['让Pronovias带你',
-          '进入如梦如幻的婚纱世界吧！'],
-        button1: '即刻在线选纱'
-        // button2: '上传试纱照片'
       }
     }
   },
@@ -68,12 +61,11 @@ export default {
 <style lang="scss" scoped>
 .home {
   background: center / cover no-repeat url('~@/assets/images/home/bg.jpg');
-  background-position-y: 15vw;
   height: 100vh;
   color: white;
   .content {
     height: calc(100% - 100/16*9vw);
-    background: rgba(0,0,0,.3);
+    // background: rgba(0,0,0,.3);
     text-align: center;
     .phrase {
       padding: 1em;
@@ -86,17 +78,24 @@ export default {
         height: 1em;
       }
       &-1 {
-        text-align: left;
         padding-top: 2em;
-        padding-left: 3em;
       }
       &-2 {
         text-align: center;
       }
     }
     .start {
-      margin: 1em auto;
+      margin: 2em auto;
+      color: white;
+      border-color: white;
     }
+  }
+  .bottom {
+    position: absolute;
+    bottom: 2rem;
+    width: 100%;
+    left: 50%;
+    transform: translateX(-50%);
   }
 }
 </style>
