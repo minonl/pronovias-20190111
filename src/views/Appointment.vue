@@ -1,6 +1,6 @@
 <template>
   <form class="appointment" @submit.prevent="submit">
-    <div class="store">
+    <div class="store" :style="{'background-image': 'url('+store.poster+')'}">
       <div class="inner">
         <div class="name">{{store.name}}</div>
         <div class="address">{{store.address}}</div>
@@ -42,8 +42,8 @@
     <yd-cell-group :class="{'active':tgTrail}">
       <div class="label"><span class="no">3</span>挑选你的婚纱<span class="toggle" :class="{'active': tgTrail}" @click="tgTrail=!tgTrail"/></div>
       <yd-cell-item>
-        <Button class="reselect" @click="clearList" slot="left" >重新挑选</Button>
-        <ul class="cart" slot="right" >
+        <Button class="reselect" @click="clearList" slot="right" >重新挑选</Button>
+        <ul class="cart" slot="left" >
           <li class="product" v-for="item in cart" :key="item.id" :style="{'background-image': 'url('+imageBaseUrl+item.photos[0]+')'}">
           </li>
           <li class="product-add">
@@ -81,7 +81,8 @@ export default {
       tgTrail: false,
       store: {
         name: 'PRONOVIAS 恒隆广场店',
-        address: '上海市静安区南京西路1266号'
+        address: '上海市静安区南京西路1266号',
+        poster: require('@/assets/images/booking/store.jpg')
       }
     }
   },
@@ -203,7 +204,24 @@ export default {
 
 .appointment {
   text-align: center;
-  padding: 1rem 0;
+  .store {
+    height: 60vw;
+    background-size:cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: relative;
+    .inner {
+      color: white;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      .name {
+        padding: 1em 0;
+        font-weight: bold;
+      }
+    }
+  }
   .title {
     padding: .25rem;
     font-size: 1rem;
@@ -261,6 +279,11 @@ export default {
 .reselect {
   position: absolute;
   top: 1rem;
+  padding-left: 2em;
+  padding-right: 2em;
+  background: $gold;
+  border-color: transparent;
+  color: white;
 }
 .cart {
   li {
