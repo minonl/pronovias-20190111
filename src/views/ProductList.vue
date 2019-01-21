@@ -168,12 +168,25 @@ export default {
 <style lang="scss">
 @import '@/stylesheets/color.scss';
 
+$dot-size: 6px;
 .yd-slider {
   .yd-slider-wrapper {
   }
   .yd-slider-pagination {
     bottom: 1rem;
+    &-item {
+      width: $dot-size;
+      height: $dot-size;
+      margin: 0 $dot-size/2;
+      background-color: white !important;
+      &-active {
+        background-color: #a89359 !important;
+        width: $dot-size !important;
+      }
+    }
   }
+}
+.yd-slider-pagination {
 }
 .yd-list {
   padding: .5rem .25rem;
