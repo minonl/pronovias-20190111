@@ -76,9 +76,9 @@ export default {
   data () {
     return {
       imageBaseUrl: config.imageBaseUrl,
-      tgContact: false,
-      tgDate: false,
-      tgTrail: false,
+      tgContact: true,
+      tgDate: true,
+      tgTrail: true,
       store: {
         name: 'PRONOVIAS 恒隆广场店',
         address: '上海市静安区南京西路1266号',
@@ -355,6 +355,9 @@ input, .input {
   border: solid 1px $rose !important;
   font-size: .9rem !important;
   width: 100%;
+  &:disabled {
+    background-color: $sand !important;
+  }
 }
 .yd-cell-box {
   margin-bottom: 1rem;
