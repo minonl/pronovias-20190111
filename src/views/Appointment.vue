@@ -132,11 +132,17 @@ export default {
     },
     booking () {
       return this.$store.state.booking
+    },
+    token () {
+      return this.$store.state.login.data.token
     }
   },
   watch: {
     booking (b) {
       // if (b)
+    },
+    token (t) {
+      console.log('token:', t)
     }
   },
   methods: {
@@ -152,6 +158,7 @@ export default {
       this.removeAllTrailProducts()
     },
     submit () {
+      console.log(this.token)
       let message = '预约成功'
       let icon = 'success'
       if (!this.agree) {
@@ -180,8 +187,9 @@ export default {
           timeout: 1500
         })
       } else {
-        this.submitAppointment({
+        const postData = {
           headers: {
+            'Content-Type': 'application/json',
             'TOKEN': this.$store.state.login.data.token
           },
           params: {
@@ -189,9 +197,11 @@ export default {
             phone: this.phone,
             email: this.email,
             date: this.date,
-            product_ids: this.cart
+            product_ids: this.cart.map(p => p.id)
           }
-        })
+        }
+        console.log(postData)
+        this.submitAppointment(postData)
       }
     }
   }
