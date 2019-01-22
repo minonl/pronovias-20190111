@@ -50,7 +50,14 @@ const apiStore = new Vapi({
   .post({
     action: 'submitAppointment',
     property: 'booking',
-    path: '/booking'
+    path: '/booking',
+    headers: ({ headers }) => {
+      console.log(headers)
+      return headers
+    },
+    beforeRequest: (state, { params, data }) => {
+      console.log(state, params, data)
+    }
   })
   .getStore()
 
