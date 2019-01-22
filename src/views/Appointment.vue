@@ -42,7 +42,7 @@
     <yd-cell-group :class="{'active':tgTrail}">
       <div class="label"><span class="no">3</span>挑选你的婚纱<span class="toggle" :class="{'active': tgTrail}" @click="tgTrail=!tgTrail"/></div>
       <yd-cell-item>
-        <Button class="reselect" @click="clearList" slot="right" >重新挑选</Button>
+        <Button class="reselect" @click.native.prevent="clearList" slot="right" >重新挑选</Button>
         <ul class="cart" slot="left" >
           <li class="product" v-for="item in cart" :key="item.id" :style="{'background-image': 'url('+imageBaseUrl+item.photos[0]+')'}">
           </li>
