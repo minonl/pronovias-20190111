@@ -71,7 +71,7 @@ export default {
 
 .product {
   padding: 0 1rem 1rem;
-  // padding-top: 1rem;
+  padding-top: 1rem;
   text-align: center;
   h2 {
     font-family: 'playfair_displayregular', 'Playfair Display';
