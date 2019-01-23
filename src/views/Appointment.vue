@@ -35,12 +35,14 @@
         input-class="input"
         class="datetime"
         type="date"
+        format="yyyy-mm-dd"
         :phrases="{ok: '确认', cancel: '取消'}"
         v-model="date"/>
       <datetime
         input-class="input"
         class="datetime"
         type="time"
+        format="hh:mm"
         :phrases="{ok: '确认', cancel: '取消'}"
         v-model="date"/>
     </div>
@@ -166,8 +168,6 @@ export default {
     ]),
     login () {
       this.popLogin = true
-      this.$refs.loginWindow.$el.focus()
-      console.log(this.$refs.loginWindow.$el.click)
     },
     clearList () {
       this.removeAllTrailProducts()
@@ -224,7 +224,6 @@ export default {
             product_ids: this.cart.map(p => p.id)
           }
         }
-        console.log(postData)
         this.submitAppointment(postData)
       }
     }
@@ -265,13 +264,14 @@ export default {
     position: relative;
     border-radius: 3px;
     border-bottom: solid 1px $rose;
-    padding: 3.5rem 3em 1rem;
+    padding: 3.5rem 3em 0rem;
     background: $dirt;
     margin-bottom: 1rem;
     max-height: 3rem;
-    transition: max-height .3s ease-in-out;
+    transition: all .3s ease-in-out;
     &.active {
       max-height: 30rem;
+      padding-bottom: 1rem;
     }
     overflow: hidden;
   }
@@ -418,6 +418,7 @@ input, .input {
   &.active {
     .yd-cell {
       max-height: 30rem;
+      padding-bottom: 1rem;
     }
   }
   .yd-cell {
@@ -425,11 +426,11 @@ input, .input {
     border-radius: 3px;
     border-bottom: solid 1px $rose;
     background-color: $dirt;
-    padding: 3.5rem 3em 1rem;
-    margin-bottom: .5rem;
+    padding: 3.5rem 3em 0rem;
+    margin-bottom: 1rem;
     overflow: hidden;
     max-height: 3rem;
-    transition: max-height .3s ease-in-out;
+    transition: all .3s ease-in-out;
     .yd-cell-item {
       padding: 1rem 0 0 0;
     }
