@@ -1,5 +1,8 @@
 <template>
   <form class="appointment" @submit.prevent="submit">
+    <yd-popup v-model="popLogin" position="center" width="90%">
+      <Login ref="loginWindow"/>
+    </yd-popup>
     <div class="store" :style="{'background-image': 'url('+store.poster+')'}">
       <div class="inner">
         <div class="name">{{store.name}}</div>
@@ -16,8 +19,10 @@
           v-model="name">
       </yd-cell-item>
       <yd-cell-item>
-        <input slot="right" type="number" required disabled="disabled" @invalid="tgContact=true" placeholder="电话*"
-          v-model="phone">
+        <div class="phone-input-wrapper" slot="right" @click.self="login">
+          <input type="number" ref="phoneInput" required @invalid="tgContact=true" disabled="disabled" placeholder="电话*"
+            v-model="phone">
+        </div>
       </yd-cell-item>
       <yd-cell-item>
         <input slot="right" type="email" placeholder="邮箱" @invalid="tgContact=true"
@@ -71,12 +76,14 @@
 
 <script>
 import Button from '@/components/Button'
+import Login from '@/components/Login'
 import { mapActions } from 'vuex'
 import config from '@/config'
 
 export default {
   components: {
-    Button
+    Button,
+    Login
   },
   data () {
     return {
@@ -84,6 +91,7 @@ export default {
       tgContact: false,
       tgDate: false,
       tgTrail: true,
+      popLogin: false,
       store: {
         name: 'PRONOVIAS 恒隆广场店',
         address: '上海市静安区南京西路1266号',
@@ -106,10 +114,10 @@ export default {
     phone: {
       get () {
         return this.$store.state.account.phone
-      },
-      set (value) {
-        this.updatePhone(value)
       }
+      // set (value) {
+      //   this.updatePhone(value)
+      // }
     },
     email: {
       get () {
@@ -145,9 +153,6 @@ export default {
   watch: {
     booking (b) {
       // if (b)
-    },
-    token (t) {
-      console.log('token:', t)
     }
   },
   methods: {
@@ -159,6 +164,11 @@ export default {
       'updateAgree',
       'submitAppointment'
     ]),
+    login () {
+      this.popLogin = true
+      this.$refs.loginWindow.$el.focus()
+      console.log(this.$refs.loginWindow.$el.click)
+    },
     clearList () {
       this.removeAllTrailProducts()
     },
@@ -228,6 +238,7 @@ export default {
 
 .appointment {
   text-align: center;
+  padding-bottom: 2rem;
   .store {
     height: 60vw;
     background-size:cover;
@@ -254,8 +265,7 @@ export default {
     position: relative;
     border-radius: 3px;
     border-bottom: solid 1px $rose;
-    padding: 3.5rem 3em 0;
-    margin-bottom: .5rem;
+    padding: 3.5rem 3em 1rem;
     background: $dirt;
     margin-bottom: 1rem;
     max-height: 3rem;
@@ -363,13 +373,20 @@ export default {
     }
   }
 }
+.phone-input-wrapper {
+  width: 100%;
+  input {
+    pointer-events: none;
+    width: 100% !important;
+  }
+}
 </style>
 
 <style lang="scss">
 @import '@/stylesheets/color.scss';
 
 .datetime {
-  padding: .5rem .24rem .5rem 0;
+  padding: 1rem .24rem 0 0;
 }
 .vdatetime{
   &-popup__header,
@@ -392,9 +409,9 @@ input, .input {
   border: solid 1px $rose !important;
   font-size: .9rem !important;
   width: 100%;
-  &:disabled {
-    background-color: $sand !important;
-  }
+  // &:disabled {
+  //   background-color: $sand !important;
+  // }
 }
 .yd-cell-box {
   margin-bottom: 1rem;
@@ -408,13 +425,13 @@ input, .input {
     border-radius: 3px;
     border-bottom: solid 1px $rose;
     background-color: $dirt;
-    padding: 3.5rem 3em 0;
+    padding: 3.5rem 3em 1rem;
     margin-bottom: .5rem;
     overflow: hidden;
     max-height: 3rem;
     transition: max-height .3s ease-in-out;
     .yd-cell-item {
-      padding: .5rem 0;
+      padding: 1rem 0 0 0;
     }
   }
 }

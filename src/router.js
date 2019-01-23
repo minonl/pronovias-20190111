@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import store from './store'
 import Home from './views/Home.vue'
-import Login from './views/Login.vue'
+// import Login from './views/Login.vue'
 // import Product from './views/Product.vue'
 // import ProductList from './views/ProductList.vue'
 // import PhotoUpload from './views/PhotoUpload.vue'
@@ -10,12 +10,12 @@ import Login from './views/Login.vue'
 
 Vue.use(Router)
 
-function checkLogin (to, from, next) {
-  if (!store.state.login || !store.state.account.phone || !store.state.login.data.token) {
-    next('/login')
-  }
-  next()
-}
+// function checkLogin (to, from, next) {
+//   if (!store.state.login || !store.state.account.phone || !store.state.login.data.token) {
+//     next('/login')
+//   }
+//   next()
+// }
 
 const router = new Router({
   // mode: 'history',
@@ -26,16 +26,16 @@ const router = new Router({
       name: 'home',
       component: Home
     },
-    {
-      path: '/login',
-      name: 'login',
-      component: Login
-    },
+    // {
+    //   path: '/login',
+    //   name: 'login',
+    //   component: Login
+    // },
     {
       path: '/appointment',
       name: 'appointment',
-      component: () => import(/* webpackChunkName: "appointment" */ './views/Appointment.vue'),
-      beforeEnter: checkLogin
+      component: () => import(/* webpackChunkName: "appointment" */ './views/Appointment.vue')
+      // beforeEnter: checkLogin
     },
     {
       path: '/product/:id',
@@ -49,18 +49,18 @@ const router = new Router({
       path: '/product',
       name: 'productlist',
       component: () => import(/* webpackChunkName: "productlist" */ './views/ProductList.vue')
-    },
-    {
-      path: '/upload',
-      name: 'photoupload',
-      component: () => import(/* webpackChunkName: "photoupload" */ './views/PhotoUpload.vue'),
-      beforeEnter: checkLogin
-    },
-    {
-      path: '/result/:id',
-      name: 'result',
-      component: () => import(/* webpackChunkName: "result" */ './views/Result.vue')
     }
+    // {
+    //   path: '/upload',
+    //   name: 'photoupload',
+    //   component: () => import(/* webpackChunkName: "photoupload" */ './views/PhotoUpload.vue'),
+    //   beforeEnter: checkLogin
+    // },
+    // {
+    //   path: '/result/:id',
+    //   name: 'result',
+    //   component: () => import(/* webpackChunkName: "result" */ './views/Result.vue')
+    // }
   ]
 })
 router.beforeEach((to, from, next) => {

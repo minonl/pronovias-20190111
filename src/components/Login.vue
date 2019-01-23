@@ -1,9 +1,10 @@
 <template>
   <div class="login">
-    <yd-cell-group>
+    <div class="close"/>
+    <yd-cell-group class="inputs">
       <yd-cell-item>
         <yd-icon slot="icon" name="phone3" size=".45rem"></yd-icon>
-        <input type="text" slot="right" placeholder="请输入手机号码"
+        <input class="phone" type="text" slot="right" placeholder="请输入手机号码"
           v-model="phone">
         <yd-sendcode slot="right"
                       v-model="isCounting"
@@ -85,8 +86,7 @@ export default {
         let icon = 'success'
         if (newLogin.code === 0) {
           message = '登录成功'
-          // this.$router.push('/product')
-          this.$router.go(-1)
+          this.$router.push('/appointment')
         } else {
           icon = 'failure'
         }
@@ -118,7 +118,18 @@ export default {
 .login {
   position: relative;
   text-align: center;
-  padding: .5rem;
+  padding: 2.5rem .5rem;
+  background: white;
+  overflow: visible;
+}
+$closeSize: 3rem;
+.close {
+  width: $closeSize;
+  height: $closeSize;
+  position: absolute;
+  right: 0;
+  top: -3.75rem;
+  background: red;
 }
 input {
   padding: 1em !important;
@@ -127,14 +138,45 @@ input {
 .try {
   margin-top: .5rem;
 }
+.phone {
+  width: 100%;
+  padding-left: 2rem !important;
+}
 
 </style>
 
 <style lang="scss">
-.yd-cell {
-  height: auto;
-}
-.yd-btn {
-  height: 1rem;
+@import '@/stylesheets/color.scss';
+
+.inputs {
+  .yd-cell {
+    border: none !important;
+    background: white !important;
+    padding-top: 0 !important;
+    max-height: none !important;
+    &::after {
+      height: 0;
+    }
+    .yd-cell-item {
+      &::after {
+        height: 0;
+      }
+      .yd-cell-icon {
+        position: absolute;
+        left: .75rem;
+      }
+      .yd-btn {
+        position: absolute;
+        right: 1rem;
+        background: $gold;
+        padding: .25em .5em;
+        height: 1.5em;
+        &-disabled {
+          background: grey;
+        }
+      }
+    }
+  }
 }
 </style>
+
