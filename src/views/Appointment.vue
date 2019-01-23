@@ -42,18 +42,23 @@
     <yd-cell-group :class="{'active':tgTrail}">
       <div class="label"><span class="no">3</span>挑选你的婚纱<span class="toggle" :class="{'active': tgTrail}" @click="tgTrail=!tgTrail"/></div>
       <yd-cell-item>
-        <Button class="reselect" @click.native.prevent="clearList" slot="right" >重新挑选</Button>
-        <ul class="cart" slot="left" >
-          <li class="product" v-for="item in cart" :key="item.id" :style="{'background-image': 'url('+imageBaseUrl+item.photos[0]+')'}">
-          </li>
-          <li class="product-add">
-            <router-link to='/product'>
-              <div class="inner">
-                <div class="plus"/>
-              </div>
-            </router-link>
-          </li>
-        </ul>
+        <!-- <Button class="reselect" @click.native.prevent="clearList" slot="right" >重新挑选</Button> -->
+        <div slot="left">
+          <div class="list">
+            <ul class="cart">
+              <li class="product" v-for="item in cart" :key="item.id" :style="{'background-image': 'url('+imageBaseUrl+item.photos[0]+')'}">
+              </li>
+              <li class="product-add">
+                <router-link to='/product'>
+                  <div class="inner">
+                    <div class="plus"/>
+                  </div>
+                </router-link>
+              </li>
+            </ul>
+          </div>
+          <Button class="reselect" @click.native.prevent="clearList" >重新挑选</Button>
+        </div>
       </yd-cell-item>
     </yd-cell-group>
     <yd-checkbox v-model="agree" color="#a89359">
@@ -289,21 +294,34 @@ export default {
 }
 
 .reselect {
-  position: absolute;
-  top: 1rem;
+  // position: absolute;
+  // top: 1rem;
   padding-left: 2em;
   padding-right: 2em;
   background: $gold;
   border-color: transparent;
   color: white;
+  margin: 0 auto;
+  display: block;
+}
+.list {
+  display: flex;
 }
 .cart {
+  width: 80vw;
+  text-align: center;
+  display: block;
+  margin: .8vw 0;
   li {
+    float: left;
     width: 25vw;
     height: 25vw;
+    display: inline-block;
+    text-align: center;
     background-color: white;
-    margin-bottom: 1rem;
-    display: block;
+    margin-left: .8vw;
+    margin-right: .8vw;
+    margin-bottom: 1.6vw;
     background-size: cover;
     background-position: center;
     &.product {
