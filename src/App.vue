@@ -9,13 +9,24 @@
       <router-link to="/upload">Upload Photo</router-link> |
       <router-link to="/result/1">Result</router-link>
     </div> -->
+    <Loading/>
     <router-view/>
   </div>
 </template>
 
 <script>
 import { mapActions } from 'vuex'
+import Loading from '@/components/Loading'
+
 export default {
+  components: {
+    Loading
+  },
+  computed: {
+    isLoading () {
+      return true
+    }
+  },
   created () {
     this.listCategory()
     this.listProduct()

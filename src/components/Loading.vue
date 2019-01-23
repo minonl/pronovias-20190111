@@ -1,0 +1,156 @@
+<template>
+  <transition name="fade">
+    <div v-if="retired" class="loading">
+      <transition name="fade">
+        <div v-if="loading" class="loader">
+          <div class="logo"/>
+          <div class="image"/>
+          <yd-progressbar type="line"
+            :progress="this.count/this.list.length"
+            trail-width="1"
+            class="line"
+            trail-color="#ae9a64"></yd-progressbar>
+        </div>
+      </transition>
+      <transition name="fade">
+        <div v-if="loaded" class="content">
+          <img class="gif" src="@/assets/images/home/loading.gif"/>
+          <Button @click.native="close" class="skip">跳过</Button>
+        </div>
+      </transition>
+    </div>
+  </transition>
+</template>
+
+<script>
+import Button from '@/components/Button'
+
+export default {
+  components: {
+    Button
+  },
+  data () {
+    return {
+      retired: true,
+      loaded: false,
+      loading: true,
+      list: [
+        require('@/assets/images/home/loading.gif'),
+        require('@/assets/images/home/bg.jpg'),
+        require('@/assets/images/product/arrow.png'),
+        require('@/assets/images/booking/accordin.png'),
+        require('@/assets/images/booking/store.jpg')
+      ],
+      count: 0
+    }
+  },
+  mounted () {
+    this.load()
+  },
+  methods: {
+    load () {
+      const counter = this
+      this.loading = true
+      for (const item of this.list) {
+        let img = new Image()
+        img.src = item
+        img.onload = function () {
+          counter.count++
+        }
+      }
+    },
+    close () {
+      console.log('111')
+      this.retired = false
+    }
+  },
+  watch: {
+    count (c) {
+      if (c === this.list.length) {
+        const loader = this
+        setTimeout(function () {
+          loader.loading = false
+          loader.loaded = true
+        }, 1500)
+      }
+    }
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+.loading {
+  position: fixed;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+  overflow: hidden;
+  background: black;
+}
+.loader {
+  text-align: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  .logo {
+    margin: 2rem auto;
+    width: 10rem;
+    height: 2.125rem;
+    background-image: url('~@/assets/images/home/logo.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+  .image {
+    width: 100vw;
+    height: 115vw;
+    background-image: url('~@/assets/images/home/lbg.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  .line {
+    margin-top: -8px;
+  }
+}
+.content {
+  height: 100%;
+  position: relative;
+}
+.gif {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 100%;
+  user-select: none;
+  pointer-events: none;
+}
+.skip {
+  position: absolute;
+  right: 0;
+  bottom: 4rem;
+  color: white !important;
+  border-color: white !important;
+  border-right: none !important;
+  border-top-left-radius: 6px !important;
+  border-bottom-left-radius: 6px !important;
+  border-top-right-radius: 0px !important;
+  border-bottom-right-radius: 0px !important;
+  padding-left: 1.25em !important;
+  padding-right: 1.25em !important;
+  z-index: 99;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
+</style>
