@@ -60,7 +60,6 @@ export default {
       }
     },
     close () {
-      console.log('111')
       this.retired = false
     }
   },
