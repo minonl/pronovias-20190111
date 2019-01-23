@@ -9,7 +9,7 @@ const apiStore = new Vapi({
   baseURL: config.apiBaseUrl,
   state: {
     app: {
-      isLoading: false,
+      homeVisted: false,
       errors: []
     },
     account: {
@@ -69,6 +69,10 @@ apiStore.getters = {
   productById: (state) => (id) => {
     return state.products.data.find(item => item.id.toString() === id)
   }
+}
+
+apiStore.mutations.homeVisit = (state, value) => {
+  state.app.homeVisted = value
 }
 
 // Account

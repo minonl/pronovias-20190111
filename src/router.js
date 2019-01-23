@@ -63,5 +63,12 @@ const router = new Router({
     }
   ]
 })
+router.beforeEach((to, from, next) => {
+  if (!store.state.app.homeVisted) {
+    store.commit('homeVisit', true)
+    next({ path: '/' })
+  }
+  next()
+})
 
 export default router
