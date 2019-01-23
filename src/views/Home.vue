@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="home" :style="{'height':height+'px'}">
     <!-- <videoPlayer class="vjs-custom-skin"
       :options="playerOptions"/> -->
     <div class="content">
@@ -29,6 +29,7 @@
 // import { videoPlayer } from 'vue-video-player'
 
 import Button from '@/components/Button'
+import iosHeight from 'ios-inner-height'
 
 export default {
   name: 'home',
@@ -54,6 +55,11 @@ export default {
     }
   },
   mounted () {
+  },
+  computed: {
+    height () {
+      return iosHeight()
+    }
   }
 }
 </script>
@@ -61,7 +67,6 @@ export default {
 <style lang="scss" scoped>
 .home {
   background: center / cover no-repeat url('~@/assets/images/home/bg.jpg');
-  height: 100vh;
   color: white;
   .content {
     height: calc(100% - 100/16*9vw);
