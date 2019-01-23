@@ -12,15 +12,15 @@
         <span class="no">1</span>联系方式<span class="toggle" :class="{'active': tgContact}" @click="tgContact=!tgContact"/>
         </div>
       <yd-cell-item>
-        <input slot="right" type="text" required placeholder="姓名*"
+        <input slot="right" type="text" required placeholder="姓名*" @invalid="tgContact=true"
           v-model="name">
       </yd-cell-item>
       <yd-cell-item>
-        <input slot="right" type="number" required disabled="disabled" placeholder="电话*"
+        <input slot="right" type="number" required disabled="disabled" @invalid="tgContact=true" placeholder="电话*"
           v-model="phone">
       </yd-cell-item>
       <yd-cell-item>
-        <input slot="right" type="email" placeholder="邮箱"
+        <input slot="right" type="email" placeholder="邮箱" @invalid="tgContact=true"
           v-model="email">
       </yd-cell-item>
     </yd-cell-group>
@@ -81,8 +81,8 @@ export default {
   data () {
     return {
       imageBaseUrl: config.imageBaseUrl,
-      tgContact: true,
-      tgDate: true,
+      tgContact: false,
+      tgDate: false,
       tgTrail: true,
       store: {
         name: 'PRONOVIAS 恒隆广场店',
@@ -163,7 +163,6 @@ export default {
       this.removeAllTrailProducts()
     },
     submit () {
-      console.log(this.token)
       let message = '预约成功'
       let icon = 'success'
       if (!this.agree) {
@@ -173,10 +172,12 @@ export default {
       if (!this.cart || !this.cart.length) {
         message = '请挑选你的婚纱'
         icon = 'failure'
+        this.tgTrail = true
       }
       if (!this.date || !this.date.length) {
         message = '请选择预约日期'
         icon = 'failure'
+        this.tgDate = true
       }
       // if (!this.email || !this.email.length) {
       //   message = '请输入邮箱地址'
@@ -184,6 +185,12 @@ export default {
       if (!this.name || !this.name.length) {
         message = '请输入姓名'
         icon = 'failure'
+        this.tgContact = true
+      }
+      if (!this.phone || !this.phone.length > 0) {
+        message = '请输入手机号'
+        icon = 'failure'
+        this.tgContact = true
       }
       if (icon !== 'success') {
         this.$dialog.toast({
