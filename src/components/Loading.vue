@@ -34,6 +34,8 @@ export default {
       retired: true,
       loaded: false,
       loading: true,
+      durationLoading: 1500,
+      durationGif: 1000,
       list: [
         require('@/assets/images/home/loading.gif'),
         require('@/assets/images/home/bg.jpg'),
@@ -70,7 +72,10 @@ export default {
         setTimeout(function () {
           loader.loading = false
           loader.loaded = true
-        }, 1500)
+          setTimeout(function () {
+            loader.close()
+          }, loader.durationGif)
+        }, loader.durationLoading)
       }
     }
   }
