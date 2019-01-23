@@ -49,6 +49,11 @@ const router = new Router({
       path: '/product',
       name: 'productlist',
       component: () => import(/* webpackChunkName: "productlist" */ './views/ProductList.vue')
+    },
+    {
+      path: '/success',
+      name: 'success',
+      component: () => import(/* webpackChunkName: "success" */ './views/Success.vue')
     }
     // {
     //   path: '/upload',
