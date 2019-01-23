@@ -17,7 +17,7 @@
           v-model="code">
       </yd-cell-item>
     </yd-cell-group>
-    <Button class="try" @click.native="tryLogin">登录</Button>
+    <Button class="try" @click.native.prevent="tryLogin">登录</Button>
   </div>
 </template>
 
@@ -86,7 +86,8 @@ export default {
         let icon = 'success'
         if (newLogin.code === 0) {
           message = '登录成功'
-          this.$router.push('/appointment')
+          this.$parent.$parent.popLogin = false
+          // this.$router.push('/appointment')
         } else {
           icon = 'failure'
         }

@@ -154,7 +154,7 @@ export default {
   },
   watch: {
     booking (b) {
-      // if (b)
+      if (b) console.log(b)
     }
   },
   methods: {
