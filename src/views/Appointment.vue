@@ -35,7 +35,7 @@
         input-class="input"
         class="datetime"
         type="date"
-        format="yyyy-mm-dd"
+        format="yyyy-MM-dd"
         :phrases="{ok: '确认', cancel: '取消'}"
         v-model="date"/>
       <datetime
@@ -81,6 +81,7 @@ import Button from '@/components/Button'
 import Login from '@/components/Login'
 import { mapActions } from 'vuex'
 import config from '@/config'
+import { DateTime } from 'luxon'
 
 export default {
   components: {
@@ -154,7 +155,17 @@ export default {
   },
   watch: {
     booking (b) {
-      if (b) console.log(b)
+      if (b) {
+        if (b.code === 0) {
+          this.$router.push('/success')
+        } else {
+          this.$dialog.toast({
+            mes: b.message,
+            icon: 'failure',
+            timeout: 1500
+          })
+        }
+      }
     }
   },
   methods: {
@@ -220,7 +231,7 @@ export default {
             name: this.name,
             phone: this.phone,
             email: this.email,
-            date: this.date,
+            date: DateTime.fromISO(this.date).toFormat('yyyy-MM-dd HH:mm'),
             product_ids: this.cart.map(p => p.id)
           }
         }
