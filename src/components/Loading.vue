@@ -120,7 +120,14 @@ export default {
     background-repeat: no-repeat;
   }
   .line {
+    position: fixed;
+    top: calc(100% - 5px);
     margin-top: -8px;
+    svg {
+      path:nth(0) {
+        stroke: black !important;
+      }
+    }
   }
 }
 .content {
@@ -156,5 +163,18 @@ export default {
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;
+}
+</style>
+
+<style lang="scss">
+.yd-progressbar {
+  position: fixed;
+  top: calc(100% - 5px);
+  margin-top: -8px;
+  svg {
+    path:nth-child(1) {
+      stroke: black !important;
+    }
+  }
 }
 </style>
