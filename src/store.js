@@ -24,7 +24,8 @@ const apiStore = new Vapi({
       agree: false
     },
     products: { data: [] },
-    categories: { data: [] }
+    categories: { data: [] },
+    dataUrl: null
   }
 })
   .get({
@@ -133,6 +134,11 @@ apiStore.mutations.agreeUpdate = (state, value) => {
 }
 apiStore.actions.updateAgree = (context, value) => {
   context.commit('agreeUpdate', value)
+}
+
+// Photo
+apiStore.mutations.updateDataUrl = (state, dataUrl) => {
+  state.dataUrl = dataUrl
 }
 
 const store = new Vuex.Store(apiStore)

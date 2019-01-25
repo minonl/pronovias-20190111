@@ -4,7 +4,7 @@
       <h1>{{text.line1}}</h1>
     </div>
     <div class="frame">
-      <div class="inner">
+      <div class="inner" :style="[rawImageBackgroundStyle]">
         <!-- <div class="logo"/> -->
         <!-- <div class="upload"/> -->
       </div>
@@ -15,7 +15,7 @@
         <div class="qrcode"/>
       </div>
     </div>
-    <Button class="generate">{{text.button1}}</Button>
+    <Button class="generate" @click.native="share">{{text.button1}}</Button>
   </div>
 </template>
 
@@ -23,6 +23,7 @@
 import Button from '@/components/Button'
 
 export default {
+  name: 'result',
   components: {
     Button
   },
@@ -35,6 +36,20 @@ export default {
         ],
         button1: '点击分享'
       }
+    }
+  },
+  computed: {
+    rawImageBackgroundStyle () {
+      if (this.$store.state.dataUrl) {
+        return { background: 'center / cover no-repeat url(' + this.$store.state.dataUrl + ') !important' }
+      } else {
+        return {}
+      }
+    }
+  },
+  methods: {
+    share() {
+      this.$router.push('/success')
     }
   }
 }

@@ -54,25 +54,25 @@ const router = new Router({
       path: '/success',
       name: 'success',
       component: () => import(/* webpackChunkName: "success" */ './views/Success.vue')
+    },
+    {
+      path: '/upload',
+      name: 'photoupload',
+      component: () => import(/* webpackChunkName: "photoupload" */ './views/PhotoUpload.vue')
+      // beforeEnter: checkLogin
+    },
+    {
+      path: '/result',
+      name: 'result',
+      component: () => import(/* webpackChunkName: "result" */ './views/Result.vue')
     }
-    // {
-    //   path: '/upload',
-    //   name: 'photoupload',
-    //   component: () => import(/* webpackChunkName: "photoupload" */ './views/PhotoUpload.vue'),
-    //   beforeEnter: checkLogin
-    // },
-    // {
-    //   path: '/result/:id',
-    //   name: 'result',
-    //   component: () => import(/* webpackChunkName: "result" */ './views/Result.vue')
-    // }
   ]
 })
 router.beforeEach((to, from, next) => {
-  if (!store.state.app.homeVisted) {
-    store.commit('homeVisit', true)
-    next({ path: '/' })
-  }
+  // if (!store.state.app.homeVisted) {
+  //   store.commit('homeVisit', true)
+  //   next({ path: '/' })
+  // }
   next()
 })
 
