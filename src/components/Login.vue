@@ -32,7 +32,7 @@ export default {
   data () {
     return {
       isCounting: false,
-      code: '1234'
+      code: ''
     }
   },
   computed: {
