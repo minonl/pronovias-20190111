@@ -123,14 +123,16 @@ export default {
   background: white;
   overflow: visible;
 }
-$closeSize: 3rem;
+$closeSize: 2rem;
 .close {
   width: $closeSize;
   height: $closeSize;
   position: absolute;
+  pointer-events: none;
   right: 0;
   top: -3.75rem;
-  background: red;
+  background: center / contain no-repeat url('~@/assets/images/booking/close.png');
+
 }
 input {
   padding: 1em !important;
@@ -148,6 +150,10 @@ input {
 
 <style lang="scss">
 @import '@/stylesheets/color.scss';
+
+.yd-popup-content {
+  overflow: visible;
+}
 
 .inputs {
   .yd-cell {
