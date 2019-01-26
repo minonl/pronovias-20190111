@@ -91,7 +91,7 @@ export default {
   bottom:0;
   width: 100%;
   height: 100%;
-  z-index: 5;
+  z-index: 500;
   overflow: hidden;
   background: black;
 }
