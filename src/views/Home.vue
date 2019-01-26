@@ -1,7 +1,5 @@
 <template>
   <div class="home" :style="{'height':height+'px'}">
-    <!-- <videoPlayer class="vjs-custom-skin"
-      :options="playerOptions"/> -->
     <div class="content">
       <div class="phrase phrase-1">
         国际奢侈婚纱品牌PRONOVIAS<br>
@@ -24,9 +22,6 @@
 </template>
 
 <script>
-// import 'video.js/dist/video-js.css'
-// import '@/stylesheets/vjs-custom-skin.scss'
-// import { videoPlayer } from 'vue-video-player'
 
 import Button from '@/components/Button'
 import iosHeight from 'ios-inner-height'
@@ -39,19 +34,6 @@ export default {
   },
   data () {
     return {
-      playerOptions: {
-        // controls: true,
-        // nativeControlsForTouch: true,
-        poster: require('@/assets/images/home/video.jpg'),
-        preload: true,
-        sources: [{
-          type: 'video/mp4',
-          src: 'https://vjs.zencdn.net/v/oceans.mp4'
-        }, {
-          type: 'video/webm',
-          src: 'https://vjs.zencdn.net/v/oceans.webm'
-        }]
-      }
     }
   },
   mounted () {

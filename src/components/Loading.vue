@@ -14,7 +14,10 @@
       </transition>
       <transition name="fade">
         <div v-if="loaded" class="content">
-          <img class="gif" src="@/assets/images/home/loading.gif"/>
+          <videoPlayer class="vjs-custom-skin"
+            :options="playerOptions"
+            @ended="close"/>
+          <!-- <img class="gif" src="@/assets/images/home/loading.gif"/> -->
           <Button @click.native="close" class="skip">跳过</Button>
         </div>
       </transition>
@@ -25,9 +28,14 @@
 <script>
 import Button from '@/components/Button'
 
+import 'video.js/dist/video-js.css'
+import '@/stylesheets/vjs-custom-skin.scss'
+import { videoPlayer } from 'vue-video-player'
+
 export default {
   components: {
-    Button
+    Button,
+    videoPlayer
   },
   data () {
     return {
@@ -35,7 +43,7 @@ export default {
       loaded: false,
       loading: true,
       durationLoading: 1500,
-      durationGif: 1000,
+      // durationGif: 158000,
       list: [
         require('@/assets/images/home/loading.gif'),
         require('@/assets/images/home/bg.jpg'),
@@ -43,7 +51,17 @@ export default {
         require('@/assets/images/booking/accordin.png'),
         require('@/assets/images/booking/store.jpg')
       ],
-      count: 0
+      count: 0,
+      playerOptions: {
+        controls: false,
+        // nativeControlsForTouch: true,
+        // poster: require('@/assets/images/home/video.jpg'),
+        preload: true,
+        sources: [{
+          type: 'video/mp4',
+          src: require('@/assets/intro.mp4')
+        }]
+      }
     }
   },
   mounted () {
@@ -72,9 +90,9 @@ export default {
         setTimeout(function () {
           loader.loading = false
           loader.loaded = true
-          setTimeout(function () {
-            loader.close()
-          }, loader.durationGif)
+          // setTimeout(function () {
+          //   loader.close()
+          // }, loader.durationGif)
         }, loader.durationLoading)
       }
     }
