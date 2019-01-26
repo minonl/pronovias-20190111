@@ -69,7 +69,9 @@
       </yd-cell-item>
     </yd-cell-group>
     <yd-checkbox v-model="agree" color="#a89359">
-      我同意 PRONOVIAS 的预约规则
+      <span>
+        我同意<span class="rule">PRONOVIAS 的预约规则</span>
+      </span>
       <!-- <p class="line2">the make an appointment form</p> -->
     </yd-checkbox>
     <Button type="submit">提交预约</Button>
@@ -452,9 +454,15 @@ input, .input {
   margin-bottom: 1rem;
   &-icon {
     border-color: $rose;
+    margin-right: .25rem;
   }
   &-text {
-    padding-left: .5rem;
+    .rule {
+      color: $gold;
+      padding: .25em;
+      border-bottom: solid 1px $gold;
+    }
+    
   //   transform: translate(.5em, -.5em);
   //   text-align: left;
   //   position: relative;
