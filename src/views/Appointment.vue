@@ -49,8 +49,7 @@
         placeholder="选择时间*"
         :phrases="{ok: '确认', cancel: '取消'}"
         v-model="date"/>
-    
-    
+
     </div>
     <yd-cell-group :class="{'active':tgTrail}">
       <div class="label"><span class="no">3</span>挑选你的婚纱<span class="toggle" :class="{'active': tgTrail}" @click="tgTrail=!tgTrail"/></div>
@@ -486,7 +485,7 @@ input, .input {
       padding: .25em;
       border-bottom: solid 1px $gold;
     }
-    
+
   //   transform: translate(.5em, -.5em);
   //   text-align: left;
   //   position: relative;
