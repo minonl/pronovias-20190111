@@ -73,10 +73,10 @@ router.beforeEach((to, from, next) => {
     store.commit('knowFrom', to.query.from)
   }
 
-  // if (!store.state.app.homeVisted) {
-  //   store.commit('homeVisit', true)
-  //   next({ path: '/' })
-  // }
+  if (process.env.NODE_ENV === 'production' && !store.state.app.homeVisted) {
+    store.commit('homeVisit', true)
+    next({ path: '/' })
+  }
   next()
 })
 
