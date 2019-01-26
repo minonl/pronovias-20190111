@@ -31,11 +31,14 @@
     </yd-cell-group>
     <div class='box' :class="{'active':tgDate}">
       <div class="label"><span class="no">2</span>选择预约日期<span class="toggle" :class="{'active': tgDate}" @click="tgDate=!tgDate"/></div>
+      <div class="icon icon-calendar"/>
+      <div class="icon icon-clock"/>
       <datetime
         input-class="input"
         class="datetime"
         type="date"
         format="yyyy-MM-dd"
+        placeholder="选择日期*"
         :phrases="{ok: '确认', cancel: '取消'}"
         v-model="date"/>
       <datetime
@@ -43,8 +46,11 @@
         class="datetime"
         type="time"
         format="hh:mm"
+        placeholder="选择时间*"
         :phrases="{ok: '确认', cancel: '取消'}"
         v-model="date"/>
+    
+    
     </div>
     <yd-cell-group :class="{'active':tgTrail}">
       <div class="label"><span class="no">3</span>挑选你的婚纱<span class="toggle" :class="{'active': tgTrail}" @click="tgTrail=!tgTrail"/></div>
@@ -287,6 +293,24 @@ export default {
       padding-bottom: 1rem;
     }
     overflow: hidden;
+    $iconSize: 1.25rem;
+    .icon {
+      pointer-events: none;
+      position: absolute;
+      background: red;
+      transform: translateY(-50%);
+      width: $iconSize;
+      height: $iconSize;
+      right: 3.5rem;
+      &-calendar {
+        top: 5.8125rem;
+        background: center / contain no-repeat url('~@/assets/images/booking/calendar.png');
+      }
+      &-clock {
+        top: 9.6125rem;
+        background: center / contain no-repeat url('~@/assets/images/booking/clock.png');
+      }
+    }
   }
   .label {
     text-align: left;
