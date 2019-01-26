@@ -120,8 +120,7 @@ export default {
 @import url('~@/stylesheets/color.scss');
 
 .product {
-  padding: 0 1rem 1rem;
-  padding-top: 1rem;
+  padding: 1rem 0;
   text-align: center;
   h2 {
     font-family: 'playfair_displayregular', 'Playfair Display';
@@ -130,15 +129,19 @@ export default {
     font-size: 1.2rem;
     padding: 1rem;
   }
+  p {
+    padding: 0 1rem 1rem;
+  }
   button {
     margin-top: 1rem;
   }
   .wrapper {
     position: relative;
+    overflow: hidden;
   }
 }
 .preview {
-  height: calc(100vw - 2rem);
+  height: calc(100vw);
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
