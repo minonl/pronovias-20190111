@@ -54,15 +54,20 @@
         </yd-list-item>
       </yd-list>
     </transition>
+    <router-link to="/appointment"><Button >预约试穿</Button></router-link>
   </div>
 </template>
 
 <script>
 import { mapState, mapActions } from 'vuex'
+import Button from '@/components/Button'
 import config from '@/config'
 
 export default {
   name: 'productList',
+  components: {
+    Button
+  },
   data () {
     return {
       currentCategoryId: -1,
@@ -153,9 +158,11 @@ export default {
   padding: .75rem;
   padding-bottom: 0;
   font-size: 1rem;
+  text-align: left;
 }
 .product-list {
-  // padding: .75rem;
+  text-align: center;
+  padding-bottom: 1rem;
 }
 .category-list {
   overflow: hidden;
