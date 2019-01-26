@@ -109,7 +109,7 @@ export default {
       this.verifyPhone({ data: { 'phone': this.phone } })
     },
     tryLogin () {
-      this.loginPhone({ data: { 'phone': this.phone, 'code': this.code.toString() } })
+      this.loginPhone({ data: { 'phone': this.phone, 'captcha': this.code } })
     }
   }
 }
