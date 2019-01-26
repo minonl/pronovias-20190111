@@ -75,7 +75,7 @@ export default {
       let nextId = -1
 
       let lastId = -1
-      for (const[index, p] of this.allProducts.entries()) {
+      for (const [index, p] of this.allProducts.entries()) {
         if (p.id === this.product.id) {
           if (index === this.allProducts.length - 1) {
             nextId = this.allProducts[0].id
@@ -89,7 +89,7 @@ export default {
           }
         }
       }
-      return {nextId, lastId}
+      return { nextId, lastId }
     }
   },
   created () {
@@ -109,7 +109,7 @@ export default {
       } else {
         nextId = this.brotherProductIds.lastId
       }
-        this.$router.push(`/product/${nextId}`)
+      this.$router.push(`/product/${nextId}`)
     }
   }
 }

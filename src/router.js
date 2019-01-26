@@ -69,6 +69,10 @@ const router = new Router({
   ]
 })
 router.beforeEach((to, from, next) => {
+  if (to.query.from) {
+    store.commit('knowFrom', to.query.from)
+  }
+
   // if (!store.state.app.homeVisted) {
   //   store.commit('homeVisit', true)
   //   next({ path: '/' })

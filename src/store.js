@@ -1,12 +1,17 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import Vapi from 'vuex-rest-api'
+import Qs from 'qs'
 import config from '@/config'
 
 Vue.use(Vuex)
 
 const apiStore = new Vapi({
   baseURL: config.apiBaseUrl,
+  queryParams: true,
+  paramsSerializer: function (params) {
+    return Qs.stringify(params, { arrayFormat: 'brackets' })
+  },
   state: {
     app: {
       homeVisted: false,
@@ -25,40 +30,34 @@ const apiStore = new Vapi({
     },
     products: { data: [] },
     categories: { data: [] },
-    dataUrl: null
+    dataUrl: null,
+    from: ''
   }
 })
   .get({
-    action: 'listProduct',
+    action: 'listProductRaw',
     property: 'products',
-    path: '/product'
+    path: `/product`
   })
   .get({
-    action: 'listCategory',
+    action: 'listCategoryRaw',
     property: 'categories',
     path: '/category'
   })
   .post({
-    action: 'verifyPhone',
+    action: 'verifyPhoneRaw',
     property: 'captcha',
     path: '/phone-captcha'
   })
   .post({
-    action: 'loginPhone',
+    action: 'loginPhoneRaw',
     property: 'login',
     path: '/login'
   })
   .post({
-    action: 'submitAppointment',
+    action: 'submitAppointmentRaw',
     property: 'booking',
-    path: '/booking',
-    headers: ({ headers }) => {
-      console.log(headers)
-      return headers
-    },
-    beforeRequest: (state, { params, data }) => {
-      console.log(state, params, data)
-    }
+    path: '/booking'
   })
   .getStore()
 
@@ -70,6 +69,44 @@ apiStore.getters = {
   productById: (state) => (id) => {
     return state.products.data.find(item => item.id.toString() === id)
   }
+}
+
+function track (context, data) {
+  if (!data) {
+    data = {}
+  }
+  if (context.state.from && context.state.from.length > 0) {
+    if (data.params) {
+      data.params.from = context.state.from
+    } else {
+      data.params = {
+        from: context.state.from
+      }
+    }
+  }
+  return data
+}
+
+// API tracking
+apiStore.actions.listProduct = (context) => {
+  const t = track(context)
+  context.dispatch('listProductRaw', t)
+}
+apiStore.actions.listCategory = (context) => {
+  const t = track(context)
+  context.dispatch('listCategoryRaw', t)
+}
+apiStore.actions.verifyPhone = (context, data) => {
+  const t = track(context)
+  context.dispatch('verifyPhoneRaw', t)
+}
+apiStore.actions.loginPhone = (context, data) => {
+  const t = track(context)
+  context.dispatch('loginPhoneRaw', t)
+}
+apiStore.actions.submitAppointment = (context, data) => {
+  const t = track(context)
+  context.dispatch('submitAppointmentRaw', t)
 }
 
 apiStore.mutations.homeVisit = (state, value) => {
@@ -139,6 +176,11 @@ apiStore.actions.updateAgree = (context, value) => {
 // Photo
 apiStore.mutations.updateDataUrl = (state, dataUrl) => {
   state.dataUrl = dataUrl
+}
+
+// from wx, wb, ...
+apiStore.mutations.knowFrom = (state, from) => {
+  state.from = from
 }
 
 const store = new Vuex.Store(apiStore)
