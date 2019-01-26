@@ -1,4 +1,7 @@
-// module.exports = {
+module.exports = {
+  publicPath: process.env.NODE_ENV === 'production'
+    ? '/'
+    : '/'
 //   chainWebpack: config => {
 //     if (config.plugins.has('extract-css')) {
 //       const extractCSSPlugin = config.plugin('extract-css')
@@ -14,4 +17,4 @@
 //       chunkFilename: '[name].js'
 //     }
 //   }
-// }
+}
