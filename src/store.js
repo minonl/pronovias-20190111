@@ -58,7 +58,7 @@ const apiStore = new Vapi({
     action: 'submitAppointmentRaw',
     property: 'booking',
     path: '/booking',
-    headers: ({token}) => ({
+    headers: ({ token }) => ({
       'TOKEN': token
     })
   })
