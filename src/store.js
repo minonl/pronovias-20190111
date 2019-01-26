@@ -8,7 +8,7 @@ Vue.use(Vuex)
 
 const apiStore = new Vapi({
   baseURL: config.apiBaseUrl,
-  queryParams: true,
+  // queryParams: true,
   paramsSerializer: function (params) {
     return Qs.stringify(params, { arrayFormat: 'brackets' })
   },
@@ -57,7 +57,10 @@ const apiStore = new Vapi({
   .post({
     action: 'submitAppointmentRaw',
     property: 'booking',
-    path: '/booking'
+    path: '/booking',
+    headers: ({token}) => ({
+      'TOKEN': token
+    })
   })
   .getStore()
 

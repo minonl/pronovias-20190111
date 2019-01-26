@@ -243,10 +243,7 @@ export default {
       } else {
         const postData = {
           params: {
-            headers: {
-              'Content-Type': 'application/json',
-              'TOKEN': this.$store.state.login.data.token
-            }
+            token: this.$store.state.login.data.token
           },
           data: {
             name: this.name,
