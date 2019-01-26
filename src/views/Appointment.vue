@@ -3,6 +3,9 @@
     <yd-popup v-model="popLogin" position="center" width="90%">
       <Login ref="loginWindow"/>
     </yd-popup>
+    <yd-popup v-model="popWarning" position="center" width="90%">
+      <Warning ref="warningWindow"/>
+    </yd-popup>
     <div class="store" :style="{'background-image': 'url('+store.poster+')'}">
       <div class="inner">
         <div class="name">{{store.name}}</div>
@@ -33,6 +36,7 @@
       <div class="label"><span class="no">2</span>选择预约日期<span class="toggle" :class="{'active': tgDate}" @click="tgDate=!tgDate"/></div>
       <div class="icon icon-calendar"/>
       <div class="icon icon-clock"/>
+      <div v-if="!isWarned" class="first-time-warning" @click="warn"/>
       <datetime
         input-class="input"
         class="datetime"
@@ -86,6 +90,7 @@
 <script>
 import Button from '@/components/Button'
 import Login from '@/components/Login'
+import Warning from '@/components/Warning'
 import { mapActions } from 'vuex'
 import config from '@/config'
 import { DateTime } from 'luxon'
@@ -93,7 +98,8 @@ import { DateTime } from 'luxon'
 export default {
   components: {
     Button,
-    Login
+    Login,
+    Warning
   },
   data () {
     return {
@@ -102,11 +108,13 @@ export default {
       tgDate: false,
       tgTrail: true,
       popLogin: false,
+      popWarning: false,
       store: {
         name: 'PRONOVIAS 恒隆广场店',
         address: '上海市静安区南京西路1266号',
         poster: require('@/assets/images/booking/store.jpg')
-      }
+      },
+      isWarned: false
     }
   },
   computed: {
@@ -184,6 +192,12 @@ export default {
       'updateAgree',
       'submitAppointment'
     ]),
+    warn () {
+      // if (!this.isWarned) {
+      this.popWarning = true
+      this.isWarned = true
+      // }
+    },
     login () {
       this.popLogin = true
     },
@@ -290,6 +304,19 @@ export default {
     &.active {
       max-height: 30rem;
       padding-bottom: 1rem;
+      .first-time-warning {
+        height: 100%;
+      }
+    }
+    .first-time-warning {
+      position: absolute;
+      top: 4.5rem;
+      left: 0;
+      width: 100%;
+      height: 0;
+      background: transparent;
+      z-index: 5;
+      padding: 0 1rem;
     }
     overflow: hidden;
     $iconSize: 1.25rem;

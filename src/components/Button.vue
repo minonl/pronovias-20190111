@@ -20,6 +20,7 @@ export default {
     color: $gold;
     background-color: transparent;
     outline: none;
+    letter-spacing: .5em;
     cursor: pointer;
     @media screen and (min-width: 370px){
       font-size: 1rem;
