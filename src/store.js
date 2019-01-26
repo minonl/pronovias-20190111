@@ -97,15 +97,15 @@ apiStore.actions.listCategory = (context) => {
   context.dispatch('listCategoryRaw', t)
 }
 apiStore.actions.verifyPhone = (context, data) => {
-  const t = track(context)
+  const t = track(context, data)
   context.dispatch('verifyPhoneRaw', t)
 }
 apiStore.actions.loginPhone = (context, data) => {
-  const t = track(context)
+  const t = track(context, data)
   context.dispatch('loginPhoneRaw', t)
 }
 apiStore.actions.submitAppointment = (context, data) => {
-  const t = track(context)
+  const t = track(context, data)
   context.dispatch('submitAppointmentRaw', t)
 }
 
