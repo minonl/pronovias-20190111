@@ -274,9 +274,9 @@ $dot-size: 6px;
     position: relative;
     padding: 0 .5rem .5rem !important;
     .yd-list-img {
-      height: 58vw;
+      height: 65vw;
       & img {
-        height: 58vw;
+        height: 65vw;
       }
     }
     .yd-list-mes {
