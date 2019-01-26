@@ -48,7 +48,7 @@ export default {
     }
   },
   methods: {
-    share() {
+    share () {
       this.$router.push('/success')
     }
   }

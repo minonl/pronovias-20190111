@@ -1,7 +1,7 @@
 <template>
   <div class="product-list">
     <div class="category-list">
-      <yd-slider :callback="updateCurrentCategoryBySlider" ref="slider">
+      <!-- <yd-slider :callback="updateCurrentCategoryBySlider" ref="slider">
           <yd-slider-item v-for="(item, index) in categories" :key="index">
               <div class="category" :style="{'background-image': 'url('+imageBaseUrl+item.poster+')'}">
                 <h2>{{item.name}}</h2>
@@ -11,17 +11,20 @@
                 <button>查看系列</button>
               </div>
           </yd-slider-item>
-      </yd-slider>
-      <div class="navigation">
+      </yd-slider> -->
+      <div class="header">
+        <div class='logo'/>
+      </div>
+      <!-- <div class="navigation">
         <div class="pan pan-prev" @click="swipeTo(true)">
           <div class="arrow arrow-prev"/>
         </div>
         <div class="pan pan-next" @click="swipeTo(false)">
           <div class="arrow arrow-next"/>
         </div>
-      </div>
+      </div> -->
     </div>
-    <transition-group
+    <!-- <transition-group
       name="fade"
       mode="in-out"
     >
@@ -35,7 +38,22 @@
           <div slot="title">{{item.name}}</div>
         </yd-list-item>
       </yd-list>
-    </transition-group>
+    </transition-group> -->
+    <div class="recommand">推荐款式</div>
+    <transition
+      name="fade"
+      mode="in-out"
+    >
+      <yd-list theme="1">
+        <yd-list-item v-for="item in allProducts" :key="item.id"
+          class="list-complete-item"
+          type="link"
+          :href="'/product/'+item.id">
+          <img slot="img" :src="imageBaseUrl+item.photos[0]">
+          <div slot="title">{{item.name}}</div>
+        </yd-list-item>
+      </yd-list>
+    </transition>
   </div>
 </template>
 
@@ -56,6 +74,9 @@ export default {
     products (state) {
       return state.products.data.filter(item => item.category_id === this.currentCategoryId)
     },
+    allProducts (state) {
+      return state.products.data
+    },
     categories: state => state.categories.data,
     currentCategory () {
       return this.categories.filter(category => category.id === this.currentCategoryId)
@@ -63,7 +84,7 @@ export default {
   }),
   mounted () {
     this.listCategory()
-    this.updateCurrentCategory(this.categories[0].id)
+    // this.updateCurrentCategory(this.categories[0].id)
     this.listProduct()
   },
   methods: {
@@ -113,6 +134,26 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.header {
+  width: 100%;
+  height: 54vw;
+  background: center / cover no-repeat url('~@/assets/images/product/head.jpg');
+  position: relative;
+  .logo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    height: 3rem;
+    width: 7rem;
+    background: center / contain no-repeat url('~@/assets/images/product/product_logo.png');
+  }
+}
+.recommand {
+  padding: .75rem;
+  padding-bottom: 0;
+  font-size: 1rem;
+}
 .product-list {
   // padding: .75rem;
 }
