@@ -174,6 +174,9 @@ export default {
       day.setDate(day.getDate() + 1)
       day.setHours(10)
       return day.toISOString()
+    },
+    isSending () {
+      return this.$store.state.pending.booking
     }
   },
   watch: {
@@ -188,6 +191,13 @@ export default {
             timeout: 1500
           })
         }
+      }
+    },
+    isSending (toggle) {
+      if (toggle) {
+        this.$dialog.loading.open('发送中...')
+      } else {
+        this.$dialog.loading.close()
       }
     }
   },
