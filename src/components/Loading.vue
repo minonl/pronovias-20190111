@@ -1,6 +1,6 @@
 <template>
   <transition name="fade">
-    <div v-if="retired" class="loading">
+    <div v-if="retired" ref="loading" class="loading">
       <transition name="fade">
         <div v-if="loading" class="loader">
           <div class="logo"/>
@@ -31,6 +31,7 @@
 
 <script>
 import Button from '@/components/Button'
+import iosHeight from 'ios-inner-height'
 
 import 'video.js/dist/video-js.css'
 import '@/stylesheets/vjs-custom-skin.scss'
@@ -73,8 +74,22 @@ export default {
   },
   methods: {
     initPlayer () {
-      // console.log(this.$refs.videoPlayer.$el.getElementsByTagName('video')
-      // .setAttribute('x5-video-player-tp'))
+      if (!this.$refs.videoPlayer) return
+      const root = {
+        height: iosHeight(),
+        width: window.innerWidth
+      }
+      const player = this.$refs.videoPlayer.$el.getElementsByClassName('video-js')[0].style
+      const rootRatio = root.width / root.height
+      const videoRatio = 608 / 1080
+      // wider than video
+      if (rootRatio >= videoRatio) {
+        player.width = root.width+'px'
+        player.height = player.width / videoRatio +'px'
+      } else {
+        player.height = root.height+'px'
+        player.width = root.height * videoRatio +'px'
+      }
     },
     load () {
       const counter = this
@@ -101,6 +116,7 @@ export default {
           // setTimeout(function () {
           //   loader.close()
           // }, loader.durationGif)
+          // loader.initPlayer()
         }, loader.durationLoading)
       }
     }
