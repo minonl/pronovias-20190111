@@ -50,11 +50,24 @@ export default {
       durationLoading: 1500,
       // durationGif: 158000,
       list: [
-        require('@/assets/images/home/loading.gif'),
+        // require('@/assets/images/home/loading.gif'),
+        require('@/assets/images/home/lbg.jpg'),
+        require('@/assets/images/home/play.png'),
+        require('@/assets/images/home/video.jpg'),
         require('@/assets/images/home/bg.jpg'),
+        require('@/assets/images/home/logo.png'),
         require('@/assets/images/product/arrow.png'),
         require('@/assets/images/booking/accordin.png'),
-        require('@/assets/images/booking/store.jpg')
+        require('@/assets/images/booking/calendar.png'),
+        require('@/assets/images/booking/clock.png'),
+        require('@/assets/images/booking/close.png'),
+        require('@/assets/images/booking/warning.png'),
+        require('@/assets/images/booking/store.jpg'),
+        require('@/assets/images/product/arrow.png'),
+        require('@/assets/images/product/head.jpg'),
+        require('@/assets/images/product/product_logo.png'),
+        require('@/assets/images/booking/success.png')
+
       ],
       count: 0,
       playerOptions: {
@@ -68,6 +81,10 @@ export default {
         }]
       }
     }
+  },
+  created () {
+    this.list = [...this.list,
+      ...this.$store.state.products.data.map(p => p.poster)]
   },
   mounted () {
     this.load()
