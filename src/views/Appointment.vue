@@ -23,7 +23,7 @@
       </yd-cell-item>
       <yd-cell-item>
         <div class="phone-input-wrapper" slot="right" @click.self="login">
-          <input type="number" ref="phoneInput" required @invalid="tgContact=true" disabled="disabled" placeholder="电话*"
+          <input type="number" ref="phoneInput" required @invalid="tgContact=true" placeholder="电话*"
             v-model="phone">
         </div>
       </yd-cell-item>
@@ -494,9 +494,9 @@ input, .input {
   border: solid 1px $rose !important;
   font-size: .9rem !important;
   width: 100%;
-  // &:disabled {
-  //   background-color: $sand !important;
-  // }
+  &:disabled {
+    background: white;
+  }
 }
 .yd-cell-box {
   margin-bottom: 1rem;
