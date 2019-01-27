@@ -54,18 +54,18 @@ const router = new Router({
       path: '/success',
       name: 'success',
       component: () => import(/* webpackChunkName: "success" */ './views/Success.vue')
-    },
-    {
-      path: '/upload',
-      name: 'photoupload',
-      component: () => import(/* webpackChunkName: "photoupload" */ './views/PhotoUpload.vue')
-      // beforeEnter: checkLogin
-    },
-    {
-      path: '/result',
-      name: 'result',
-      component: () => import(/* webpackChunkName: "result" */ './views/Result.vue')
     }
+    // {
+    //   path: '/upload',
+    //   name: 'photoupload',
+    //   component: () => import(/* webpackChunkName: "photoupload" */ './views/PhotoUpload.vue')
+    //   // beforeEnter: checkLogin
+    // },
+    // {
+    //   path: '/result',
+    //   name: 'result',
+    //   component: () => import(/* webpackChunkName: "result" */ './views/Result.vue')
+    // }
   ]
 })
 

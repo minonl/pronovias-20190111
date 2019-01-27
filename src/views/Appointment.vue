@@ -189,7 +189,7 @@ export default {
     booking (b) {
       if (b) {
         if (b.code === 0) {
-          this.$router.push('/upload')
+          this.$router.push('/success')
         } else {
           this.$dialog.toast({
             mes: b.message,

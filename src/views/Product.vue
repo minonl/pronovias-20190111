@@ -24,9 +24,9 @@
       </div>
       <h2>{{product.name}}</h2>
       <p>{{product.description}}</p>
-      <!-- <div class="bow"> -->
+      <div class="bow">
         <Button @click.native="addToList">预约试穿</Button>
-      <!-- </div> -->
+      </div>
     </div>
   </transition>
 </template>
@@ -119,12 +119,12 @@ export default {
     text-align: left;
     padding: 0 2rem 1rem;
   }
-  // .bow {
-  //   width: 100%;
+  .bow {
+    width: 100%;
     button {
       margin: 1rem auto;
     }
-  // }
+  }
   .wrapper {
     position: relative;
     overflow: hidden;
