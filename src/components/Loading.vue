@@ -16,7 +16,10 @@
       <transition name="fade">
         <div v-if="loaded" class="content">
           <videoPlayer class="vjs-custom-skin"
+            ref="videoPlayer"
             :options="playerOptions"
+            :playsinline="true"
+            @ready="initPlayer"
             @ended="close"/>
           <!-- <img class="gif" src="@/assets/images/home/loading.gif"/> -->
           <Button @click.native="close" class="skip">跳过</Button>
@@ -55,7 +58,7 @@ export default {
       count: 0,
       playerOptions: {
         controls: false,
-        // nativeControlsForTouch: true,
+        nativeControlsForTouch: false,
         poster: require('@/assets/images/home/video.jpg'),
         preload: true,
         sources: [{
@@ -69,6 +72,10 @@ export default {
     this.load()
   },
   methods: {
+    initPlayer () {
+      // console.log(this.$refs.videoPlayer.$el.getElementsByTagName('video')
+      // .setAttribute('x5-video-player-tp'))
+    },
     load () {
       const counter = this
       this.loading = true
@@ -151,6 +158,7 @@ export default {
 }
 .content {
   height: 100%;
+  width: 100%;
   position: relative;
 }
 .gif {
