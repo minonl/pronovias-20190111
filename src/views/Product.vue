@@ -24,7 +24,9 @@
       </div>
       <h2>{{product.name}}</h2>
       <p>{{product.description}}</p>
-      <Button @click.native="addToList">预约试穿</Button>
+      <!-- <div class="bow"> -->
+        <Button @click.native="addToList">预约试穿</Button>
+      <!-- </div> -->
     </div>
   </transition>
 </template>
@@ -104,6 +106,7 @@ export default {
 .product {
   padding: 1rem 0;
   text-align: center;
+  width: 100%;
   h2 {
     font-family: 'playfair_displayregular', 'Playfair Display';
     font-style: normal;
@@ -116,9 +119,12 @@ export default {
     text-align: left;
     padding: 0 2rem 1rem;
   }
-  button {
-    margin-top: 1rem auto;
-  }
+  // .bow {
+  //   width: 100%;
+    button {
+      margin: 1rem auto;
+    }
+  // }
   .wrapper {
     position: relative;
     overflow: hidden;
