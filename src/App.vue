@@ -11,7 +11,7 @@
     </div> -->
     <Loading/>
     <transition name="fade" mode="out-in">
-      <router-view/>
+      <router-view :key="key"/>
     </transition>
   </div>
 </template>
@@ -27,6 +27,9 @@ export default {
   computed: {
     isLoading () {
       return true
+    },
+    key () {
+      return this.$route.path
     }
   },
   created () {
