@@ -229,6 +229,7 @@ export default {
       this.removeAllTrailProducts()
     },
     submit () {
+      if (this.isSending) return
       let message = '预约成功'
       let icon = 'success'
       if (!this.agree) {

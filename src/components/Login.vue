@@ -45,7 +45,7 @@ export default {
       }
     },
     isSending () {
-      return this.$store.state.pending.captcha
+      return this.$store.state.pending.captcha || this.$store.state.pending.login
     },
     captcha () {
       return this.$store.state.captcha
@@ -63,6 +63,7 @@ export default {
       }
     },
     captcha (newCap) {
+      if (this.isSending) return
       const captcha = newCap
       if (captcha) {
         let message = captcha.message
@@ -81,6 +82,7 @@ export default {
       }
     },
     login (newLogin) {
+      if (this.isSending) return
       if (newLogin) {
         let message = newLogin.message
         let icon = 'success'
