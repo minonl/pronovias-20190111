@@ -3,7 +3,7 @@
     <div class="close"/>
     <yd-cell-group class="inputs">
       <yd-cell-item>
-        <yd-icon slot="icon" name="phone3" size=".45rem"></yd-icon>
+        <yd-icon slot="icon" name="phone3" size=".85rem"></yd-icon>
         <input class="phone" type="text" slot="right" placeholder="请输入手机号码"
           v-model="phone">
         <yd-sendcode slot="right"
@@ -152,9 +152,11 @@ input {
 
 <style lang="scss">
 @import '@/stylesheets/color.scss';
-
 .yd-popup-content {
   overflow: visible;
+  > .yd-btn {
+    height: 5rem;
+  }
 }
 
 .inputs {
@@ -179,7 +181,8 @@ input {
         right: 1rem;
         background: $gold;
         padding: .25em .5em;
-        height: 1.5em;
+        height: 1.25rem;
+        font-size: .75rem;
         &-disabled {
           background: grey;
         }
