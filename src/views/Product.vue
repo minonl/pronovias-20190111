@@ -104,7 +104,6 @@ export default {
 @import url('~@/stylesheets/color.scss');
 
 .product {
-  padding: 1rem 0;
   text-align: center;
   width: 100%;
   h2 {
@@ -127,6 +126,7 @@ export default {
     }
   }
   .wrapper {
+    padding: 1rem 0;
     position: relative;
     overflow: hidden;
     text-align: center;
