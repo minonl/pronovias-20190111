@@ -171,7 +171,7 @@ export default {
     },
     minDate () {
       let day = new Date()
-      day.setDate(day.getDate()+1)
+      day.setDate(day.getDate() + 1)
       day.setHours(10)
       return day.toISOString()
     }
