@@ -10,13 +10,19 @@
     </div> -->
     <div class="head"/>
     <div class="frame">
-      <div class="inner" :style="[rawImageBackgroundStyle]">
-        <!-- <img class="photo" v-if="tempDataUrl" :src="tempDataUrl"> -->
-        <!-- <div class="logo"/> -->
-        <div class="upload" @click="cameraImage">
+      <div class="inner">
+        <div v-if="!tempDataUrl" class="upload" @click="cameraImage">
           <input ref="cameraSelector" @change="fileChange"
             type='file' accept='image/png,image/jpeg,image/jpg'>
         </div>
+        <v-touch class="uploaded" ref="uploaded"
+          @pinchstart="onTouchPhotoPinchStart"
+          @panstart="onTouchPhotoPanStart"
+          @panmove="onTouchPhoto"
+          @pinchmove="onTouchPhoto"
+          @panend="onTouchPhotoPanEnd"
+          @pinchend="onTouchPhotoPinchEnd"
+          :style="[rawImageBackgroundStyle]"/>
       </div>
       <div class="mark">
         <h1 v-for="(line, index) in text.line3" :key="index">
@@ -200,6 +206,37 @@ export default {
 
       img.src = srcBase64
     },
+    onTouchPhotoPinchStart (e) {
+      this.photo.pinchStart = e.rotation
+    },
+    onTouchPhotoPanStart (e) {
+      this.photo.pinchStart = 0
+    },
+    onTouchPhoto (e) {
+      // console.log('[photo]')
+      let transforms = []
+      // var rotation = currentRotation + Math.round(e.rotation);
+      this.photo.currentRotation = (Math.round(e.rotation - this.photo.pinchStart)) + this.photo.adjustRotation
+      this.photo.currentScale = this.photo.adjustScale * e.scale
+      this.photo.currentDeltaX = this.photo.adjustDeltaX + (e.deltaX / this.photo.currentScale)
+      this.photo.currentDeltaY = this.photo.adjustDeltaY + (e.deltaY / this.photo.currentScale)
+
+      transforms.push('scale(' + this.photo.currentScale + ')')
+      transforms.push('translate(' + this.photo.currentDeltaX + 'px,' + this.photo.currentDeltaY + 'px)')
+      transforms.push('rotate(' + this.photo.currentRotation + 'deg)')
+
+      e.target.style.transform = transforms.join(' ')
+    },
+    onTouchPhotoPanEnd (e) {
+      this.photo.adjustScale = this.photo.currentScale
+      this.photo.adjustRotation = this.photo.currentRotation
+      this.photo.adjustDeltaX = this.photo.currentDeltaX
+      this.photo.adjustDeltaY = this.photo.currentDeltaY
+    },
+    onTouchPhotoPinchEnd (e) {
+      this.photo.adjustScale = this.photo.currentScale
+      this.photo.adjustRotation = this.photo.currentRotation
+    },
     loading (url) {
       return new Promise((resolve, reject) => {
         var img = new Image()
@@ -290,6 +327,7 @@ export default {
 
 <style lang="scss" scoped>
 @import '~@/assets/fonts/playfair/stylesheet.css';
+@import '~@/stylesheets/global.scss';
 @import '~@/stylesheets/color.scss';
 
 input[type='file'] {
@@ -356,12 +394,18 @@ input[type='file'] {
       }
       .upload {
         position: absolute;
+        z-index: 3;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
         width: 4rem;
         height: 4rem;
         background: center / contain no-repeat url('~@/assets/images/photo/camera.png');
+      }
+      .uploaded {
+        z-index: 1;
+        transform-origin: center;
+        @include fullPage();
       }
     }
     .mark {
