@@ -51,6 +51,21 @@ export default {
         ],
         button1: '生成照片'
       },
+      presets: [
+        {
+          text: ['若你来到我心里', '就能明白自己有多美好'],
+          image: require('@/assets/images/photo/1.jpg')
+        },
+        {
+          text: ['因为你', '我更爱时间一切'],
+          image: require('@/assets/images/photo/2.jpg')
+        },
+        {
+          text: ['我一天天明白你的平凡', '却一天天更加深切地爱你'],
+          image: require('@/assets/images/photo/3.jpg')
+        }
+
+      ],
       orientation: 0,
       tempDataUrl: null,
       result: null,
@@ -282,7 +297,7 @@ input[type='file'] {
 }
 
 .photo-upload {
-  background: center / cover no-repeat url('~@/assets/images/photo/bg.jpg');
+  background: center / cover no-repeat url('~@/assets/images/photo/1.jpg');
   height: 100vh;
   color: white;
   padding-top: .5em;
@@ -322,7 +337,6 @@ input[type='file'] {
       width: 80vw;
       height: 80vw;
       position: relative;
-      // background: center / 150% no-repeat url('~@/assets/images/photo/bg.jpg');
       background: rgba(255,255,255,0.3);
       // filter: opacity(.5);
       background-blend-mode: exclusion;

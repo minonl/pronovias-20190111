@@ -40,19 +40,6 @@ export default {
   data () {
     return {
       imageBaseUrl: config.imageBaseUrl
-      // product: {
-      // imgs: [
-      //   require('@/assets/placeholder/cassie.png'),
-      //   require('@/assets/images/photo/bg.jpg'),
-      //   require('@/assets/images/home/bg.jpg')
-      // ],
-      // title: 'CASSIE',
-      // desc: ['光彩夺目而又性感撩人，妩媚诱惑而又精致高贵',
-      //   '公主风长裙，低腰设计，上身为裹身设计',
-      //   '边缘不对称剪裁更添几分俏皮'],
-      // catId: 1,
-      // id: 1
-      // }
     }
   },
   computed: {
@@ -63,13 +50,6 @@ export default {
     }),
     product () {
       return this.$store.getters.productById(this.$route.params.id)
-      // const r = this.$store.getters.productById(this.$route.params.id)
-      // if (r && r.length>0) {
-      //   console.log(r)
-      //   return r
-      // }
-      // else
-      //   return []
     },
     brotherProductIds () {
       let nextId = -1

@@ -60,7 +60,7 @@ export default {
 @import '~@/stylesheets/color.scss';
 
 .result {
-  background: center / cover no-repeat url('~@/assets/images/photo/bg.jpg');
+  background: center / cover no-repeat url('~@/assets/images/photo/1.jpg');
   height: 100vh;
   color: white;
   padding-top: .5em;
@@ -96,7 +96,6 @@ export default {
       width: 80vw;
       height: 80vw;
       position: relative;
-      // background: center / 150% no-repeat url('~@/assets/images/photo/bg.jpg');
       background: rgba(255,255,255,0.3);
       // filter: opacity(.5);
       background-blend-mode: exclusion;
