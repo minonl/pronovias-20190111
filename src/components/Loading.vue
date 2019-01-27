@@ -84,11 +84,11 @@ export default {
       const videoRatio = 608 / 1080
       // wider than video
       if (rootRatio >= videoRatio) {
-        player.width = root.width+'px'
-        player.height = player.width / videoRatio +'px'
+        player.width = root.width + 'px'
+        player.height = player.width / videoRatio + 'px'
       } else {
-        player.height = root.height+'px'
-        player.width = root.height * videoRatio +'px'
+        player.height = root.height + 'px'
+        player.width = root.height * videoRatio + 'px'
       }
     },
     load () {
