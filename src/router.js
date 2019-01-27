@@ -68,9 +68,19 @@ const router = new Router({
     }
   ]
 })
+
+function getUrlParam (name) {
+  var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)')
+  var results = regex.exec(location.search)
+  if (!results) { return null }
+  if (!results[2]) { return '' }
+  return decodeURIComponent(results[2].replace(/\+/g, ' '))
+}
+
 router.beforeEach((to, from, next) => {
-  if (to.query.from) {
-    store.commit('knowFrom', to.query.from)
+  let queryFrom = getUrlParam('from')
+  if (queryFrom) {
+    store.commit('knowFrom', queryFrom)
   }
   window.scrollTo(0, 0)
   if (process.env.NODE_ENV === 'production' && !store.state.app.homeVisted) {
