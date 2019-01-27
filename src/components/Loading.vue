@@ -55,7 +55,7 @@ export default {
       playerOptions: {
         controls: false,
         // nativeControlsForTouch: true,
-        // poster: require('@/assets/images/home/video.jpg'),
+        poster: require('@/assets/images/home/video.jpg'),
         preload: true,
         sources: [{
           type: 'video/mp4',
