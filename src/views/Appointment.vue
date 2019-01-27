@@ -14,8 +14,8 @@
     </div>
     <div class="title">预约申请</div>
     <yd-cell-group :class="{'active':tgContact}">
-      <div class="label">
-        <span class="no">1</span>联系方式<span class="toggle" :class="{'active': tgContact}" @click="tgContact=!tgContact"/>
+      <div class="label"  @click="tgContact=!tgContact">
+        <span class="no">1</span>联系方式<span class="toggle" :class="{'active': tgContact}"/>
         </div>
       <yd-cell-item>
         <input slot="right" type="text" required placeholder="姓名*" @invalid="tgContact=true"
@@ -33,7 +33,7 @@
       </yd-cell-item>
     </yd-cell-group>
     <div class='box' :class="{'active':tgDate}">
-      <div class="label"><span class="no">2</span>选择预约日期<span class="toggle" :class="{'active': tgDate}" @click="tgDate=!tgDate"/></div>
+      <div class="label" @click="tgDate=!tgDate"><span class="no">2</span>选择预约日期<span class="toggle" :class="{'active': tgDate}"/></div>
       <div class="icon icon-calendar"/>
       <div class="icon icon-clock"/>
       <div v-if="!isWarned" class="first-time-warning" @click="warn"/>
@@ -58,7 +58,7 @@
 
     </div>
     <yd-cell-group :class="{'active':tgTrail}">
-      <div class="label"><span class="no">3</span>挑选你的婚纱<span class="toggle" :class="{'active': tgTrail}" @click="tgTrail=!tgTrail"/></div>
+      <div class="label" @click="tgTrail=!tgTrail"><span class="no">3</span>挑选你的婚纱<span class="toggle" :class="{'active': tgTrail}"/></div>
       <yd-cell-item>
         <!-- <Button class="reselect" @click.native.prevent="clearList" slot="right" >重新挑选</Button> -->
         <div slot="left">
