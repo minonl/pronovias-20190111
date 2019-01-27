@@ -15,7 +15,7 @@
         <!-- <div class="logo"/> -->
         <div class="upload" @click="cameraImage">
           <input ref="cameraSelector" @change="fileChange"
-            type='file' accept='image/png,image/jpeg,image/jpg' capture='camera'>
+            type='file' accept='image/png,image/jpeg,image/jpg'>
         </div>
       </div>
       <div class="mark">
