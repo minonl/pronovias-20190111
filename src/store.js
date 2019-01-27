@@ -6,12 +6,24 @@ import config from '@/config'
 
 Vue.use(Vuex)
 
+// filter params, so only 'from' is appended in query
+const requestConfig = {
+  paramsSerializer: function (params) {
+    const allowed = ['from']
+    const filtered = Object.keys(params)
+      .filter(key => allowed.includes(key))
+      .reduce((obj, key) => {
+        obj[key] = params[key]
+        return obj
+      }, {})
+    let s = Qs.stringify(filtered)
+    return s
+  }
+}
+
 const apiStore = new Vapi({
   baseURL: config.apiBaseUrl,
-  // queryParams: true,
-  paramsSerializer: function (params) {
-    return Qs.stringify(params, { arrayFormat: 'brackets' })
-  },
+  queryParams: true,
   state: {
     app: {
       homeVisted: false,
@@ -37,27 +49,32 @@ const apiStore = new Vapi({
   .get({
     action: 'listProductRaw',
     property: 'products',
-    path: `/product`
+    path: `/product`,
+    requestConfig: requestConfig
   })
   .get({
     action: 'listCategoryRaw',
     property: 'categories',
-    path: '/category'
+    path: '/category',
+    requestConfig: requestConfig
   })
   .post({
     action: 'verifyPhoneRaw',
     property: 'captcha',
-    path: '/phone-captcha'
+    path: '/phone-captcha',
+    requestConfig: requestConfig
   })
   .post({
     action: 'loginPhoneRaw',
     property: 'login',
-    path: '/login'
+    path: '/login',
+    requestConfig: requestConfig
   })
   .post({
     action: 'submitAppointmentRaw',
     property: 'booking',
     path: '/booking',
+    requestConfig: requestConfig,
     headers: ({ token }) => ({
       'TOKEN': token
     })
