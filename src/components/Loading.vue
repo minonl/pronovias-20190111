@@ -9,6 +9,7 @@
             :progress="this.count/this.list.length"
             trail-width="1"
             class="line"
+            preload
             trail-color="#ae9a64"></yd-progressbar>
         </div>
       </transition>
