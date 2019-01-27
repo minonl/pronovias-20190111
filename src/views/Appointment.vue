@@ -51,7 +51,7 @@
         class="datetime"
         type="time"
         :min-datetime="minDate"
-        format="hh:mm"
+        format="HH:mm"
         placeholder="选择时间*"
         :phrases="{ok: '确认', cancel: '取消'}"
         v-model="date"/>
