@@ -85,7 +85,7 @@ export default {
         let message = newLogin.message
         let icon = 'success'
         if (newLogin.code === 0) {
-          message = '登录成功'
+          message = '验证成功'
           this.$parent.$parent.popLogin = false
           // this.$router.push('/appointment')
         } else {
