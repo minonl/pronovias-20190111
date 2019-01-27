@@ -10,7 +10,9 @@
       <router-link to="/result/1">Result</router-link>
     </div> -->
     <Loading/>
-    <router-view/>
+    <transition name="fade" mode="out-in">
+      <router-view/>
+    </transition>
   </div>
 </template>
 
@@ -39,3 +41,27 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+.fade-enter-active, .fade-leave-active {
+  position: absolute;
+  &.fade-enter-active {
+    transition: all 1s cubic-bezier(0.075, 0.32, 0.165, 1);
+  }
+  &.fade-leave-active {
+    transition: all .5s cubic-bezier(0.6, 0.18, 0.735, 0.045);
+  }
+}
+.fade-enter {
+  opacity: 1;
+  transform: translateY(100%) scale(1.05);
+}
+.fade-enter-to{
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+.fade-leave-to {
+  opacity: 0;
+  transform: scale(0.7) translateY(-200%);
+}
+</style>

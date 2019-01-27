@@ -1,30 +1,32 @@
 <template>
-  <div class="product">
-    <div class="wrapper">
-      <!-- <ul class="product-slider"> -->
-        <!-- <li class="product-slider-item"  v-for="item in allProducts" :key="item.id"> -->
-          <yd-slider>
-            <yd-slider-item  v-for="(photo, index) in product.photos" :key="index">
-              <div class="preview" :style="{'background-image': 'url('+imageBaseUrl+photo+')'}"/>
-            </yd-slider-item>
-          </yd-slider>
-        <!-- </li> -->
-      <!-- </ul> -->
-      <div class="navigation">
-        <div class="inner">
-          <div class="pan pan-prev" @click="swipeTo(true)">
-            <div class="arrow arrow-prev"/>
-          </div>
-          <div class="pan pan-next" @click="swipeTo(false)">
-            <div class="arrow arrow-next"/>
+  <transition name="fade" mode="out-in">
+    <div class="product">
+      <div class="wrapper">
+        <!-- <ul class="product-slider"> -->
+          <!-- <li class="product-slider-item"  v-for="item in allProducts" :key="item.id"> -->
+            <yd-slider>
+              <yd-slider-item  v-for="(photo, index) in product.photos" :key="index">
+                <div class="preview" :style="{'background-image': 'url('+imageBaseUrl+photo+')'}"/>
+              </yd-slider-item>
+            </yd-slider>
+          <!-- </li> -->
+        <!-- </ul> -->
+        <div class="navigation">
+          <div class="inner">
+            <div class="pan pan-prev" @click="swipeTo(true)">
+              <div class="arrow arrow-prev"/>
+            </div>
+            <div class="pan pan-next" @click="swipeTo(false)">
+              <div class="arrow arrow-next"/>
+            </div>
           </div>
         </div>
       </div>
+      <h2>{{product.name}}</h2>
+      <p>{{product.description}}</p>
+      <Button @click.native="addToList">预约试穿</Button>
     </div>
-    <h2>{{product.name}}</h2>
-    <p>{{product.description}}</p>
-    <Button @click.native="addToList">预约试穿</Button>
-  </div>
+  </transition>
 </template>
 
 <script>
