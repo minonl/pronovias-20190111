@@ -106,7 +106,7 @@ export default {
   data () {
     return {
       imageBaseUrl: config.imageBaseUrl,
-      tgContact: false,
+      tgContact: true,
       tgDate: false,
       tgTrail: true,
       popLogin: false,
