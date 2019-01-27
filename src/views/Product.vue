@@ -110,12 +110,14 @@ export default {
     font-weight: normal;
     font-size: 1.2rem;
     padding: 1rem;
+    text-align: center;
   }
   p {
+    text-align: left;
     padding: 0 2rem 1rem;
   }
   button {
-    margin-top: 1rem;
+    margin-top: 1rem auto;
   }
   .wrapper {
     position: relative;
