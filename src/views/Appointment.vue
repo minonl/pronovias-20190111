@@ -152,7 +152,12 @@ export default {
         return this.$store.state.appointment.date
       },
       set (value) {
-        this.pickDatetime(value)
+        if (!value) { return }
+        let newDate = new Date(value)
+        if (newDate.getHours() < 10) {
+          newDate.setHours(10)
+        }
+        this.pickDatetime(newDate.toISOString())
       }
     },
     agree: {
@@ -173,6 +178,7 @@ export default {
       let day = new Date()
       day.setDate(day.getDate() + 1)
       day.setHours(10)
+      day.setMinutes(0)
       return day.toISOString()
     },
     isSending () {
