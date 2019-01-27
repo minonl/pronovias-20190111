@@ -47,8 +47,9 @@
       <yd-list theme="1">
         <yd-list-item v-for="item in allProducts" :key="item.id"
           class="list-complete-item"
+          :class="{'selected':productSelected(item.id)}"
           type="link"
-          :href="'/product/'+item.id">
+          :href="productLinkBy(item.id)">
           <img slot="img" :src="imageBaseUrl+item.photos[0]">
           <div slot="title">{{item.name}}</div>
         </yd-list-item>
@@ -97,6 +98,17 @@ export default {
       'listCategory',
       'listProduct'
     ]),
+    productSelected(id) {
+      return this.$store.state.appointment.trailProducts.filter(item => item.id === id).length
+    },
+    productLinkBy (id) {
+      let exists = this.productSelected(id)
+      if (exists) {
+        return '/appointment'
+      } else {
+        return '/product/' + id
+      }
+    },
     updateCurrentCategoryBySlider (index) {
       this.updateCurrentCategory(this.categories[index].id)
     },
@@ -221,6 +233,12 @@ export default {
     }
   }
 }
+.list-complete-item {
+  &.selected {
+    opacity: .7;
+  }
+}
+
 .fade-enter-active, .fade-leave-active {
   position: absolute;
   &.fade-enter-active {
