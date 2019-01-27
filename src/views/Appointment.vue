@@ -41,6 +41,7 @@
         input-class="input"
         class="datetime"
         type="date"
+        :min-datetime="minDate"
         format="yyyy-MM-dd"
         placeholder="选择日期*"
         :phrases="{ok: '确认', cancel: '取消'}"
@@ -49,6 +50,7 @@
         input-class="input"
         class="datetime"
         type="time"
+        :min-datetime="minDate"
         format="hh:mm"
         placeholder="选择时间*"
         :phrases="{ok: '确认', cancel: '取消'}"
@@ -166,6 +168,12 @@ export default {
     },
     token () {
       return this.$store.state.login.data.token
+    },
+    minDate () {
+      let day = new Date()
+      day.setDate(day.getDate()+1)
+      day.setHours(10)
+      return day.toISOString()
     }
   },
   watch: {
