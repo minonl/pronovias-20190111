@@ -98,7 +98,7 @@ export default {
       'listCategory',
       'listProduct'
     ]),
-    productSelected(id) {
+    productSelected (id) {
       return this.$store.state.appointment.trailProducts.filter(item => item.id === id).length
     },
     productLinkBy (id) {
