@@ -121,6 +121,7 @@ export default {
   }
   .bow {
     width: 100%;
+    text-align: center;
     button {
       margin: 1rem auto;
     }
@@ -128,6 +129,7 @@ export default {
   .wrapper {
     position: relative;
     overflow: hidden;
+    text-align: center;
   }
 }
 .preview {

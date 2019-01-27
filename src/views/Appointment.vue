@@ -292,6 +292,7 @@ export default {
 .appointment {
   text-align: center;
   padding-bottom: 2rem;
+  overflow: scroll !important;
   .store {
     height: 60vw;
     background-size:cover;
@@ -544,5 +545,9 @@ input, .input {
   //     left: 0;
   //   }
   }
+}
+.g-fix-ios-prevent-scroll {
+  overflow: auto !important;
+  position: relative !important;
 }
 </style>
