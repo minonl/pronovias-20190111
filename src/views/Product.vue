@@ -112,7 +112,7 @@ export default {
     padding: 1rem;
   }
   p {
-    padding: 0 1rem 1rem;
+    padding: 0 2rem 1rem;
   }
   button {
     margin-top: 1rem;
