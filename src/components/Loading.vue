@@ -89,7 +89,6 @@ export default {
   },
   mounted () {
     document.getElementById('app').style.position = 'fixed'
-    this.$refs.videoPlayer.$el.style.height = window.innerHeight
     this.load()
   },
   beforeDestroy () {
@@ -102,7 +101,9 @@ export default {
         height: window.innerHeight,
         width: window.innerWidth
       }
+      const basic = this.$refs.videoPlayer.$el
       const player = this.$refs.videoPlayer.$el.getElementsByClassName('video-js')[0].style
+      const poster = this.$refs.videoPlayer.$el.getElementsByClassName('vjs-poster')[0].style
       const rootRatio = root.width / root.height
       const videoRatio = 608 / 1080
       // wider than video
@@ -113,6 +114,10 @@ export default {
         player.height = root.height + 'px'
         player.width = root.height * videoRatio + 'px'
       }
+      poster.width = player.width
+      poster.height = player.height
+      basic.width = player.width
+      basic.height = player.height
     },
     load () {
       const counter = this
