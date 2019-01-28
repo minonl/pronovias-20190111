@@ -262,12 +262,16 @@ export default {
       let ctx = canvas.getContext('2d')
       canvas.width = size
       canvas.height = size * heightRatio
-      console.log(canvas.width, canvas.height)
 
       let backgrond = await this.loading(this.frameBackgroundURL)
 
       ctx.save()
       ctx.drawImage(backgrond, 0, 0, canvas.width, canvas.height)
+      ctx.restore()
+
+      ctx.save()
+      ctx.fillStyle = 'rgba(0,0,0,0.3)'
+      ctx.fillRect(0, 0, canvas.width, canvas.height)
       ctx.restore()
 
       let photo = await this.loading(this.tempDataUrl)
