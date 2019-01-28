@@ -125,9 +125,6 @@ export default {
       isWarned: false
     }
   },
-  mounted () {
-    window.scrollTo(0, 0)
-  },
   computed: {
     cart () {
       return this.$store.state.appointment.trailProducts

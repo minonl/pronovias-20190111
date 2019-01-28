@@ -94,11 +94,16 @@ router.beforeEach((to, from, next) => {
     }
   }
   // window.scrollTo(0, 0)
+  // document.getElementById('app').style.position = 'fixed'
   if (process.env.NODE_ENV === 'production' && !store.state.app.homeVisted) {
     store.commit('homeVisit', true)
     next({ path: '/' })
   }
   next()
+})
+
+router.afterEach((to, from) => {
+  // document.getElementById('app').style.position = 'relative'
 })
 
 export default router
