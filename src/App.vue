@@ -33,7 +33,10 @@ export default {
     }
   },
   created () {
-    this.reportVisit()
+    if (!localStorage.getItem('__v__')){
+      this.reportVisit()
+      localStorage.setItem('__v__', 1)
+    }
     this.listCategory()
     this.listProduct()
   },
