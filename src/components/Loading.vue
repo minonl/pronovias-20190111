@@ -14,7 +14,7 @@
         </div>
       </transition>
       <transition name="fade">
-        <div v-if="loaded" class="content">
+        <div v-show="loaded" class="content">
           <videoPlayer class="vjs-custom-skin"
             ref="videoPlayer"
             :options="playerOptions"
