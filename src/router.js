@@ -102,7 +102,7 @@ router.beforeEach((to, from, next) => {
 })
 
 router.afterEach((to, from) => {
-  setTimeout(function(){
+  setTimeout(function () {
     window.scrollTo(0, 0)
   }, 500)
   // document.getElementById('app').style.position = 'relative'

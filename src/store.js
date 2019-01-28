@@ -48,6 +48,12 @@ const apiStore = new Vapi({
   }
 })
   .get({
+    action: 'reportVisitRaw',
+    property: 'visit',
+    path: 'visit',
+    requestConfig: requestConfig
+  })
+  .get({
     action: 'listProductRaw',
     property: 'products',
     path: `/product`,
@@ -109,6 +115,10 @@ function track (context, data) {
 }
 
 // API tracking
+apiStore.actions.reportVisit = (context) => {
+  const t = track(context)
+  context.dispatch('reportVisitRaw', t)
+}
 apiStore.actions.listProduct = (context) => {
   const t = track(context)
   context.dispatch('listProductRaw', t)

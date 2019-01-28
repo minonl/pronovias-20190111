@@ -34,6 +34,7 @@ export default {
     }
   },
   created () {
+    this.reportVisit()
     this.listCategory()
     this.listProduct()
   },
@@ -43,7 +44,8 @@ export default {
   methods: {
     ...mapActions([
       'listCategory',
-      'listProduct'
+      'listProduct',
+      'reportVisit'
     ])
   }
 }
