@@ -84,7 +84,7 @@
     </yd-cell-group>
     <p class="bottom">
       <yd-checkbox v-model="agree" color="#a89359">我同意</yd-checkbox>
-      <span class="rule" @click="popAgreement=true">PRONOVIAS 的预约规则</span>
+      <span class="rule" @click="popAgreement=true">PRONOVIAS 的隐私协议</span>
     </p>
     <Button type="submit">提交预约</Button>
   </form>
