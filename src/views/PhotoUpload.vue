@@ -278,7 +278,7 @@ export default {
       ctx.restore()
 
       ctx.save()
-      ctx.drawImage(title, (canvas.width - title.width * 1.5)/2, 2 * 16, title.width * 1.5, title.height * 1.5)
+      ctx.drawImage(title, (canvas.width - title.width * 1.5) / 2, 2 * 16, title.width * 1.5, title.height * 1.5)
       ctx.restore()
 
       ctx.save()
@@ -310,8 +310,8 @@ export default {
       ctx.font = `${12 * frate}px PingFang SC,Helvetica Neue,Hiragino Sans GB,Segoe UI,Microsoft YaHei,微软雅黑,sans-serif`
       ctx.fillStyle = 'white'
       ctx.textAlign = 'left'
-      ctx.fillText(this.presets[this.currentPresetId].text[0], canvas.width * .1125, canvas.height - 3 * 16 *frate)
-      ctx.fillText(this.presets[this.currentPresetId].text[1], canvas.width * .1125, canvas.height - 1.5 * 16 *frate)
+      ctx.fillText(this.presets[this.currentPresetId].text[0], canvas.width * 0.1125, canvas.height - 3 * 16 * frate)
+      ctx.fillText(this.presets[this.currentPresetId].text[1], canvas.width * 0.1125, canvas.height - 1.5 * 16 * frate)
 
       // document.body.appendChild(canvas)
       this.replaceHtmlWithCanvas(canvas)
