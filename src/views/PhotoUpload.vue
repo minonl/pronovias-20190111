@@ -36,7 +36,7 @@ import { mapMutations } from 'vuex'
 import EXIF from 'exif-js'
 
 export default {
-  name: 'photoUpload',
+  name: 'photoupload',
   components: {
     Button
   },

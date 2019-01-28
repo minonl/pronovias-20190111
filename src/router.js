@@ -86,7 +86,15 @@ router.beforeEach((to, from, next) => {
   if (queryMode) {
     store.commit('modeChange', queryMode)
   }
-  window.scrollTo(0, 0)
+  const uploadAllowed = ['upload', 'result']
+  if (uploadAllowed.includes[to.name]) {
+    if (store.state.mode !== '79vEsLXCkK2U2gqe') {
+      next({ path: '/' })
+    }
+  }
+  if (to.name !== 'appointment') {
+    window.scrollTo(0, 0)
+  }
   if (process.env.NODE_ENV === 'production' && !store.state.app.homeVisted) {
     store.commit('homeVisit', true)
     next({ path: '/' })

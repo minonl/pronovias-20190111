@@ -26,7 +26,7 @@
       </yd-cell-item>
       <yd-cell-item>
         <div class="phone-input-wrapper" slot="right" @click.self="login">
-          <input type="number" ref="phoneInput" required @invalid="tgContact=true" placeholder="电话*"
+          <input type="number" ref="phoneInput" required @invalid="tgContact=true" disabled placeholder="电话*"
             v-model="phone">
         </div>
       </yd-cell-item>
@@ -100,6 +100,7 @@ import config from '@/config'
 import { DateTime } from 'luxon'
 
 export default {
+  name: 'appointment',
   components: {
     Button,
     Login,
@@ -123,6 +124,9 @@ export default {
       },
       isWarned: false
     }
+  },
+  mounted () {
+    window.scrollTo(0, 0)
   },
   computed: {
     cart () {
@@ -555,5 +559,12 @@ input, .input {
 .g-fix-ios-prevent-scroll {
   overflow: auto !important;
   position: relative !important;
+}
+
+// override ios input::disbaled style
+input:disabled, textarea:disabled {
+    -webkit-text-fill-color: $rose;
+    -webkit-opacity: 1;
+    color: #000;
 }
 </style>
