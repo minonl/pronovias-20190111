@@ -253,6 +253,7 @@ export default {
       })
     },
     async generateImage () {
+      this.$dialog.loading.open('生成中...')
       const size = 1024
       const heightRatio = 1.2
       // const qrSize = 180
@@ -264,6 +265,8 @@ export default {
       canvas.height = size * heightRatio
 
       let backgrond = await this.loading(this.frameBackgroundURL)
+      let title = await this.loading(require('@/assets/images/photo/title.png'))
+      let photo = await this.loading(this.tempDataUrl)
 
       ctx.save()
       ctx.drawImage(backgrond, 0, 0, canvas.width, canvas.height)
@@ -274,7 +277,9 @@ export default {
       ctx.fillRect(0, 0, canvas.width, canvas.height)
       ctx.restore()
 
-      let photo = await this.loading(this.tempDataUrl)
+      ctx.save()
+      ctx.drawImage(title, (canvas.width - title.width * 1.5)/2, 2 * 16, title.width * 1.5, title.height * 1.5)
+      ctx.restore()
 
       ctx.save()
       ctx.translate(size / 2, size / 2)
@@ -291,7 +296,6 @@ export default {
       let cl = pl * rate
       let ct = pt * rate
 
-      console.log(size * 0.1 + cl, 5 * 16 * frate + ct)
       ctx.drawImage(photo,
         cl,
         ct,
@@ -302,6 +306,12 @@ export default {
         size * 0.8,
         size * 0.8)
       ctx.restore()
+
+      ctx.font = `${12 * frate}px PingFang SC,Helvetica Neue,Hiragino Sans GB,Segoe UI,Microsoft YaHei,微软雅黑,sans-serif`
+      ctx.fillStyle = 'white'
+      ctx.textAlign = 'left'
+      ctx.fillText(this.presets[this.currentPresetId].text[0], canvas.width * .1125, canvas.height - 3 * 16 *frate)
+      ctx.fillText(this.presets[this.currentPresetId].text[1], canvas.width * .1125, canvas.height - 1.5 * 16 *frate)
 
       // document.body.appendChild(canvas)
       this.replaceHtmlWithCanvas(canvas)
@@ -339,6 +349,7 @@ export default {
       // this.dataUrl = dataUrl
       this.updateDataUrl(dataUrl)
       document.getElementById('app').removeChild(document.getElementById('gen'))
+      this.$dialog.loading.close()
       this.$router.push({ name: 'result' })
     }
   }
