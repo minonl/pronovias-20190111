@@ -89,6 +89,7 @@ export default {
   },
   mounted () {
     document.getElementById('app').style.position = 'fixed'
+    this.$refs.videoPlayer.$el.style.height = window.innerHeight
     this.load()
   },
   beforeDestroy () {
