@@ -194,7 +194,11 @@ export default {
     booking (b) {
       if (b) {
         if (b.code === 0) {
-          this.$router.push('/success')
+          if (this.$store.state.mode === '79vEsLXCkK2U2gqe') {
+            this.$router.push('/upload')
+          } else {
+            this.$router.push('/success')
+          }
         } else {
           this.$dialog.toast({
             mes: b.message,

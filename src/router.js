@@ -70,8 +70,8 @@ const router = new Router({
 })
 
 function getUrlParam (name) {
-  var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)')
-  var results = regex.exec(location.search)
+  let regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)')
+  let results = regex.exec(location.search)
   if (!results) { return null }
   if (!results[2]) { return '' }
   return decodeURIComponent(results[2].replace(/\+/g, ' '))
@@ -79,8 +79,12 @@ function getUrlParam (name) {
 
 router.beforeEach((to, from, next) => {
   let queryFrom = getUrlParam('from')
+  let queryMode = getUrlParam('mode')
   if (queryFrom) {
     store.commit('knowFrom', queryFrom)
+  }
+  if (queryMode) {
+    store.commit('modeChange', queryMode)
   }
   window.scrollTo(0, 0)
   if (process.env.NODE_ENV === 'production' && !store.state.app.homeVisted) {

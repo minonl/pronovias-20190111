@@ -43,7 +43,8 @@ const apiStore = new Vapi({
     products: { data: [] },
     categories: { data: [] },
     dataUrl: null,
-    from: ''
+    from: '',
+    mode: 0
   }
 })
   .get({
@@ -131,6 +132,10 @@ apiStore.actions.submitAppointment = (context, data) => {
 
 apiStore.mutations.homeVisit = (state, value) => {
   state.app.homeVisted = value
+}
+
+apiStore.mutations.modeChange = (state, value) => {
+  state.mode = value
 }
 
 // Account
