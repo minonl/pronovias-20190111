@@ -6,6 +6,9 @@
     <yd-popup v-model="popWarning" position="center" width="90%">
       <Warning ref="warningWindow"/>
     </yd-popup>
+    <yd-popup v-model="popAgreement" position="center" width="90%">
+      <Agreement ref="agreementWindow"/>
+    </yd-popup>
     <div class="store" :style="{'background-image': 'url('+store.poster+')'}">
       <div class="inner">
         <div class="name">{{store.name}}</div>
@@ -79,12 +82,10 @@
         </div>
       </yd-cell-item>
     </yd-cell-group>
-    <yd-checkbox v-model="agree" color="#a89359">
-      <span>
-        我同意<span class="rule">PRONOVIAS 的预约规则</span>
-      </span>
-      <!-- <p class="line2">the make an appointment form</p> -->
-    </yd-checkbox>
+    <p class="bottom">
+      <yd-checkbox v-model="agree" color="#a89359">我同意</yd-checkbox>
+      <span class="rule" @click="popAgreement=true">PRONOVIAS 的预约规则</span>
+    </p>
     <Button type="submit">提交预约</Button>
   </form>
 </template>
@@ -93,6 +94,7 @@
 import Button from '@/components/Button'
 import Login from '@/components/Login'
 import Warning from '@/components/Warning'
+import Agreement from '@/components/Agreement'
 import { mapActions } from 'vuex'
 import config from '@/config'
 import { DateTime } from 'luxon'
@@ -101,7 +103,8 @@ export default {
   components: {
     Button,
     Login,
-    Warning
+    Warning,
+    Agreement
   },
   data () {
     return {
@@ -109,8 +112,10 @@ export default {
       tgContact: true,
       tgDate: false,
       tgTrail: true,
+      tgAgreement: false,
       popLogin: false,
       popWarning: false,
+      popAgreement: false,
       store: {
         name: 'PRONOVIAS 恒隆广场店',
         address: '上海市静安区南京西路1266号',
@@ -221,6 +226,9 @@ export default {
       this.popWarning = true
       this.isWarned = true
       // }
+    },
+    agreeWhat () {
+      this.popAgreement = true
     },
     login () {
       this.popLogin = true
@@ -466,6 +474,14 @@ export default {
     width: 100% !important;
   }
 }
+.bottom {
+  .rule {
+    color: $gold;
+    padding: .25em 0;
+    font-size: .95rem;
+    border-bottom: solid 1px $gold;
+  }
+}
 </style>
 
 <style lang="scss">
@@ -523,29 +539,15 @@ input, .input {
   }
 }
 .yd-checkbox {
-  display: block;
+  display: inline-block;
   margin-bottom: 1rem;
   &-icon {
     border-color: $rose;
     margin-right: .25rem;
   }
-  &-text {
-    .rule {
-      color: $gold;
-      padding: .25em;
-      border-bottom: solid 1px $gold;
-    }
-
-  //   transform: translate(.5em, -.5em);
-  //   text-align: left;
-  //   position: relative;
-  //   display: inline-block;
-  //   .line2 {
-  //     position: absolute;
-  //     left: 0;
-  //   }
-  }
 }
+
+// fix ios popup jump to top
 .g-fix-ios-prevent-scroll {
   overflow: auto !important;
   position: relative !important;
