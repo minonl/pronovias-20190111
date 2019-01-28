@@ -15,6 +15,7 @@ export default {
 
   button {
     border: solid 1px $gold;
+    text-indent: .5em;
     border-radius: 3px;
     padding: .5em 4em;
     color: $gold;
