@@ -10,13 +10,8 @@
 </template>
 
 <script>
-import Button from '@/components/Button'
-
 export default {
   name: 'result',
-  components: {
-    Button
-  },
   data () {
     return {
       text: {
@@ -29,7 +24,7 @@ export default {
     }
   },
   computed: {
-    dataUrl() {
+    dataUrl () {
       return this.$store.state.dataUrl
     }
   },

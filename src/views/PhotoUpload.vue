@@ -100,7 +100,7 @@ export default {
     },
     screenWidth () {
       return window.innerWidth
-    },
+    }
   },
   methods: {
     ...mapMutations([
@@ -261,7 +261,7 @@ export default {
 
       let ctx = canvas.getContext('2d')
       canvas.width = size
-      canvas.height = size*heightRatio
+      canvas.height = size * heightRatio
       console.log(canvas.width, canvas.height)
 
       let backgrond = await this.loading(this.frameBackgroundURL)
@@ -287,16 +287,16 @@ export default {
       let cl = pl * rate
       let ct = pt * rate
 
-      console.log(size*.1+cl, 5*16*frate+ct)
+      console.log(size * 0.1 + cl, 5 * 16 * frate + ct)
       ctx.drawImage(photo,
         cl,
         ct,
         this.photo.width - 2 * cl,
         this.photo.height - 2 * ct,
-        size*.1 + -size / 2,
-        5*16*frate + -size / 2,
-        size*.8,
-        size*.8)
+        size * 0.1 + -size / 2,
+        5 * 16 * frate + -size / 2,
+        size * 0.8,
+        size * 0.8)
       ctx.restore()
 
       // document.body.appendChild(canvas)
