@@ -1,5 +1,5 @@
 <template>
-  <div class="photo-upload" :style="{'height':window.innerHeight}">
+  <div class="photo-upload" :style="{'height':height}">
     <div class="head"/>
     <div class="frame" :style="{'background': `center / cover no-repeat url(${frameBackgroundURL})`}">
       <div class='wrapper'>
@@ -108,6 +108,9 @@ export default {
     },
     screenWidth () {
       return window.innerWidth
+    },
+    height () {
+      return window.innerHeight// iosHeight()
     }
   },
   methods: {

@@ -1,5 +1,5 @@
 <template>
-  <div class="result" :style="{'height':window.innerHeight}">
+  <div class="result" :style="{'height':height}">
     <div class="head"/>
     <img class="frame" :src="dataUrl">
     <div class="hint">
@@ -26,6 +26,9 @@ export default {
   computed: {
     dataUrl () {
       return this.$store.state.dataUrl
+    },
+    height () {
+      return window.innerHeight// iosHeight()
     }
   },
   methods: {
