@@ -359,7 +359,7 @@ export default {
       ctx.restore()
 
       ctx.beginPath()
-      ctx.rect(size * 0.1, 5 * 16 * frate, size, size)
+      ctx.rect(size * 0.1, 5 * 16 * frate, size * 0.8, size * 0.8)
       ctx.clip()
 
       ctx.save()
