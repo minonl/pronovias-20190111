@@ -19,6 +19,7 @@
 <script>
 import { mapActions } from 'vuex'
 import Loading from '@/components/Loading'
+import iosHeight from 'ios-inner-height'
 
 export default {
   components: {
@@ -35,6 +36,9 @@ export default {
   created () {
     this.listCategory()
     this.listProduct()
+  },
+  mounted () {
+    document.getElementsByTagName('body')[0].style.height = iosHeight()
   },
   methods: {
     ...mapActions([
@@ -58,14 +62,16 @@ export default {
 }
 .fade-enter {
   opacity: 0;
+  transform: translateY(0) scale(1);
   // transform: translateY(100%) scale(1.05);
 }
 .fade-enter-to{
   opacity: 1;
-  // transform: translateY(0) scale(1);
+  transform: translateY(0) scale(1);
 }
 .fade-leave-to {
   opacity: 0;
+  transform: translateY(0) scale(1);
   // transform: scale(0.7) translateY(-200%);
 }
 </style>

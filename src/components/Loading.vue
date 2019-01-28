@@ -50,13 +50,12 @@ export default {
       durationLoading: 1500,
       // durationGif: 158000,
       list: [
-        // require('@/assets/images/home/loading.gif'),
+        require('@/assets/images/home/loading.gif'),
         require('@/assets/images/home/lbg.jpg'),
         require('@/assets/images/home/play.png'),
         require('@/assets/images/home/video.jpg'),
         require('@/assets/images/home/bg.jpg'),
         require('@/assets/images/home/logo.svg'),
-        require('@/assets/images/home/loading.gif'),
         require('@/assets/images/product/arrow.png'),
         require('@/assets/images/booking/accordin.png'),
         require('@/assets/images/booking/calendar.png'),
@@ -71,7 +70,6 @@ export default {
         require('@/assets/images/photo/1.jpg'),
         require('@/assets/images/photo/2.jpg'),
         require('@/assets/images/photo/3.jpg')
-
       ],
       count: 0,
       playerOptions: {
@@ -91,7 +89,11 @@ export default {
       ...this.$store.state.products.data.map(p => p.poster)]
   },
   mounted () {
+    document.getElementById('app').style.position = 'fixed'
     this.load()
+  },
+  beforeDestroy () {
+    document.getElementById('app').style.position = 'relative'
   },
   methods: {
     initPlayer () {
@@ -132,6 +134,7 @@ export default {
       if (c === this.list.length) {
         const loader = this
         setTimeout(function () {
+          document.getElementById('app').style.position = 'relative'
           loader.loading = false
           loader.loaded = true
           // setTimeout(function () {

@@ -93,9 +93,7 @@ router.beforeEach((to, from, next) => {
       next({ path: '/' })
     }
   }
-  if (to.name !== 'appointment') {
-    window.scrollTo(0, 0)
-  }
+  // window.scrollTo(0, 0)
   if (process.env.NODE_ENV === 'production' && !store.state.app.homeVisted) {
     store.commit('homeVisit', true)
     next({ path: '/' })

@@ -199,8 +199,10 @@ export default {
       if (b) {
         if (b.code === 0) {
           if (this.$store.state.mode === config.mode.upload) {
+            alert('upload')
             this.$router.push('/upload')
           } else {
+            alert('success')
             this.$router.push('/success')
           }
         } else {
