@@ -1,13 +1,5 @@
 <template>
   <div class="photo-upload">
-    <!-- <div class="title">
-      <h1>{{text.line1}}</h1>
-    </div>
-    <div class="phrase phrase-1">
-      <p v-for="(line, index) in text.line2" :key="index">
-        {{line}}
-      </p>
-    </div> -->
     <div class="head"/>
     <div class="frame" :style="{'background': `center / cover no-repeat url(${frameBackgroundURL})`}">
       <div class='wrapper'>
@@ -105,7 +97,10 @@ export default {
     },
     frameBackgroundURL () {
       return this.presets[this.currentPresetId].image
-    }
+    },
+    screenWidth () {
+      return window.innerWidth
+    },
   },
   methods: {
     ...mapMutations([
@@ -259,12 +254,21 @@ export default {
     },
     async generateImage () {
       const size = 1024
+      const heightRatio = 1.2
       // const qrSize = 180
       const frate = size / this.screenWidth
       let canvas = document.createElement('canvas')
 
       let ctx = canvas.getContext('2d')
-      canvas.width = canvas.height = size
+      canvas.width = size
+      canvas.height = size*heightRatio
+      console.log(canvas.width, canvas.height)
+
+      let backgrond = await this.loading(this.frameBackgroundURL)
+
+      ctx.save()
+      ctx.drawImage(backgrond, 0, 0, canvas.width, canvas.height)
+      ctx.restore()
 
       let photo = await this.loading(this.tempDataUrl)
 
@@ -283,15 +287,16 @@ export default {
       let cl = pl * rate
       let ct = pt * rate
 
+      console.log(size*.1+cl, 5*16*frate+ct)
       ctx.drawImage(photo,
         cl,
         ct,
         this.photo.width - 2 * cl,
         this.photo.height - 2 * ct,
-        -size / 2,
-        -size / 2,
-        size,
-        size)
+        size*.1 + -size / 2,
+        5*16*frate + -size / 2,
+        size*.8,
+        size*.8)
       ctx.restore()
 
       // document.body.appendChild(canvas)
