@@ -360,7 +360,7 @@ export default {
 
       ctx.save()
       ctx.drawImage(qrcode,
-        canvas.width*0.9- qrSize,
+        canvas.width * 0.9 - qrSize,
         6 * 16 * frate + canvas.width * 0.8,
         qrSize,
         qrSize)
