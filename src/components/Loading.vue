@@ -67,7 +67,10 @@ export default {
         require('@/assets/images/product/arrow.png'),
         require('@/assets/images/product/head.jpg'),
         require('@/assets/images/product/product_logo.png'),
-        require('@/assets/images/booking/success.png')
+        require('@/assets/images/booking/success.png'),
+        require('@/assets/images/photo/1.jpg'),
+        require('@/assets/images/photo/2.jpg'),
+        require('@/assets/images/photo/3.jpg')
 
       ],
       count: 0,

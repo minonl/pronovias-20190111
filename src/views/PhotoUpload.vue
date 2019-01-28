@@ -9,25 +9,29 @@
       </p>
     </div> -->
     <div class="head"/>
-    <div class="frame">
-      <div class="inner">
-        <div v-if="!tempDataUrl" class="upload" @click="cameraImage">
-          <input ref="cameraSelector" @change="fileChange"
-            type='file' accept='image/png,image/jpeg,image/jpg'>
+    <div class="frame" :style="{'background': `center / cover no-repeat url(${frameBackgroundURL})`}">
+      <div class='wrapper'>
+        <div class="inner">
+          <div v-if="!tempDataUrl" class="upload" @click="cameraImage">
+            <input ref="cameraSelector" @change="fileChange"
+              type='file' accept='image/png,image/jpeg,image/jpg'>
+          </div>
+          <v-touch class="uploaded" ref="uploaded"
+            @pinchstart="onTouchPhotoPinchStart"
+            @panstart="onTouchPhotoPanStart"
+            @panmove="onTouchPhoto"
+            @pinchmove="onTouchPhoto"
+            @panend="onTouchPhotoPanEnd"
+            @pinchend="onTouchPhotoPinchEnd"
+            :style="[rawImageBackgroundStyle]"/>
         </div>
-        <v-touch class="uploaded" ref="uploaded"
-          @pinchstart="onTouchPhotoPinchStart"
-          @panstart="onTouchPhotoPanStart"
-          @panmove="onTouchPhoto"
-          @pinchmove="onTouchPhoto"
-          @panend="onTouchPhotoPanEnd"
-          @pinchend="onTouchPhotoPinchEnd"
-          :style="[rawImageBackgroundStyle]"/>
-      </div>
-      <div class="mark">
-        <h1 v-for="(line, index) in text.line3" :key="index">
-          {{line}}
-        </h1>
+        <div class="mark">
+          <yd-slider :show-pagination="false" :callback="updatePreset">
+            <yd-slider-item  v-for="(item, index) in presets" :key="index">
+              <p v-for="(content, key) in item.text" :key="key">{{content}}</p>
+            </yd-slider-item>
+          </yd-slider>
+        </div>
       </div>
     </div>
     <Button class="generate" @click.native="generateImage">{{text.button1}}</Button>
@@ -57,6 +61,7 @@ export default {
         ],
         button1: '生成照片'
       },
+      currentPresetId: 0,
       presets: [
         {
           text: ['若你来到我心里', '就能明白自己有多美好'],
@@ -97,12 +102,18 @@ export default {
       } else {
         return {}
       }
+    },
+    frameBackgroundURL () {
+      return this.presets[this.currentPresetId].image
     }
   },
   methods: {
     ...mapMutations([
       'updateDataUrl'
     ]),
+    updatePreset (id) {
+      this.currentPresetId = id
+    },
     cameraImage () {
       this.$refs.cameraSelector.click()
     },
@@ -335,13 +346,15 @@ input[type='file'] {
 }
 
 .photo-upload {
-  background: center / cover no-repeat url('~@/assets/images/photo/1.jpg');
+  @include backgroundImage('~@/assets/images/photo/bg.jpg');
   height: 100vh;
   color: white;
-  padding-top: .5em;
+  padding-top: 0;
   text-align: center;
   .head {
+    position: absolute;
     height: 4rem;
+    top: .75rem;
     width: 100%;
     background: center / contain no-repeat url('~@/assets/images/photo/info.png');
   }
@@ -352,25 +365,17 @@ input[type='file'] {
     font-size: 1rem;
     color: white;
   }
-  // .title {
-  //   padding-left: 2em;
-  //   text-align: left;
-  // }
-  // .phrase {
-  //   text-align: left;
-  //   p {
-  //     height: 1em;
-  //   }
-  //   &-1 {
-  //     padding-left: 2em;
-  //   }
-  // }
   .frame {
-    width: 80vw;
-    height: 96vw;
+    margin: 0;
+    width: 100vw;
+    height: 120vw;
     // background: white;
-    margin: 1rem auto;
-    // padding: 5vw;
+    // margin: 1rem auto;
+    .wrapper {
+      background: rgba(0,0,0,0.3);
+      height: 100%;
+      padding: 5rem 10vw 0;
+    }
     .inner {
       width: 80vw;
       height: 80vw;
@@ -411,16 +416,20 @@ input[type='file'] {
     .mark {
       color: #a89359;
       margin-top: .25rem;
-      h1 {
-        padding: .5em;
+      p {
+        text-align: left;
+        color: white;
         margin: .5em;
       }
     }
   }
   .generate {
+    margin-top: 1rem;
     color: white;
-    border-color: transparent;
-    background-color: $gold;
+    border: solid 1px white;
+    padding-left: 3em;
+    padding-right: 3em;
+    background-color: transparent;
   }
 }
 </style>
