@@ -198,7 +198,7 @@ export default {
     booking (b) {
       if (b) {
         if (b.code === 0) {
-          if (this.$store.state.mode === '79vEsLXCkK2U2gqe') {
+          if (this.$store.state.mode === config.mode.upload) {
             this.$router.push('/upload')
           } else {
             this.$router.push('/success')

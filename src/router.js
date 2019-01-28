@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import store from './store'
 import Home from './views/Home.vue'
+import config from './config'
 // import Login from './views/Login.vue'
 // import Product from './views/Product.vue'
 // import ProductList from './views/ProductList.vue'
@@ -88,7 +89,7 @@ router.beforeEach((to, from, next) => {
   }
   const uploadAllowed = ['upload', 'result']
   if (uploadAllowed.includes[to.name]) {
-    if (store.state.mode !== '79vEsLXCkK2U2gqe') {
+    if (store.state.mode !== config.mode.upload) {
       next({ path: '/' })
     }
   }
