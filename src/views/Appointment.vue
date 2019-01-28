@@ -125,6 +125,14 @@ export default {
       isWarned: false
     }
   },
+  created () {
+    const phone = localStorage.getItem('__p__')
+    const token = localStorage.getItem('__t__')
+    if (phone && phone.length > 0 && token && token.length > 0) {
+      this.$store.commit('phoneUpdate', phone)
+      this.$store.commit('tokenChange', token)
+    }
+  },
   computed: {
     cart () {
       return this.$store.state.appointment.trailProducts

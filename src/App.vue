@@ -33,7 +33,7 @@ export default {
     }
   },
   created () {
-    if (!localStorage.getItem('__v__')){
+    if (!localStorage.getItem('__v__')) {
       this.reportVisit()
       localStorage.setItem('__v__', 1)
     }

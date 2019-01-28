@@ -32,7 +32,7 @@ const apiStore = new Vapi({
     account: {
       phone: ''
     },
-    login: { date: {} },
+    login: { data: {} },
     appointment: {
       name: '',
       date: '',
@@ -75,7 +75,14 @@ const apiStore = new Vapi({
     action: 'loginPhoneRaw',
     property: 'login',
     path: '/login',
-    requestConfig: requestConfig
+    requestConfig: requestConfig,
+    onSuccess: (state, payload, axios, { params, data }) => {
+      state.login = payload.data
+      if (payload.data.code === 0) {
+        localStorage.setItem('__p__', data.phone)
+        localStorage.setItem('__t__', payload.data.data.token)
+      }
+    }
   })
   .post({
     action: 'submitAppointmentRaw',
@@ -146,6 +153,10 @@ apiStore.mutations.homeVisit = (state, value) => {
 
 apiStore.mutations.modeChange = (state, value) => {
   state.mode = value
+}
+
+apiStore.mutations.tokenChange = (state, value) => {
+  state.login.data.token = value
 }
 
 // Account
