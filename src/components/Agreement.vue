@@ -1,7 +1,7 @@
 <template>
   <div class="agreement">
     <div class="close"/>
-    <p>预约规则很简单，也就是说，预约规则很简单，也就是说，预约规则很简单，也就是说，预约规则很简单，也就是说，预约规则很简单，也就是说，预约规则很简单，也就是说，预约规则很简单，也就是说，预约规则很简单，也就是说，预约规则很简单，也就是说，预约规则很简单，也就是说，预约规则很简单，也就是说，预约规则很简单，也就是说，预约规则很简单，也就是说，预约规则很简单，也就是说，预约规则很简单，也就是说，预约规则很简单，也就是说，预约规则很简单，也就是说，预约规则很简单，也就是说，预约规则很简单，也就是说，预约规则很简单，也就是说，真的</p>
+    <iframe v-if="$parent.$parent.popAgreement" class="content" src="/pdd.mht"/>
     <Button class="try" @click.native.prevent="confirm">确认</Button>
   </div>
 </template>
@@ -30,7 +30,7 @@ export default {
 .agreement {
   position: relative;
   text-align: center;
-  padding: 2.5rem ;
+  padding: 2.5rem 1rem;
   background: white;
   overflow: visible;
 }
@@ -38,6 +38,13 @@ export default {
 p {
   text-align: left;
   padding: 1rem 0 2rem;
+}
+
+.content {
+  width:100%;
+  margin-bottom: 1rem;
+  min-height:50vh;
+  border: none;
 }
 
 $closeSize: 2rem;
