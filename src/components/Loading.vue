@@ -31,7 +31,6 @@
 
 <script>
 import Button from '@/components/Button'
-import iosHeight from 'ios-inner-height'
 
 import 'video.js/dist/video-js.css'
 import '@/stylesheets/vjs-custom-skin.scss'
@@ -99,7 +98,7 @@ export default {
     initPlayer () {
       if (!this.$refs.videoPlayer) return
       const root = {
-        height: iosHeight(),
+        height: window.innerHeight,
         width: window.innerWidth
       }
       const player = this.$refs.videoPlayer.$el.getElementsByClassName('video-js')[0].style

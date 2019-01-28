@@ -24,7 +24,6 @@
 <script>
 
 import Button from '@/components/Button'
-// import iosHeight from 'ios-inner-height'
 
 export default {
   name: 'home',

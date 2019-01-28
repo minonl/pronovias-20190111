@@ -19,7 +19,6 @@
 <script>
 import { mapActions } from 'vuex'
 import Loading from '@/components/Loading'
-import iosHeight from 'ios-inner-height'
 
 export default {
   components: {
@@ -39,7 +38,7 @@ export default {
     this.listProduct()
   },
   mounted () {
-    document.getElementsByTagName('body')[0].style.height = iosHeight()
+    document.getElementsByTagName('body')[0].style.height = window.innerHeight
   },
   methods: {
     ...mapActions([
