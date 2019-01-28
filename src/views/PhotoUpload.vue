@@ -18,19 +18,19 @@
             :style="[rawImageBackgroundStyle]"/>
         </div>
         <div class="mark">
-          <yd-slider :show-pagination="false" :callback="updatePreset">
+          <yd-slider :show-pagination="false" :callback="updatePreset" ref="slider">
             <yd-slider-item  v-for="(item, index) in presets" :key="index">
               <p v-for="(content, key) in item.text" :key="key">{{content}}</p>
             </yd-slider-item>
           </yd-slider>
-          <!-- <div class="navigation">
+          <div class="navigation">
             <div class="pan pan-prev" @click="swipeTo(true)">
               <div class="arrow arrow-prev"/>
             </div>
             <div class="pan pan-next" @click="swipeTo(false)">
               <div class="arrow arrow-next"/>
             </div>
-          </div> -->
+          </div>
         </div>
       </div>
     </div>
@@ -114,6 +114,37 @@ export default {
     ...mapMutations([
       'updateDataUrl'
     ]),
+    swipeTo (right) {
+      if (right) {
+        this.$refs.slider.touchStartHandler({
+          touches: [{
+            clientX: 0,
+            clientY: 0
+          }]
+        })
+        this.$refs.slider.touchMoveHandler({
+          touches: [{
+            clientX: 1000,
+            clientY: 0
+          }]
+        })
+        this.$refs.slider.touchEndHandler()
+      } else {
+        this.$refs.slider.touchStartHandler({
+          touches: [{
+            clientX: 1000,
+            clientY: 0
+          }]
+        })
+        this.$refs.slider.touchMoveHandler({
+          touches: [{
+            clientX: 0,
+            clientY: 0
+          }]
+        })
+        this.$refs.slider.touchEndHandler()
+      }
+    },
     updatePreset (id) {
       this.currentPresetId = id
     },
@@ -457,6 +488,47 @@ input[type='file'] {
         text-align: left;
         color: white;
         margin: .25em .5em .25em;
+      }
+      .navigation{
+        position: relative;
+        z-index: 2;
+        margin-left: -9%;
+        margin-right: -9%;
+        .pan {
+          position: absolute;
+          // top: -9rem;
+          top: -3.5rem;
+          width: 4rem;
+          height: 4rem;
+          // background: rgba(255,255,255,0.45);
+          // border-radius: 50%;
+          padding: 1.25rem;
+          cursor: pointer;
+          .arrow {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center;
+            // transform: translateX(-70%);
+            &-prev {
+              transform: scaleX(-1); // translateX(-70%);
+              background-image: url('~@/assets/images/product/arrow.png');
+            }
+            &-next {
+              background-image: url('~@/assets/images/product/arrow.png');
+            }
+          }
+          &-prev {
+            left: 0;
+            transform: translateX(-50%);
+          }
+          &-next {
+            right: 0;
+            transform: translateX(50%);
+          }
+        }
       }
     }
   }
