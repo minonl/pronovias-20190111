@@ -1,6 +1,6 @@
 <template>
   <div class="agreement">
-    <div class="close"/>
+    <!-- <div class="close"/> -->
     <!-- <iframe v-if="$parent.$parent.popAgreement" width="100%" class="content" src="/pdp.html"/> -->
     <div class="content">
       <h3>PRONOVIAS - 隐私政策</h3>
