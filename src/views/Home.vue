@@ -24,7 +24,7 @@
 <script>
 
 import Button from '@/components/Button'
-import iosHeight from 'ios-inner-height'
+// import iosHeight from 'ios-inner-height'
 
 export default {
   name: 'home',
@@ -40,7 +40,7 @@ export default {
   },
   computed: {
     height () {
-      return iosHeight()
+      return window.innerHeight// iosHeight()
     }
   }
 }
@@ -79,7 +79,7 @@ export default {
   }
   .bottom {
     position: absolute;
-    bottom: 2rem;
+    bottom: calc(2rem);
     width: 100%;
     left: 50%;
     transform: translateX(-50%);

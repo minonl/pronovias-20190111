@@ -6,7 +6,7 @@
         <div class="inner">
           <div v-if="!tempDataUrl" class="upload" @click="cameraImage">
             <input ref="cameraSelector" @change="fileChange"
-              type='file' accept='image/png,image/jpeg,image/jpg'>
+              type='file' accept='image/*'>
           </div>
           <v-touch class="uploaded" ref="uploaded"
             @pinchstart="onTouchPhotoPinchStart"
@@ -23,6 +23,14 @@
               <p v-for="(content, key) in item.text" :key="key">{{content}}</p>
             </yd-slider-item>
           </yd-slider>
+          <!-- <div class="navigation">
+            <div class="pan pan-prev" @click="swipeTo(true)">
+              <div class="arrow arrow-prev"/>
+            </div>
+            <div class="pan pan-next" @click="swipeTo(false)">
+              <div class="arrow arrow-next"/>
+            </div>
+          </div> -->
         </div>
       </div>
     </div>
@@ -318,8 +326,8 @@ export default {
       ctx.font = `${12 * frate}px PingFang SC,Helvetica Neue,Hiragino Sans GB,Segoe UI,Microsoft YaHei,微软雅黑,sans-serif`
       ctx.fillStyle = 'white'
       ctx.textAlign = 'left'
-      ctx.fillText(this.presets[this.currentPresetId].text[0], canvas.width * 0.1125, canvas.height - 3 * 16 * frate)
-      ctx.fillText(this.presets[this.currentPresetId].text[1], canvas.width * 0.1125, canvas.height - 1.5 * 16 * frate)
+      ctx.fillText(this.presets[this.currentPresetId].text[0], canvas.width * 0.1125, canvas.height - 2 * 16 * frate)
+      ctx.fillText(this.presets[this.currentPresetId].text[1], canvas.width * 0.1125, canvas.height - 0.75 * 16 * frate)
 
       // document.body.appendChild(canvas)
       this.replaceHtmlWithCanvas(canvas)
@@ -338,14 +346,15 @@ export default {
       return new Promise(function (resolve, reject) {
         // eslint-disable-next-line
         Caman(canvas, function () {
-          this.vibrance(0)
-            .brightness(8)
-            .saturation(1)
-            .exposure(2)
-            .sepia(0)
+          this
+            // .vibrance(0)
+            // .brightness(8)
+            // .saturation(1)
+            // .exposure(2)
+            // .sepia(0)
             // .sharpen(3)
             // .curves('rgb', [5, 0], [130, 150], [190, 220], [250, 255])
-            .contrast(1)
+            // .contrast(1)
             .render(function () {
               const dataUrl = this.toBase64()
               resolve(dataUrl)
@@ -443,11 +452,11 @@ input[type='file'] {
     }
     .mark {
       color: #a89359;
-      margin-top: .25rem;
+      padding: 0;
       p {
         text-align: left;
         color: white;
-        margin: .5em;
+        margin: .25em .5em .25em;
       }
     }
   }
