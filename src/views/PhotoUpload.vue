@@ -157,6 +157,7 @@ export default {
     async fileChange (e) {
       // this.progress = 3
       if (e.target.files && e.target.files[0]) {
+        this.$dialog.loading.open('载入图片中...')
         const file = e.target.files[0]
         this.getOrientationFromImage(file).then(
           ({ orientation, file }) => {
@@ -179,6 +180,7 @@ export default {
       })
     },
     gotRawImageGlobal (e) {
+      this.$dialog.loading.close()
       this.resetOrientation(e.target.result, this.orientation, this.gotResetRawImageGlobal)
     },
     gotResetRawImageGlobal (dataUrl) {
@@ -319,6 +321,14 @@ export default {
       let photo = await this.loading(this.tempDataUrl)
       let qrcode = await this.loading(require('@/assets/images/photo/qrcode.png'))
 
+      let rate = Math.min(this.photo.width, this.photo.height) / this.screenWidth
+      let pw = this.photo.width / rate
+      let ph = this.photo.height / rate
+      let pl = (pw - this.screenWidth) / 2
+      let pt = (ph - this.screenWidth) / 2
+      let cl = pl * rate
+      let ct = pt * rate
+
       ctx.save()
       ctx.drawImage(backgrond, 0, 0, canvas.width, canvas.height)
       ctx.restore()
@@ -333,19 +343,30 @@ export default {
       ctx.restore()
 
       ctx.save()
+      ctx.drawImage(qrcode,
+        canvas.width * 0.9 - qrSize,
+        6 * 16 * frate + canvas.width * 0.8,
+        qrSize,
+        qrSize)
+      ctx.restore()
+
+      ctx.save()
+      ctx.font = `${12 * frate}px PingFang SC,Helvetica Neue,Hiragino Sans GB,Segoe UI,Microsoft YaHei,微软雅黑,sans-serif`
+      ctx.fillStyle = 'white'
+      ctx.textAlign = 'left'
+      ctx.fillText(this.presets[this.currentPresetId].text[0], canvas.width * 0.1125, canvas.height - 2 * 16 * frate)
+      ctx.fillText(this.presets[this.currentPresetId].text[1], canvas.width * 0.1125, canvas.height - 0.75 * 16 * frate)
+      ctx.restore()
+
+      ctx.beginPath()
+      ctx.rect(size * 0.1, 5 * 16 * frate, size, size)
+      ctx.clip()
+
+      ctx.save()
       ctx.translate(size / 2, size / 2)
       ctx.scale(this.photo.currentScale, this.photo.currentScale)
       ctx.translate(this.photo.currentDeltaX * frate, this.photo.currentDeltaY * frate)
       ctx.rotate(this.photo.currentRotation / 180 * Math.PI)
-
-      let rate = Math.min(this.photo.width, this.photo.height) / this.screenWidth
-      let pw = this.photo.width / rate
-      let ph = this.photo.height / rate
-      let pl = (pw - this.screenWidth) / 2
-      let pt = (ph - this.screenWidth) / 2
-
-      let cl = pl * rate
-      let ct = pt * rate
 
       ctx.drawImage(photo,
         cl,
@@ -357,20 +378,6 @@ export default {
         size * 0.8,
         size * 0.8)
       ctx.restore()
-
-      ctx.save()
-      ctx.drawImage(qrcode,
-        canvas.width * 0.9 - qrSize,
-        6 * 16 * frate + canvas.width * 0.8,
-        qrSize,
-        qrSize)
-      ctx.restore()
-
-      ctx.font = `${12 * frate}px PingFang SC,Helvetica Neue,Hiragino Sans GB,Segoe UI,Microsoft YaHei,微软雅黑,sans-serif`
-      ctx.fillStyle = 'white'
-      ctx.textAlign = 'left'
-      ctx.fillText(this.presets[this.currentPresetId].text[0], canvas.width * 0.1125, canvas.height - 2 * 16 * frate)
-      ctx.fillText(this.presets[this.currentPresetId].text[1], canvas.width * 0.1125, canvas.height - 0.75 * 16 * frate)
 
       // document.body.appendChild(canvas)
       this.replaceHtmlWithCanvas(canvas)
