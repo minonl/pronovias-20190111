@@ -53,10 +53,11 @@ export default {
     width: 100vw;
     height: 120vw;
   }
-  .generate {
-    color: white;
-    border-color: transparent;
-    background-color: $gold;
+  .hint {
+    margin-top: 1rem;
+    p {
+      padding: .25em;
+    }
   }
 }
 </style>
