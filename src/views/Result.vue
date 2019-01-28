@@ -1,5 +1,5 @@
 <template>
-  <div class="result">
+  <div class="result" :style="{'height':window.innerHeight}">
     <div class="head"/>
     <img class="frame" :src="dataUrl">
     <div class="hint">
