@@ -55,7 +55,8 @@ export default {
         require('@/assets/images/home/play.png'),
         require('@/assets/images/home/video.jpg'),
         require('@/assets/images/home/bg.jpg'),
-        require('@/assets/images/home/logo.png'),
+        require('@/assets/images/home/logo.svg'),
+        require('@/assets/images/home/loading.gif'),
         require('@/assets/images/product/arrow.png'),
         require('@/assets/images/booking/accordin.png'),
         require('@/assets/images/booking/calendar.png'),
@@ -167,7 +168,7 @@ export default {
     margin: 2rem auto;
     width: 10rem;
     height: 2.125rem;
-    background-image: url('~@/assets/images/home/logo.png');
+    background-image: url('~@/assets/images/home/logo.svg');
     background-size: contain;
     background-repeat: no-repeat;
   }
