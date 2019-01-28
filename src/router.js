@@ -87,9 +87,10 @@ router.beforeEach((to, from, next) => {
   if (queryMode) {
     store.commit('modeChange', queryMode)
   }
-  const uploadAllowed = ['upload', 'result']
-  if (uploadAllowed.includes[to.name]) {
-    if (store.state.mode !== config.mode.upload) {
+  const uploadAllowed = ['photoupload', 'result']
+  const modeAllowed = [config.mode.upload, config.mode.trail]
+  if (process.env.NODE_ENV === 'production' && uploadAllowed.includes(to.name)) {
+    if (modeAllowed.includes(store.state.mode)) {
       next({ path: '/' })
     }
   }
