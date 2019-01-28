@@ -146,6 +146,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '@/stylesheets/global.scss';
+
 .loading {
   position: fixed;
   top:0;
@@ -167,18 +169,22 @@ export default {
   bottom: 0;
   width: 100%;
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   .logo {
-    margin: 2rem auto;
-    width: 10rem;
-    height: 2.125rem;
-    background-image: url('~@/assets/images/home/logo.svg');
-    background-size: contain;
-    background-repeat: no-repeat;
+    position: absolute;
+    top: 1.5rem;
+    margin: 0 auto;
+    width: 15rem;
+    height: 3rem;
+    @include inframeImage('~@/assets/images/home/logo.svg');
   }
   .image {
     width: 100vw;
     height: 115vw;
-    background-image: url('~@/assets/images/home/lbg.jpg');
+    background-image: url('~@/assets/images/home/loading.gif');
     background-size: cover;
     background-repeat: no-repeat;
   }
@@ -211,7 +217,8 @@ export default {
   right: 0;
   bottom: 4rem;
   color: white !important;
-  border-color: white !important;
+  border: solid 1px white !important;
+  background: transparent;
   border-right: none !important;
   border-top-left-radius: 6px !important;
   border-bottom-left-radius: 6px !important;
