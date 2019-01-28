@@ -306,7 +306,7 @@ export default {
       this.$dialog.loading.open('生成中...')
       const size = 1024
       const heightRatio = 1.2
-      // const qrSize = 180
+      const qrSize = 100
       const frate = size / this.screenWidth
       let canvas = document.createElement('canvas')
 
@@ -317,6 +317,7 @@ export default {
       let backgrond = await this.loading(this.frameBackgroundURL)
       let title = await this.loading(require('@/assets/images/photo/title.png'))
       let photo = await this.loading(this.tempDataUrl)
+      let qrcode = await this.loading(require('@/assets/images/photo/qrcode.png'))
 
       ctx.save()
       ctx.drawImage(backgrond, 0, 0, canvas.width, canvas.height)
@@ -355,6 +356,14 @@ export default {
         5 * 16 * frate + -size / 2,
         size * 0.8,
         size * 0.8)
+      ctx.restore()
+
+      ctx.save()
+      ctx.drawImage(qrcode,
+        canvas.width*0.9- qrSize,
+        6 * 16 * frate + canvas.width * 0.8,
+        qrSize,
+        qrSize)
       ctx.restore()
 
       ctx.font = `${12 * frate}px PingFang SC,Helvetica Neue,Hiragino Sans GB,Segoe UI,Microsoft YaHei,微软雅黑,sans-serif`
