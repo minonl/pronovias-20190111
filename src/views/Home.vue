@@ -1,5 +1,5 @@
 <template>
-  <div class="home" :style="{'height':height+'px'}">
+  <div class="home" :style="{'height':height+'px !important'}">
     <div class="content">
       <div class="phrase phrase-1">
         国际奢侈婚纱品牌PRONOVIAS<br>
@@ -51,7 +51,7 @@ export default {
   background: center / cover no-repeat url('~@/assets/images/home/bg.jpg');
   color: white;
   .content {
-    height: calc(100% - 100/16*9vw);
+    // height: calc(100% - 100/16*9vw);
     // background: rgba(0,0,0,.3);
     text-align: center;
     .phrase {

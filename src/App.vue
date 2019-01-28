@@ -54,10 +54,10 @@ export default {
   position: absolute;
   width: 100%;
   &.fade-enter-active {
-    transition: opacity 1s cubic-bezier(0.075, 0.32, 0.165, 1);
+    transition: all 1s cubic-bezier(0.075, 0.32, 0.165, 1);
   }
   &.fade-leave-active {
-    transition: opacity .5s cubic-bezier(0.6, 0.18, 0.735, 0.045);
+    transition: all .5s cubic-bezier(0.6, 0.18, 0.735, 0.045);
   }
 }
 .fade-enter {
