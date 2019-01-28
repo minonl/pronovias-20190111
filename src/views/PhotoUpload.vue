@@ -253,6 +253,14 @@ export default {
       })
     },
     async generateImage () {
+      if (!this.tempDataUrl) {
+        this.$dialog.toast({
+          mes: '请选择照片',
+          icon: 'failure',
+          timeout: 1500
+        })
+        return
+      }
       this.$dialog.loading.open('生成中...')
       const size = 1024
       const heightRatio = 1.2
