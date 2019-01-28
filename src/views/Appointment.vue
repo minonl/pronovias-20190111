@@ -429,7 +429,7 @@ export default {
     background-position: center;
     &.product {
       &-add {
-        background-image: url('~@/assets/placeholder/cassie.png');
+        background-image: url('~@/assets/images/product/new.png');
         .inner {
           width: 100%;
           height: 100%;
