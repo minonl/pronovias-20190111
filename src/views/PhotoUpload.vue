@@ -492,16 +492,16 @@ input[type='file'] {
       .navigation{
         position: relative;
         z-index: 2;
-        margin-left: -9%;
-        margin-right: -9%;
+        margin-left: -15%;
+        margin-right: -15%;
         .pan {
           position: absolute;
           // top: -9rem;
           top: -3.5rem;
           width: 4rem;
           height: 4rem;
-          // background: rgba(255,255,255,0.45);
-          // border-radius: 50%;
+          background: rgba(168,147,89,0.45);
+          border-radius: 50%;
           padding: 1.25rem;
           cursor: pointer;
           .arrow {
@@ -511,9 +511,9 @@ input[type='file'] {
             background-repeat: no-repeat;
             background-size: contain;
             background-position: center;
-            // transform: translateX(-70%);
+            transform: translateX(-70%);
             &-prev {
-              transform: scaleX(-1); // translateX(-70%);
+              transform: scaleX(-1) translateX(-70%);
               background-image: url('~@/assets/images/product/arrow.png');
             }
             &-next {
