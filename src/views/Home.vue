@@ -8,12 +8,19 @@
         开启了中国首家PRONOVIAS旗舰店
       </div>
       <div class="bottom">
-        <div class="phrase phrase-2">
+        <div v-if="trailMode" class="phrase phrase-2">
           即刻在线选纱<br>
           领取专属精美礼物<br>
           更有机会赢取巴塞罗那梦幻之旅
         </div>
-        <router-link to="/product">
+        <div v-else class="phrase phrase-2">
+          上传至美时刻 <br>
+          赢取巴塞罗那的梦幻之旅
+        </div>
+        <router-link v-if="trailMode" to="/upload">
+          <Button class="start">上传试纱照片</Button>
+        </router-link>
+        <router-link v-else to="/product">
           <Button class="start">即刻在线选纱</Button>
         </router-link>
       </div>
@@ -24,6 +31,7 @@
 <script>
 
 import Button from '@/components/Button'
+import config from '@/config'
 
 export default {
   name: 'home',
@@ -40,6 +48,9 @@ export default {
   computed: {
     height () {
       return window.innerHeight// iosHeight()
+    },
+    trailMode () {
+      return this.$store.state.mode === config.mode.trail
     }
   }
 }
