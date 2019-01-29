@@ -44,6 +44,10 @@ export default {
     }
   },
   mounted () {
+    document.getElementById('app').style.position = 'fixed'
+  },
+  beforeDestroy () {
+    document.getElementById('app').style.position = 'relative'
   },
   computed: {
     height () {
