@@ -42,7 +42,7 @@ export default {
   },
   beforeDestroy () {
     document.getElementById('app').style.position = 'relative'
-  },
+  }
 }
 </script>
 
