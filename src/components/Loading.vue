@@ -95,6 +95,7 @@ export default {
   mounted () {
     document.getElementById('app').style.position = 'fixed'
     this.load()
+    this.initPlayer()
   },
   beforeDestroy () {
     document.getElementById('app').style.position = 'relative'
@@ -114,7 +115,7 @@ export default {
       // wider than video
       if (rootRatio >= videoRatio) {
         player.width = root.width + 'px'
-        player.height = player.width / videoRatio + 'px'
+        player.height = root.width / videoRatio + 'px'
       } else {
         player.height = root.height + 'px'
         player.width = root.height * videoRatio + 'px'
@@ -158,12 +159,6 @@ export default {
 }
 </script>
 
-<style>
-.vjs-custom-skin .video-js{
-  width: 100%;
-  height: 100%;
-}
-</style>
 <style lang="scss" scoped>
 @import '@/stylesheets/global.scss';
 
