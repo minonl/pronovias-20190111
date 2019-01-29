@@ -3,11 +3,12 @@ import Router from 'vue-router'
 import store from './store'
 import Home from './views/Home.vue'
 import config from './config'
-// import Login from './views/Login.vue'
-// import Product from './views/Product.vue'
-// import ProductList from './views/ProductList.vue'
-// import PhotoUpload from './views/PhotoUpload.vue'
-// import Result from './views/Result.vue'
+import Product from './views/Product.vue'
+import ProductList from './views/ProductList.vue'
+import Appointment from './views/Appointment.vue'
+import PhotoUpload from './views/PhotoUpload.vue'
+import Result from './views/Result.vue'
+import Success from './views/Success.vue'
 
 Vue.use(Router)
 
@@ -35,37 +36,43 @@ const router = new Router({
     {
       path: '/appointment',
       name: 'appointment',
-      component: () => import(/* webpackChunkName: "appointment" */ './views/Appointment.vue')
+      component: Appointment
+      // component: () => import(/* webpackChunkName: "appointment" */ './views/Appointment.vue')
       // beforeEnter: checkLogin
     },
     {
       path: '/product/:id',
       name: 'product',
+      component: Product
       // route level code-splitting
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "product" */ './views/Product.vue')
+      // component: () => import(/* webpackChunkName: "product" */ './views/Product.vue')
     },
     {
       path: '/product',
       name: 'productlist',
-      component: () => import(/* webpackChunkName: "productlist" */ './views/ProductList.vue')
+      component: ProductList
+      // component: () => import(/* webpackChunkName: "productlist" */ './views/ProductList.vue')
     },
     {
       path: '/success',
       name: 'success',
-      component: () => import(/* webpackChunkName: "success" */ './views/Success.vue')
+      component: Success
+      // component: () => import(/* webpackChunkName: "success" */ './views/Success.vue')
     },
     {
       path: '/upload',
       name: 'photoupload',
-      component: () => import(/* webpackChunkName: "photoupload" */ './views/PhotoUpload.vue')
+      component: PhotoUpload
+      // component: () => import(/* webpackChunkName: "photoupload" */ './views/PhotoUpload.vue')
       // beforeEnter: checkLogin
     },
     {
       path: '/result',
       name: 'result',
-      component: () => import(/* webpackChunkName: "result" */ './views/Result.vue')
+      component: Result
+      // component: () => import(/* webpackChunkName: "result" */ './views/Result.vue')
     }
   ]
 })

@@ -453,7 +453,7 @@ export default {
       this.updateDataUrl(dataUrl)
       document.getElementById('app').removeChild(document.getElementById('gen'))
       this.$dialog.loading.close()
-      this.$router.push({ name: 'result' })
+      this.$router.push('/result')
     }
   }
 }
