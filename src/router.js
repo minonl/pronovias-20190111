@@ -97,7 +97,7 @@ router.beforeEach((to, from, next) => {
   const uploadAllowed = ['photoupload', 'result']
   const modeAllowed = [config.mode.upload, config.mode.trail]
   if (process.env.NODE_ENV === 'production' && uploadAllowed.includes(to.name)) {
-    if (modeAllowed.includes(store.state.mode)) {
+    if (!modeAllowed.includes(store.state.mode)) {
       next({ path: '/' })
     }
   }
