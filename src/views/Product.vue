@@ -152,11 +152,14 @@ $panSize: 6rem;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 2;
+  pointer-events: none;
   .inner {
     position: relative;
     width: 100vw;
     height: $panSize;
+    pointer-events: none;
     .pan {
+      pointer-events: all;
       position: absolute;
       top: 0;
       width: $panSize;
