@@ -2,25 +2,30 @@
   <div class="result" :style="{'height':height}">
     <div class="head"/>
     <img class="frame" :src="dataUrl">
-    <div class="hint">
+    <div v-if="isSafari" class="hint">
       <p>长按保存图片</p>
       <p>搜索“PRONOVIAS”关注官方微信，获取最新资讯</p>
+    </div>
+    <div v-else class="hint">
+      <Button class="save" @click.native="saveImage">保存图片</Button>
     </div>
   </div>
 </template>
 
 <script>
+import Button from '@/components/Button'
 export default {
   name: 'result',
+  components: {
+    Button
+  },
   data () {
     return {
-      text: {
-        line1: '#Marry me',
-        line3: [
-          'Fantasy Of Love WIP'
-        ],
-        button1: '点击分享'
-      }
+      isSafari:
+        (/SAMSUNG/.test(navigator.userAgent) ||
+        /Safari/.test(navigator.userAgent) ||
+        /iPhone/.test(navigator.userAgent)) &&
+        !/Chrome/.test(navigator.userAgent)
     }
   },
   computed: {
@@ -34,6 +39,28 @@ export default {
   methods: {
     share () {
       this.$router.push('/success')
+    },
+    dataURIToBlob (dataUrl) {
+      const binStr = atob(dataUrl.split(',')[1])
+      const len = binStr.length
+      const arr = new Uint8Array(len)
+      for (var i = 0; i < len; i++) {
+        arr[i] = binStr.charCodeAt(i)
+      }
+      return new Blob([arr])
+    },
+    saveImage () {
+      if (!this.isSafari) {
+        let link = document.createElement('a')
+        // open in now windows/tab
+        link.targe = '_blank'
+        link.rel = 'noopener noreferrer'
+        const blob = this.dataURIToBlob(this.dataUrl)
+        link.href = URL.createObjectURL(blob)
+        link.download = 'MyPicture.png'
+        link.click()
+      }
+      this.$router.push('/downloaded')
     }
   },
   mounted () {
@@ -67,6 +94,11 @@ export default {
     margin-top: 1rem;
     p {
       padding: .25em;
+    }
+    .save {
+      border: solid 1px white;
+      padding: .75em 4em;
+      background: transparent;
     }
   }
 }

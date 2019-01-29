@@ -9,6 +9,7 @@ import Appointment from './views/Appointment.vue'
 import PhotoUpload from './views/PhotoUpload.vue'
 import Result from './views/Result.vue'
 import Success from './views/Success.vue'
+import Downloaded from './views/Downloaded.vue'
 
 Vue.use(Router)
 
@@ -73,6 +74,11 @@ const router = new Router({
       name: 'result',
       component: Result
       // component: () => import(/* webpackChunkName: "result" */ './views/Result.vue')
+    },
+    {
+      path: '/downloaded',
+      name: 'downloaded',
+      component: Downloaded
     }
   ]
 })
