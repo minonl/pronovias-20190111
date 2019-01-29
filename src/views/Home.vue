@@ -89,7 +89,7 @@ export default {
   }
   .bottom {
     position: absolute;
-    bottom: calc(2rem);
+    top: calc(100% - 16rem);
     width: 100%;
     left: 50%;
     transform: translateX(-50%);
