@@ -44,9 +44,10 @@ export default {
 @import '~@/stylesheets/color.scss';
 
 .result {
+  background-color: black;
   background: center / cover no-repeat url('~@/assets/images/photo/bg.jpg');
-  height: 100vh;
   color: white;
+  height: calc(100vh - 0px);
   padding-top: .5em;
   text-align: center;
   padding-top: 0;

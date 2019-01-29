@@ -1,5 +1,5 @@
 <template>
-  <div class="photo-upload" :style="{'height':height}">
+  <div class="photo-upload" :style="{'height':screenHeight}">
     <div class="head" :style="headBackground"/>
     <div class="frame" :style="{'background': `center / cover no-repeat url(${frameBackgroundURL})`}">
       <div class='wrapper'>
@@ -144,15 +144,15 @@ export default {
     },
     screenWidth () {
       return window.innerWidth
-    },
-    height () {
-      return window.innerHeight// iosHeight()
     }
   },
   methods: {
     ...mapMutations([
       'updateDataUrl'
     ]),
+    screenHeight () {
+      return window.innerHeight// iosHeight()
+    },
     swipeTo (right) {
       if (right) {
         this.$refs.slider.touchStartHandler({
@@ -469,11 +469,13 @@ input[type='file'] {
 }
 
 .photo-upload {
+  background-color: black;
   @include backgroundImage('~@/assets/images/photo/bg.jpg');
-  height: 100vh;
+  height: calc(100vh - 0px);
   color: white;
   padding-top: 0;
   text-align: center;
+  overflow: hidden;
   .head {
     position: absolute;
     height: 4rem;
