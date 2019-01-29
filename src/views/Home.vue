@@ -64,6 +64,7 @@ export default {
 .home {
   background: center / cover no-repeat url('~@/assets/images/home/bg.jpg');
   color: white;
+  overflow: hidden;
   .content {
     // height: calc(100% - 100/16*9vw);
     // background: rgba(0,0,0,.3);
@@ -93,10 +94,10 @@ export default {
   }
   .bottom {
     position: absolute;
-    top: calc(100% - 13rem);
+    bottom: calc(1rem);
     width: 100%;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translate(-50%, -50%);
   }
 }
 </style>
