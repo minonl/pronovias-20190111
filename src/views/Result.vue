@@ -22,10 +22,11 @@ export default {
   data () {
     return {
       isSafari:
-        (/SAMSUNG/.test(navigator.userAgent) ||
+        ((/SAMSUNG/.test(navigator.userAgent) ||
         /Safari/.test(navigator.userAgent) ||
         /iPhone/.test(navigator.userAgent)) &&
-        !/Chrome/.test(navigator.userAgent)
+        !/Chrome/.test(navigator.userAgent)) ||
+        (/Android/.test(navigator.userAgent) && /MicroMessenger/.test(navigator.userAgent))
     }
   },
   computed: {
