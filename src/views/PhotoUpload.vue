@@ -1,6 +1,6 @@
 <template>
   <div class="photo-upload" :style="{'height':height}">
-    <div class="head"/>
+    <div class="head" :style="headBackground"/>
     <div class="frame" :style="{'background': `center / cover no-repeat url(${frameBackgroundURL})`}">
       <div class='wrapper'>
         <div class="inner">
@@ -42,6 +42,7 @@
 import Button from '@/components/Button'
 import { mapMutations } from 'vuex'
 import EXIF from 'exif-js'
+import config from '@/config'
 
 export default {
   name: 'photoupload',
@@ -62,18 +63,36 @@ export default {
         button1: '生成照片'
       },
       currentPresetId: 0,
-      presets: [
+      presetsRaw: [
         {
+          mode: 'upload',
           text: ['若你来到我心里', '就能明白自己有多美好'],
           image: require('@/assets/images/photo/1.jpg')
         },
         {
+          mode: 'upload',
           text: ['因为你', '我更爱时间一切'],
           image: require('@/assets/images/photo/2.jpg')
         },
         {
+          mode: 'upload',
           text: ['我一天天明白你的平凡', '却一天天更加深切地爱你'],
           image: require('@/assets/images/photo/3.jpg')
+        },
+        {
+          mode: 'trail',
+          text: ['愿执子之手', '在亲友的祝福中走向幸福'],
+          image: require('@/assets/images/trail/1.jpg')
+        },
+        {
+          mode: 'trail',
+          text: ['彼此的怀抱', '是世界上最温暖的港湾'],
+          image: require('@/assets/images/trail/2.jpg')
+        },
+        {
+          mode: 'trail',
+          text: ['一袭唯美白纱', '是对婚礼最初的想象'],
+          image: require('@/assets/images/trail/3.jpg')
         }
 
       ],
@@ -96,6 +115,23 @@ export default {
     }
   },
   computed: {
+    presets () {
+      switch (this.$store.state.mode) {
+        case config.mode.upload : {
+          return this.presetsRaw.filter(item => item.mode === 'upload')
+        }
+        case config.mode.trail : {
+          return this.presetsRaw.filter(item => item.mode === 'trail')
+        }
+      }
+      return this.presetsRaw
+    },
+    headBackground () {
+      const url = this.$store.state.mode === config.mode.trail
+        ? require('@/assets/images/photo/title.png')
+        : require('@/assets/images/photo/info.png')
+      return { background: `center / contain no-repeat url(${url})` }
+    },
     rawImageBackgroundStyle () {
       if (this.tempDataUrl) {
         return { background: 'center / cover no-repeat url(' + this.tempDataUrl + ') !important' }
@@ -443,7 +479,6 @@ input[type='file'] {
     height: 4rem;
     top: .75rem;
     width: 100%;
-    background: center / contain no-repeat url('~@/assets/images/photo/info.png');
   }
   h1 {
     font-family: 'playfair_displaybold_italic', 'Playfair Display';
