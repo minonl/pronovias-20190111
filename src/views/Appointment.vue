@@ -203,6 +203,7 @@ export default {
     booking (b) {
       if (b) {
         if (b.code === 0) {
+          this.$dialog.loading.close()
           if (this.$store.state.mode === config.mode.upload) {
             // alert('upload')
             this.$router.push('/upload')
@@ -521,7 +522,7 @@ export default {
 
 input, .input {
   background: white !important;
-  padding: 1em;
+  padding: 1em !important;
   height: 3em !important;
   border: solid 1px $rose !important;
   font-size: .9rem !important;
