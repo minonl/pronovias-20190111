@@ -153,6 +153,12 @@ export default {
 }
 </script>
 
+<style>
+.vjs-custom-skin .video-js{
+  width: 100%;
+  height: 100%;
+}
+</style>
 <style lang="scss" scoped>
 @import '@/stylesheets/global.scss';
 
