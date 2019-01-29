@@ -393,11 +393,11 @@ export default {
       ctx.restore()
 
       ctx.save()
-      ctx.font = `${12 * frate}px PingFang SC,Helvetica Neue,Hiragino Sans GB,Segoe UI,Microsoft YaHei,微软雅黑,sans-serif`
+      ctx.font = `30px PingFang SC,Helvetica Neue,Hiragino Sans GB,Segoe UI,Microsoft YaHei,微软雅黑,sans-serif`
       ctx.fillStyle = 'white'
       ctx.textAlign = 'left'
-      ctx.fillText(this.presets[this.currentPresetId].text[0], canvas.width * 0.1125, canvas.height - 2 * 16 * frate)
-      ctx.fillText(this.presets[this.currentPresetId].text[1], canvas.width * 0.1125, canvas.height - 0.75 * 16 * frate)
+      ctx.fillText(this.presets[this.currentPresetId].text[0], canvas.width * 0.1125, canvas.height - 2.5 * 16 * frate)
+      ctx.fillText(this.presets[this.currentPresetId].text[1], canvas.width * 0.1125, canvas.height - 1.25 * 16 * frate)
       ctx.restore()
 
       ctx.beginPath()
@@ -550,6 +550,9 @@ input[type='file'] {
         text-align: left;
         color: white;
         margin: .25em .5em .25em;
+        &:nth-of-type(1){
+          margin-top: 1rem;
+        }
       }
       .navigation{
         position: relative;
