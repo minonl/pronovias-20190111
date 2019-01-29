@@ -97,6 +97,7 @@ export default {
     }
     .save {
       border: solid 1px white;
+      color: white;
       padding: .75em 4em;
       background: transparent;
     }
