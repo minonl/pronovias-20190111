@@ -35,7 +35,14 @@ export default {
     share () {
       this.$router.push('/success')
     }
-  }
+  },
+  mounted () {
+    document.getElementById('app').style.position = 'fixed'
+    this.load()
+  },
+  beforeDestroy () {
+    document.getElementById('app').style.position = 'relative'
+  },
 }
 </script>
 
