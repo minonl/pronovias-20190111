@@ -76,7 +76,7 @@ p {
 
 .content {
   width: 100%;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
   height: 70vw;
   overflow-y: scroll;
   border: none;
