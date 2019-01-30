@@ -9,13 +9,13 @@
       </div>
       <div class="bottom">
         <div v-if="trailMode" class="phrase phrase-2">
+          上传至美时刻 <br>
+          赢取巴塞罗那的梦幻之旅
+        </div>
+        <div v-else class="phrase phrase-2">
           即刻在线选纱<br>
           领取专属精美礼物<br>
           更有机会赢取巴塞罗那梦幻之旅
-        </div>
-        <div v-else class="phrase phrase-2">
-          上传至美时刻 <br>
-          赢取巴塞罗那的梦幻之旅
         </div>
         <router-link v-if="trailMode" to="/upload">
           <Button class="start">上传试纱照片</Button>
