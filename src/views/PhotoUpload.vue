@@ -34,7 +34,15 @@
         </div>
       </div>
     </div>
-    <Button class="generate" @click.native="generateImage">{{text.button1}}</Button>
+    <div class="button-group">
+      <Button class="reset" @click.native="resetImage">
+        <div class="inner">
+          <div class="icon-reset"/>
+          <div class="text">重新选择</div>
+        </div>
+      </Button>
+      <Button class="generate" @click.native="generateImage">{{text.button1}}</Button>
+    </div>
   </div>
 </template>
 
@@ -156,6 +164,9 @@ export default {
     ...mapMutations([
       'updateDataUrl'
     ]),
+    resetImage () {
+      this.tempDataUrl = null
+    },
     screenHeight () {
       return window.innerHeight// iosHeight()
     },
@@ -597,13 +608,30 @@ input[type='file'] {
       }
     }
   }
-  .generate {
-    margin-top: 1rem;
-    color: white;
-    border: solid 1px white;
-    padding-left: 3em;
-    padding-right: 3em;
-    background-color: transparent;
+  .button-group {
+    display: flex;
+    flex-direction: row;
+    button {
+      flex: 1;
+      margin: 1rem;
+      color: white;
+      border: solid 1px white;
+      letter-spacing: .125em;
+      background-color: transparent;
+      .inner {
+        $icon-size: 1rem;
+        .icon-reset {
+          display: inline-block;
+          height: $icon-size;
+          width: $icon-size;
+          transform:  translateY(.075rem);
+          @include inframeImage('~@/assets/images/photo/reset.png');
+        }
+        .text {
+          display: inline-block;
+        }
+      }
+    }
   }
 }
 </style>
