@@ -3,11 +3,17 @@
     <div class="head"/>
     <img class="frame" :src="dataUrl">
     <div v-if="isSafari" class="hint">
-      <p>长按保存图片</p>
+      <!-- <p>长按保存图片</p>
       <p>搜索“PRONOVIAS”关注官方微信，获取最新资讯</p>
     </div>
-    <div v-else class="hint">
+    <div v-else class="hint"> -->
       <Button class="save" @click.native="saveImage">保存图片</Button>
+      <Button class="share" @click.native="saveImage">
+        <div class="inner">
+          <div class="text">分享</div>
+          <div class="icon-share"/>
+        </div>
+      </Button>
     </div>
   </div>
 </template>
@@ -75,6 +81,7 @@ export default {
 
 <style lang="scss" scoped>
 @import url('~@/assets/fonts/playfair/stylesheet.css');
+@import '~@/stylesheets/global.scss';
 @import '~@/stylesheets/color.scss';
 
 .result {
@@ -92,15 +99,35 @@ export default {
     height: 120vw;
   }
   .hint {
-    margin-top: 1rem;
     p {
       padding: .25em;
     }
-    .save {
+    display: flex;
+    flex-direction: row;
+    button {
+      margin: 1rem;
+      flex: 1;
       border: solid 1px white;
       color: white;
-      padding: .75em 4em;
+      padding: .5em .5em;
+      letter-spacing: .125em;
       background: transparent;
+      &.share {
+        .inner {
+          $icon-size: 1rem;
+          div {
+            display: inline-block;
+            &.icon-share {
+              display: inline-block;
+              height: $icon-size;
+              width: $icon-size;
+              margin-left: 0.125rem;
+              transform:  translateY(.1rem);
+              @include inframeImage('~@/assets/images/photo/share.png');
+            }
+          }
+        }
+      }
     }
   }
 }
