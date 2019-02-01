@@ -3,17 +3,17 @@
     <div class="head"/>
     <img class="frame" :src="dataUrl">
     <div v-if="isSafari" class="hint">
-      <!-- <p>长按保存图片</p>
+      <p>长按保存图片</p>
       <p>搜索“PRONOVIAS”关注官方微信，获取最新资讯</p>
     </div>
-    <div v-else class="hint"> -->
+    <div v-else class="hint">
       <Button class="save" @click.native="saveImage">保存图片</Button>
-      <Button class="share" @click.native="saveImage">
+      <!-- <Button class="share" @click.native="saveImage">
         <div class="inner">
           <div class="text">分享</div>
           <div class="icon-share"/>
         </div>
-      </Button>
+      </Button> -->
     </div>
   </div>
 </template>
@@ -99,11 +99,11 @@ export default {
     height: 120vw;
   }
   .hint {
+    // display: flex;
+    // flex-direction: row;
     p {
       padding: .25em;
     }
-    display: flex;
-    flex-direction: row;
     button {
       margin: 1rem;
       flex: 1;

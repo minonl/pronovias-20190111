@@ -372,7 +372,7 @@ export default {
       let backgrond = await this.loading(this.frameBackgroundURL)
       let title = await this.loading(require('@/assets/images/photo/title.png'))
       let photo = await this.loading(this.tempDataUrl)
-      let qrcode = await this.loading(require('@/assets/images/photo/qrcode.png'))
+      let qrcode = await this.loading(require('@/assets/images/photo/qrcode.jpg'))
 
       let rate = Math.min(this.photo.width, this.photo.height) / this.screenWidth
       let pw = this.photo.width / rate
