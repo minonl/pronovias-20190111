@@ -8748,6 +8748,11 @@ vue-eslint-parser@^4.0.2:
     esquery "^1.0.1"
     lodash "^4.17.11"
 
+vue-head@^2.1.1:
+  version "2.1.1"
+  resolved "http://registry.npm.taobao.org/vue-head/download/vue-head-2.1.1.tgz#05c455d6bddd1f21e84ae6c537e600ac960d07fb"
+  integrity sha1-BcRV1r3dHyHoSubFN+YArJYNB/s=
+
 vue-hot-reload-api@^2.3.0:
   version "2.3.1"
   resolved "http://registry.npm.taobao.org/vue-hot-reload-api/download/vue-hot-reload-api-2.3.1.tgz#b2d3d95402a811602380783ea4f566eb875569a2"

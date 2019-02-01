@@ -9,6 +9,8 @@ import 'vue-datetime/dist/vue-datetime.css'
 
 import VueTouch from 'vue-touch'
 
+import VueHead from 'vue-head'
+
 import { Settings } from 'luxon'
 
 import '@/stylesheets/global.scss'
@@ -20,6 +22,7 @@ import router from './router'
 Vue.use(YDUI)
 Vue.use(Datetime)
 Vue.use(VueTouch, { name: 'v-touch' })
+Vue.use(VueHead)
 
 Settings.defaultLocale = 'zh-cn'
 
