@@ -1,6 +1,7 @@
 <template>
   <transition name="fade">
     <div v-if="retired" ref="loading" class="loading">
+      <!-- <div class="debug">{{debugInfo}}</div> -->
       <transition name="fade">
         <div v-if="loading" class="loader">
           <div class="logo"/>
@@ -85,7 +86,8 @@ export default {
           type: 'video/mp4',
           src: require('@/assets/intro.mp4')
         }]
-      }
+      },
+      debugInfo: ''
     }
   },
   created () {
@@ -102,10 +104,13 @@ export default {
   },
   methods: {
     initPlayer () {
-      if (!this.$refs.videoPlayer) return
+      if (!this.$refs.videoPlayer) {
+        this.debugInfo = 'no vp'
+        return
+      }
       const root = {
-        height: window.innerHeight,
-        width: window.innerWidth
+        height: document.documentElement.clientHeight,
+        width: document.documentElement.clientWidth
       }
       const basic = this.$refs.videoPlayer.$el
       const player = this.$refs.videoPlayer.$el.getElementsByClassName('video-js')[0].style
@@ -124,6 +129,8 @@ export default {
       poster.height = player.height
       basic.width = player.width
       basic.height = player.height
+
+      this.debugInfo = `w:${player.width} h:${player.height}`
     },
     load () {
       const counter = this
@@ -161,7 +168,16 @@ export default {
 
 <style lang="scss" scoped>
 @import '@/stylesheets/global.scss';
-
+.debug {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 1rem;
+  width: 5rem;
+  z-index: 10000;
+  color: red;
+}
 .loading {
   position: fixed;
   top:0;
