@@ -51,7 +51,7 @@
           type="link"
           :href="productLinkBy(item.id)">
           <img slot="img" :src="imageBaseUrl+item.photos[0]">
-          <div slot="title">{{item.name}}</div>
+          <div slot="title" class="title">{{item.name}}</div>
         </yd-list-item>
       </yd-list>
     </transition>
@@ -237,6 +237,10 @@ export default {
   &.selected {
     opacity: .7;
   }
+}
+.title {
+  font-size: .825rem;
+  line-height: 1rem;
 }
 
 .fade-enter-active, .fade-leave-active {
