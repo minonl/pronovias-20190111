@@ -126,7 +126,6 @@ export default {
     }
   }
   .wrapper {
-    padding: 1rem 0;
     position: relative;
     overflow: hidden;
     text-align: center;
