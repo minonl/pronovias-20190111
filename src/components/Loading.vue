@@ -205,10 +205,11 @@ export default {
   align-items: center;
   .logo {
     position: absolute;
-    top: 1.5rem;
+    top: 50%;
     margin: 0 auto;
     width: 15rem;
     height: 3rem;
+    transform: translateY(-50%);
     @include inframeImage('~@/assets/images/home/logo.svg');
   }
   .image {
