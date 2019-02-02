@@ -10,10 +10,10 @@
       <Agreement ref="agreementWindow"/>
     </yd-popup>
     <div class="store" :style="{'background-image': 'url('+store.poster+')'}">
-      <div class="inner">
+      <!-- <div class="inner">
         <div class="name">{{store.name}}</div>
         <div class="address">{{store.address}}</div>
-      </div>
+      </div> -->
     </div>
     <div class="title">预约申请</div>
     <yd-cell-group :class="{'active':tgContact}">
