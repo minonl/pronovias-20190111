@@ -13,7 +13,7 @@
           </yd-slider-item>
       </yd-slider> -->
       <div class="header">
-        <div class='logo'/>
+        <!-- <div class='logo'/> -->
       </div>
       <!-- <div class="navigation">
         <div class="pan pan-prev" @click="swipeTo(true)">
