@@ -5,7 +5,7 @@
       <transition name="fade">
         <div v-if="loading" class="loader">
           <div class="logo"/>
-          <div class="image"/>
+          <!-- <div class="image"/> -->
           <yd-progressbar type="line"
             :progress="this.count/this.list.length"
             trail-width="1"
@@ -50,7 +50,7 @@ export default {
       durationLoading: 1500,
       // durationGif: 158000,
       list: [
-        require('@/assets/images/home/loading.gif'),
+        // require('@/assets/images/home/loading.gif'),
         require('@/assets/images/home/lbg.jpg'),
         require('@/assets/images/home/play.png'),
         require('@/assets/images/home/video.jpg'),
