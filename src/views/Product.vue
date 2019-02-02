@@ -6,7 +6,7 @@
           <!-- <li class="product-slider-item"  v-for="item in allProducts" :key="item.id"> -->
             <yd-slider>
               <yd-slider-item  v-for="(photo, index) in product.photos" :key="index">
-                <div class="preview" :style="{'background-image': 'url('+imageBaseUrl+photo+')'}"/>
+                <img class="preview" :src="imageBaseUrl+photo"/>
               </yd-slider-item>
             </yd-slider>
           <!-- </li> -->
@@ -133,7 +133,7 @@ export default {
   }
 }
 .preview {
-  height: calc(100vw);
+  width: calc(100vw);
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
