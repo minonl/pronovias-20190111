@@ -1,5 +1,8 @@
 <template>
   <div class="result" :style="{'height':height}">
+    <yd-popup v-model="popAgreement" position="center" width="90%">
+      <AgreementCampaign ref="agreementWindow"/>
+    </yd-popup>
     <div class="head"/>
     <img class="frame" :src="dataUrl">
     <div v-if="isSafari" class="hint">
@@ -15,15 +18,21 @@
         </div>
       </Button> -->
     </div>
+    <p class="agree-cam">
+      <!-- <yd-checkbox v-model="agree" color="#a89359">我已阅读</yd-checkbox> -->
+      <span class="rule" @click="popAgreement=true">PRONOVIAS #Marryme# 活动规则</span>
+    </p>
   </div>
 </template>
 
 <script>
 import Button from '@/components/Button'
+import AgreementCampaign from '@/components/AgreementCampaign'
 export default {
   name: 'result',
   components: {
-    Button
+    Button,
+    AgreementCampaign
   },
   data () {
     return {
@@ -32,7 +41,8 @@ export default {
         /Safari/.test(navigator.userAgent) ||
         /iPhone/.test(navigator.userAgent)) &&
         !/Chrome/.test(navigator.userAgent)) ||
-        (/Android/.test(navigator.userAgent) && /MicroMessenger/.test(navigator.userAgent))
+        (/Android/.test(navigator.userAgent) && /MicroMessenger/.test(navigator.userAgent)),
+      popAgreement: false
     }
   },
   computed: {
@@ -129,6 +139,22 @@ export default {
         }
       }
     }
+  }
+  .agree-cam {
+    .rule {
+      color: $gold;
+      padding: .25em 0;
+      font-size: .95rem;
+      border-bottom: solid 1px $gold;
+    }
+  }
+}
+</style>
+
+<style lang="scss">
+.agree-cam {
+  .yd-checkbox-text {
+    color:white;
   }
 }
 </style>
