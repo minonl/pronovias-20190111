@@ -125,14 +125,15 @@ export default {
   computed: {
     presets () {
       switch (this.$store.state.mode) {
-        case config.mode.upload : {
-          return this.presetsRaw.filter(item => item.mode === 'upload')
-        }
+        // case config.mode.upload : {
+        //   return this.presetsRaw.filter(item => item.mode === 'upload')
+        // }
         case config.mode.trail : {
           return this.presetsRaw.filter(item => item.mode === 'trail')
         }
       }
-      return this.presetsRaw
+      // return this.presetsRaw
+      return this.presetsRaw.filter(item => item.mode === 'upload')
     },
     headBackground () {
       const url = this.$store.state.mode === config.mode.trail

@@ -100,13 +100,13 @@ router.beforeEach((to, from, next) => {
   if (queryMode) {
     store.commit('modeChange', queryMode)
   }
-  const uploadAllowed = ['photoupload', 'result']
-  const modeAllowed = [config.mode.upload, config.mode.trail]
-  if (process.env.NODE_ENV === 'production' && uploadAllowed.includes(to.name)) {
-    if (!modeAllowed.includes(store.state.mode)) {
-      next({ path: '/' })
-    }
-  }
+  // const uploadAllowed = ['photoupload', 'result']
+  // const modeAllowed = [config.mode.upload, config.mode.trail]
+  // if (process.env.NODE_ENV === 'production' && uploadAllowed.includes(to.name)) {
+  //   if (!modeAllowed.includes(store.state.mode)) {
+  //     next({ path: '/' })
+  //   }
+  // }
   // document.getElementById('app').style.position = 'fixed'
   if (process.env.NODE_ENV === 'production' && !store.state.app.homeVisted) {
     store.commit('homeVisit', true)
