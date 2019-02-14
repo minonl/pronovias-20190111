@@ -6,7 +6,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "bdt": "yarn build && serve dist",
-    "bdd": "yarn build && scp -r dist/* pronovia@47.244.122.255:~/services/pronovia/data/pronovia/h5/test",
+    "bdd": "yarn build && scp -r dist/* pronovia@47.244.122.255:~/services/pronovia/data/pronovia/h5/",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
