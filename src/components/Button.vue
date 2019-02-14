@@ -26,5 +26,11 @@ export default {
     @media screen and (min-width: 370px){
       font-size: 1rem;
     }
+    transition: all .3s ease;
+    &:disabled,
+    &[disabled] {
+      color: grey !important;
+      background-color: rgba(255,255,255,.3) !important;
+    }
   }
 </style>
