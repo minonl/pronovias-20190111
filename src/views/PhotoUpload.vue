@@ -48,7 +48,7 @@
     </div>
     <p class="agree-cam">
       <yd-checkbox v-model="agree" color="#a89359">我已阅读</yd-checkbox>
-      <span class="rule" @click="popAgreement=true">PRONOVIAS #Marryme# 活动规则代替</span>
+      <span class="rule" @click="popAgreement=true">PRONOVIAS #Marryme# 活动规则</span>
     </p>
   </div>
 </template>
