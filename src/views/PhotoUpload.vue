@@ -1,5 +1,8 @@
 <template>
   <div class="photo-upload" :style="{'height':screenHeight}">
+    <yd-popup v-model="popAgreement" position="center" width="90%">
+      <AgreementCampaign ref="agreementWindow"/>
+    </yd-popup>
     <div class="head" :style="headBackground"/>
     <div class="frame" :style="{'background': `center / cover no-repeat url(${frameBackgroundURL})`}">
       <div class='wrapper'>
@@ -41,13 +44,18 @@
           <div class="text">重新选择</div>
         </div>
       </Button>
-      <Button class="generate" @click.native="generateImage">{{text.button1}}</Button>
+      <Button :disabled="agree ? null:'disabled'" class="generate" @click.native="generateImage">{{text.button1}}</Button>
     </div>
+    <p class="agree-cam">
+      <yd-checkbox v-model="agree" color="#a89359">我已阅读</yd-checkbox>
+      <span class="rule" @click="popAgreement=true">PRONOVIAS #Marryme# 活动规则代替</span>
+    </p>
   </div>
 </template>
 
 <script>
 import Button from '@/components/Button'
+import AgreementCampaign from '@/components/AgreementCampaign'
 import { mapMutations } from 'vuex'
 import EXIF from 'exif-js'
 import config from '@/config'
@@ -55,7 +63,8 @@ import config from '@/config'
 export default {
   name: 'photoupload',
   components: {
-    Button
+    Button,
+    AgreementCampaign
   },
   data () {
     return {
@@ -119,7 +128,9 @@ export default {
         adjustDeltaY: 0,
         currentDeltaX: 0,
         currentDeltaY: 0
-      }
+      },
+      agree: true,
+      popAgreement: false
     }
   },
   computed: {
@@ -633,6 +644,22 @@ input[type='file'] {
         }
       }
     }
+  }
+  .agree-cam {
+    .rule {
+      color: $gold;
+      padding: .25em 0;
+      font-size: .95rem;
+      border-bottom: solid 1px $gold;
+    }
+  }
+}
+</style>
+
+<style lang="scss">
+.agree-cam {
+  .yd-checkbox-text {
+    color:white;
   }
 }
 </style>
