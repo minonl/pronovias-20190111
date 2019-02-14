@@ -205,11 +205,11 @@ export default {
         if (b.code === 0) {
           this.$dialog.loading.close()
           // if (this.$store.state.mode === config.mode.upload) {
-            // alert('upload')
-            this.$router.push('/upload')
+          // alert('upload')
+          this.$router.push('/upload')
           // } else {
-            // alert('success')
-            // this.$router.push('/success')
+          // alert('success')
+          // this.$router.push('/success')
           // }
         } else {
           this.$dialog.toast({
