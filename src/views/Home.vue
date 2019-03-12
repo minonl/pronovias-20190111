@@ -4,8 +4,7 @@
       <div class="phrase phrase-1">
         国际奢侈婚纱品牌PRONOVIAS<br>
         已将优雅与浪漫带到105个国家<br>
-        并在上海恒隆广场<br>
-        开启了中国首家PRONOVIAS旗舰店
+        并在上海恒隆广场开启旗舰店
       </div>
       <div class="bottom">
         <div v-if="trailMode" class="phrase phrase-2">
