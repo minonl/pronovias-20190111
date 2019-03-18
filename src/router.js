@@ -94,7 +94,7 @@ function getUrlParam (name) {
 router.beforeEach((to, from, next) => {
   let queryFrom = getUrlParam('from')
   let queryMode = getUrlParam('mode')
-  if (queryMode) {
+  if (queryFrom) {
     store.commit('knowFrom', queryFrom)
   }
   if (queryMode) {
