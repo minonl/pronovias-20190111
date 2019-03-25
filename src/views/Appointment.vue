@@ -204,13 +204,11 @@ export default {
       if (b) {
         if (b.code === 0) {
           this.$dialog.loading.close()
-          // if (this.$store.state.mode === config.mode.upload) {
-          // alert('upload')
-          this.$router.push('/upload')
-          // } else {
-          // alert('success')
-          // this.$router.push('/success')
-          // }
+          if (this.$store.state.mode === config.mode.upload) {
+            this.$router.push('/success')
+          } else {
+            this.$router.push('/upload')
+          }
         } else {
           this.$dialog.toast({
             mes: b.message,
