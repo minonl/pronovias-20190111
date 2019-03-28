@@ -1,28 +1,24 @@
 <template>
   <div class="product-list">
     <div class="category-list">
-      <!-- <yd-slider :callback="updateCurrentCategoryBySlider" ref="slider">
+      <yd-slider :callback="updateCurrentCategoryBySlider" ref="slider">
           <yd-slider-item v-for="(item, index) in categories" :key="index">
               <div class="category" :style="{'background-image': 'url('+imageBaseUrl+item.poster+')'}">
-                <h2>{{item.name}}</h2>
-                <p>
-                  {{item.description}}
-                </p>
-                <button>查看系列</button>
+                <h1>{{item.name}}</h1>
               </div>
           </yd-slider-item>
-      </yd-slider> -->
-      <div class="header">
+      </yd-slider>
+      <!-- <div class="header">
         <div class='logo'/>
-      </div>
-      <!-- <div class="navigation">
+      </div> -->
+      <div class="navigation">
         <div class="pan pan-prev" @click="swipeTo(true)">
           <div class="arrow arrow-prev"/>
         </div>
         <div class="pan pan-next" @click="swipeTo(false)">
           <div class="arrow arrow-next"/>
         </div>
-      </div> -->
+      </div>
     </div>
     <!-- <transition-group
       name="fade"
@@ -45,7 +41,7 @@
       mode="in-out"
     >
       <yd-list theme="1">
-        <yd-list-item v-for="item in allProducts" :key="item.id"
+        <yd-list-item v-for="item in products" :key="item.id"
           class="list-complete-item"
           :class="{'selected':productSelected(item.id)}"
           type="link"
@@ -187,8 +183,13 @@ export default {
   background-size: cover;
   background-repeat: no-repeat;
   padding: 2rem;
-  h2 {
-    margin-bottom: 1rem;
+  position: relative;
+  h1 {
+    font-size: 1.25rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
   button {
     margin-top: 2rem;
