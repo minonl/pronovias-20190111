@@ -205,9 +205,9 @@ export default {
         if (b.code === 0) {
           this.$dialog.loading.close()
           // if (this.$store.state.mode === config.mode.upload) {
-            this.$router.push('/success')
+          this.$router.push('/success')
           // } else {
-            // this.$router.push('/upload')
+          // this.$router.push('/upload')
           // }
         } else {
           this.$dialog.toast({
