@@ -86,6 +86,13 @@ export default {
       return this.categories.filter(category => category.id === this.currentCategoryId)
     }
   }),
+  watch: {
+    categories ( newArray ) {
+      if (this.currentCategoryId < 0) {
+        this.currentCategoryId = newArray[0].id
+      }
+    }
+  },
   mounted () {
     this.listCategory()
     // this.updateCurrentCategory(this.categories[0].id)
