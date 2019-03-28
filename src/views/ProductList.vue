@@ -1,7 +1,7 @@
 <template>
   <div class="product-list">
     <div class="category-list">
-      <yd-slider 
+      <yd-slider
         :direction="'horizontal'"
         :callback="updateCurrentCategoryBySlider" ref="slider">
           <yd-slider-item v-for="(item, index) in categories" :key="index">
@@ -87,7 +87,7 @@ export default {
     }
   }),
   watch: {
-    categories ( newArray ) {
+    categories (newArray) {
       if (this.currentCategoryId < 0) {
         this.currentCategoryId = newArray[0].id
       }
