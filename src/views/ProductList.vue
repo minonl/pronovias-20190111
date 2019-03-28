@@ -1,7 +1,9 @@
 <template>
   <div class="product-list">
     <div class="category-list">
-      <yd-slider :callback="updateCurrentCategoryBySlider" ref="slider">
+      <yd-slider 
+        :direction="'horizontal'"
+        :callback="updateCurrentCategoryBySlider" ref="slider">
           <yd-slider-item v-for="(item, index) in categories" :key="index">
               <div class="category" :style="{'background-image': 'url('+imageBaseUrl+item.poster+')'}">
                 <h1>{{item.name}}</h1>
@@ -112,6 +114,7 @@ export default {
       this.currentCategoryId = id// this.categories[id].id
     },
     swipeTo (right) {
+      const fakePD = () => {}
       if (right) {
         this.$refs.slider.touchStartHandler({
           touches: [{
@@ -123,7 +126,8 @@ export default {
           touches: [{
             clientX: 1000,
             clientY: 0
-          }]
+          }],
+          preventDefault: fakePD
         })
         this.$refs.slider.touchEndHandler()
       } else {
@@ -137,7 +141,8 @@ export default {
           touches: [{
             clientX: 0,
             clientY: 0
-          }]
+          }],
+          preventDefault: fakePD
         })
         this.$refs.slider.touchEndHandler()
       }
