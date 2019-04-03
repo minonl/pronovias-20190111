@@ -1,7 +1,14 @@
 module.exports = {
   publicPath: process.env.NODE_ENV === 'production'
     ? '/'
-    : '/'
+    : '/',
+  css: {
+    loaderOptions: {
+      sass: {
+        implementation: require('sass')
+      }
+    }
+  }
 //   chainWebpack: config => {
 //     if (config.plugins.has('extract-css')) {
 //       const extractCSSPlugin = config.plugin('extract-css')
