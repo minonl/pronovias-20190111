@@ -13,34 +13,48 @@
       <!-- <div class="inner">
         <div class="name">{{store.name}}</div>
         <div class="address">{{store.address}}</div>
-      </div> -->
+      </div>-->
     </div>
     <div class="title">预约申请</div>
     <yd-cell-group :class="{'active':tgContact}">
-      <div class="label"  @click="tgContact=!tgContact">
-        <span class="no">1</span>联系方式<span class="toggle" :class="{'active': (name && phone)}"/>
-        </div>
+      <div class="label" @click="tgContact=!tgContact">
+        <span class="no">1</span>联系方式
+        <span class="toggle" :class="{'active': (name && phone)}"/>
+      </div>
       <yd-cell-item>
-        <input slot="right" type="text" required placeholder="姓名*" @invalid="tgContact=true"
-          v-model="name">
+        <input
+          slot="right"
+          type="text"
+          required
+          placeholder="姓名*"
+          @invalid="tgContact=true"
+          v-model="name"
+        >
       </yd-cell-item>
       <yd-cell-item>
         <div class="phone-input-wrapper" slot="right" @click.self="login">
-          <input type="number" ref="phoneInput" required @invalid="tgContact=true" disabled placeholder="电话*"
-            v-model="phone">
+          <input
+            type="number"
+            ref="phoneInput"
+            required
+            @invalid="tgContact=true"
+            disabled
+            placeholder="电话*"
+            v-model="phone"
+          >
         </div>
       </yd-cell-item>
       <yd-cell-item>
-        <input slot="right" type="email" placeholder="邮箱" @invalid="tgContact=true"
-          v-model="email">
+        <input slot="right" type="email" placeholder="邮箱" @invalid="tgContact=true" v-model="email">
       </yd-cell-item>
     </yd-cell-group>
-    <div class='box' :class="{'active':tgDate}">
-      <div class="label" @click="tgDate=!tgDate"><span class="no">2</span>选择预约日期<span class="toggle" :class="{'active': (date)}"/></div>
-      <div class="icon icon-calendar"/>
-      <div class="icon icon-clock"/>
+    <div class="box" :class="{'active':tgDate}">
+      <div class="label" @click="tgDate=!tgDate">
+        <span class="no">2</span>选择预约日期
+        <span class="toggle" :class="{'active': (date)}"/>
+      </div>
       <div v-if="!isWarned" class="first-time-warning" @click="warn"/>
-      <datetime
+      <!-- <datetime
         input-class="input"
         class="datetime"
         type="date"
@@ -57,20 +71,41 @@
         format="HH:mm"
         placeholder="选择时间*"
         :phrases="{ok: '确认', cancel: '取消'}"
-        v-model="date"/>
-
+      v-model="date"/>-->
+      <!-- <div class="icon icon-calendar"/>
+      <div class="icon icon-clock"/> -->
+      <yd-datetime
+        class="datetime"
+        type="datetime"
+        v-model="date"
+        :init-emit="false"
+        placeholder="点击选择日期和时间"
+        :start-date="startDate"
+        start-hour="10"
+        end-hour="16"
+        slot="right"/>
     </div>
     <yd-cell-group :class="{'active':tgTrail}">
-      <div class="label" @click="tgTrail=!tgTrail"><span class="no">3</span>挑选你的婚纱<span class="toggle" :class="{'active': $store.state.appointment.trailProducts && $store.state.appointment.trailProducts.length>0}"/></div>
+      <div class="label" @click="tgTrail=!tgTrail">
+        <span class="no">3</span>挑选你的婚纱
+        <span
+          class="toggle"
+          :class="{'active': $store.state.appointment.trailProducts && $store.state.appointment.trailProducts.length>0}"
+        />
+      </div>
       <yd-cell-item>
         <!-- <Button class="reselect" @click.native.prevent="clearList" slot="right" >重新挑选</Button> -->
         <div slot="left">
           <div class="list">
             <ul class="cart">
-              <li class="product" v-for="item in cart" :key="item.id" :style="{'background-image': 'url('+imageBaseUrl+item.photos[0]+')'}">
-              </li>
+              <li
+                class="product"
+                v-for="item in cart"
+                :key="item.id"
+                :style="{'background-image': 'url('+imageBaseUrl+item.photos[0]+')'}"
+              ></li>
               <li class="product-add">
-                <router-link to='/product'>
+                <router-link to="/product">
                   <div class="inner">
                     <div class="plus"/>
                   </div>
@@ -78,7 +113,7 @@
               </li>
             </ul>
           </div>
-          <Button class="reselect" @click.native.prevent="clearList" >重新挑选</Button>
+          <Button class="reselect" @click.native.prevent="clearList">重新挑选</Button>
         </div>
       </yd-cell-item>
     </yd-cell-group>
@@ -122,7 +157,10 @@ export default {
         address: '上海市静安区南京西路1266号',
         poster: require('@/assets/images/booking/store.jpg')
       },
-      isWarned: false
+      isWarned: false,
+      pDateOnly: DateTime.now,
+      pTimeOnly: DateTime.now,
+      startDate: ''
     }
   },
   created () {
@@ -132,6 +170,9 @@ export default {
       this.$store.commit('phoneUpdate', phone)
       this.$store.commit('tokenChange', token)
     }
+    let newDate = new Date(new Date().getTime() + 24 * 60 * 60 * 1000)
+    newDate.setHours(10, 0, 0, 0)
+    this.startDate = this.formatDate(newDate.toISOString())
   },
   computed: {
     cart () {
@@ -166,12 +207,10 @@ export default {
         return this.$store.state.appointment.date
       },
       set (value) {
-        if (!value) { return }
-        let newDate = new Date(value)
-        if (newDate.getHours() < 10) {
-          newDate.setHours(10)
+        if (!value) {
+          return
         }
-        this.pickDatetime(newDate.toISOString())
+        this.pickDatetime(value)
       }
     },
     agree: {
@@ -235,6 +274,7 @@ export default {
       'updateAgree',
       'submitAppointment'
     ]),
+    formatDate: (newDate) => DateTime.fromISO(newDate).toFormat('yyyy-MM-dd HH:mm'),
     warn () {
       // if (!this.isWarned) {
       this.popWarning = true
@@ -296,7 +336,7 @@ export default {
             name: this.name,
             phone: this.phone,
             email: this.email,
-            date: DateTime.fromISO(this.date).toFormat('yyyy-MM-dd HH:mm'),
+            date: this.date,
             product_ids: this.cart.map(p => p.id)
           }
         }
@@ -308,8 +348,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '~@/assets/fonts/monsterrat_alternates/stylesheet.css';
-@import '~@/stylesheets/color.scss';
+@import "~@/assets/fonts/monsterrat_alternates/stylesheet.css";
+@import "~@/stylesheets/color.scss";
 
 .appointment {
   text-align: center;
@@ -317,7 +357,7 @@ export default {
   overflow: scroll !important;
   .store {
     height: 60vw;
-    background-size:cover;
+    background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
     position: relative;
@@ -326,7 +366,7 @@ export default {
       position: absolute;
       top: 50%;
       left: 50%;
-      transform: translate(-50%,-50%);
+      transform: translate(-50%, -50%);
       .name {
         padding: 1em 0;
         font-weight: bold;
@@ -334,7 +374,7 @@ export default {
     }
   }
   .title {
-    padding: .25rem;
+    padding: 0.25rem;
     font-size: 1rem;
   }
   .box {
@@ -345,7 +385,7 @@ export default {
     background: $dirt;
     margin-bottom: 1rem;
     max-height: 3rem;
-    transition: all .3s ease-in-out;
+    transition: all 0.3s ease-in-out;
     &.active {
       max-height: 30rem;
       padding-bottom: 1rem;
@@ -375,17 +415,19 @@ export default {
       right: 3.5rem;
       &-calendar {
         top: 5.8125rem;
-        background: center / contain no-repeat url('~@/assets/images/booking/calendar.png');
+        background: center / contain no-repeat
+          url("~@/assets/images/booking/calendar.png");
       }
       &-clock {
         top: 9.6125rem;
-        background: center / contain no-repeat url('~@/assets/images/booking/clock.png');
+        background: center / contain no-repeat
+          url("~@/assets/images/booking/clock.png");
       }
     }
   }
   .label {
     text-align: left;
-    font-size: .9rem;
+    font-size: 0.9rem;
     background-color: $sand;
     border-top: solid 1px $rose;
     border-bottom: solid 1px $rose;
@@ -396,8 +438,8 @@ export default {
     padding: 1em 2.25rem;
     .no {
       font-size: 1.25rem;
-      padding-right: .5em;
-      font-family: 'Montserrat Alternates', 'montserrat_alternates_mediuRg';
+      padding-right: 0.5em;
+      font-family: "Montserrat Alternates", "montserrat_alternates_mediuRg";
     }
     .toggle {
       position: absolute;
@@ -406,11 +448,11 @@ export default {
       transform: translateY(-50%);
       width: 1.5rem;
       height: 1.5rem;
-      background-image: url('~@/assets/images/booking/accordin.png');
+      background-image: url("~@/assets/images/booking/accordin.png");
       background-size: contain;
       background-position: center;
-      filter: opacity(.3);
-      transition: all .3s ease;
+      filter: opacity(0.3);
+      transition: all 0.3s ease;
       &.active {
         filter: opacity(1);
       }
@@ -436,7 +478,7 @@ export default {
   width: 80vw;
   text-align: center;
   display: block;
-  margin: .8vw 0;
+  margin: 0.8vw 0;
   li {
     float: left;
     width: 25vw;
@@ -444,18 +486,18 @@ export default {
     display: inline-block;
     text-align: center;
     background-color: white;
-    margin-left: .8vw;
-    margin-right: .8vw;
+    margin-left: 0.8vw;
+    margin-right: 0.8vw;
     margin-bottom: 1.6vw;
     background-size: cover;
     background-position: center;
     &.product {
       &-add {
-        background-image: url('~@/assets/images/product/new.png');
+        background-image: url("~@/assets/images/product/new.png");
         .inner {
           width: 100%;
           height: 100%;
-          background: rgba(255,255,255,.5);
+          background: rgba(255, 255, 255, 0.5);
           position: relative;
           .plus {
             width: 1.5rem;
@@ -467,13 +509,13 @@ export default {
             transform: translate(-50%, -50%);
             background: #a89359;
             &:before {
-              content: '+';
+              content: "+";
               color: white;
               font-size: 1.25rem;
               position: absolute;
               left: 50%;
               top: 50%;
-              transform: translate(-50%, calc(-50% - .125rem));
+              transform: translate(-50%, calc(-50% - 0.125rem));
             }
           }
         }
@@ -491,20 +533,32 @@ export default {
 .bottom {
   .rule {
     color: $gold;
-    padding: .25em 0;
-    font-size: .95rem;
+    padding: 0.25em 0;
+    font-size: 0.95rem;
     border-bottom: solid 1px $gold;
   }
 }
 </style>
 
 <style lang="scss">
-@import '@/stylesheets/color.scss';
+@import "@/stylesheets/color.scss";
 
 .datetime {
-  padding: 1rem .24rem 0 0;
+  background: white;
+  margin-top: 1rem;
+  padding: .55rem;
+  border: solid 1px $rose;
+  font-size: 1rem;
+  height: 2.75rem;
+  position: relative;
+  span {
+    position: absolute;
+    color: $rose;
+    font-size: 0.9rem;
+    left: 1rem;
+  }
 }
-.vdatetime{
+.vdatetime {
   &-popup__header,
   &-calendar__month__day--selected > span > span,
   &-calendar__month__day--selected:hover > span > span {
@@ -518,12 +572,13 @@ export default {
   }
 }
 
-input, .input {
+input,
+.input {
   background: white !important;
   padding: 1em !important;
   height: 3em !important;
   border: solid 1px $rose !important;
-  font-size: .9rem !important;
+  font-size: 0.9rem !important;
   width: 100%;
   &:disabled {
     background: white;
@@ -546,7 +601,7 @@ input, .input {
     margin-bottom: 1rem;
     overflow: hidden;
     max-height: 3rem;
-    transition: all .3s ease-in-out;
+    transition: all 0.3s ease-in-out;
     .yd-cell-item {
       padding: 1rem 0 0 0;
     }
@@ -557,7 +612,7 @@ input, .input {
   margin-bottom: 1rem;
   &-icon {
     border-color: $rose;
-    margin-right: .25rem;
+    margin-right: 0.25rem;
   }
 }
 
@@ -568,9 +623,10 @@ input, .input {
 }
 
 // override ios input::disbaled style
-input:disabled, textarea:disabled {
-    -webkit-text-fill-color: $rose;
-    -webkit-opacity: 1;
-    color: #000;
+input:disabled,
+textarea:disabled {
+  -webkit-text-fill-color: $rose;
+  -webkit-opacity: 1;
+  color: #000;
 }
 </style>
